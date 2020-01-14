@@ -7,7 +7,11 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.misc.AutoChooser;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.Subsystems.Drive;
+import frc.robot.Subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,8 +25,18 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
+  public static Drive drive; 
+  public static AutoChooser chooser;
+  public static OI oi;
+  public static Shooter shooter;
+  
   @Override
   public void robotInit() {
+    drive = new Drive();
+    shooter = new Shooter();
+    chooser = new AutoChooser();
+    oi = new OI();
+
   }
 
   @Override
