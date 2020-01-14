@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.Constants;
+package frc.robot.constants;
 
 /**
  * Add your docs here.
