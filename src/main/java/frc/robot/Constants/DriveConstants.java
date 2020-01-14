@@ -5,16 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.Constants;
+package frc.robot.constants;
 
 /**
  * Add your docs here.
  */
 public class DriveConstants {
+    public static final double kLeftP = 0;
+	public static final double kLeftI = 0;
+	public static final double kLeftD = 0;
+
+	public static final double kRightP = 0;
+	public static final double kRightI = 0;
+	public static final double kRightD = 0;
+	
     public static int kLeftStatic = 0;
     public static int kRightStatic = 0;
+
     public static int kLeftF = 0;
     public static int kRightF = 0;
+
     public static int kMaxVelocity = 0;
     public static int kLeftTicksPerFoot = 0;
     public static int kRightTicksPerFoot = 0;

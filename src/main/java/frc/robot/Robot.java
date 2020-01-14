@@ -7,11 +7,15 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.misc.AutoChooser;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.Subsystems.Drive;
-import frc.robot.Subsystems.Shooter;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +33,7 @@ public class Robot extends TimedRobot {
   public static AutoChooser chooser;
   public static OI oi;
   public static Shooter shooter;
+  public static Command m_autonomousCommand;
   
   @Override
   public void robotInit() {
@@ -40,11 +45,22 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
+  }
+
+  @Override
   public void autonomousInit() {
+    m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));
+    if (m_autonomousCommand != null) { 
+      m_autonomousCommand.schedule();
+    }
   }
 
   @Override
   public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+    
   }
 
   @Override
