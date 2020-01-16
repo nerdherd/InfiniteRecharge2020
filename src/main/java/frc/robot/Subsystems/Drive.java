@@ -12,8 +12,8 @@ import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.robot.Robot;
-import com.nerdherd.robot.RobotMap;
 
+import frc.robot.RobotMap;
 import frc.robot.constants.DriveConstants;
 
 // import edu.wpi.first.wpilibj2.command.SubsystemBase;
