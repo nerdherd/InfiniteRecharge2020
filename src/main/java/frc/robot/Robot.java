@@ -9,6 +9,9 @@ package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.misc.AutoChooser;
+import com.nerdherd.lib.motor.dual.DualMotorIntake;
+import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
+import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,16 +32,19 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
-  public static Drive drive; 
   public static AutoChooser chooser;
-  public static OI oi;
+  public static Drive drive;
   public static Shooter shooter;
+  public static DualMotorIntake feeder;
+  public static OI oi;
   public static Command m_autonomousCommand;
+
   
   @Override
   public void robotInit() {
     drive = new Drive();
     shooter = new Shooter();
+    feeder = new DualMotorIntake(new SingleMotorTalonSRX(1, "Top Intake", false, false), new SingleMotorTalonSRX(2, "Bottom Intake", true, false));
     chooser = new AutoChooser();
     oi = new OI();
 
