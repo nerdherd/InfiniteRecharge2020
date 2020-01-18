@@ -17,19 +17,15 @@ import frc.robot.constants.ShooterConstants;
  */
 public class Shooter extends SingleMotorTalonSRX {
   public Shooter(){
-    super(5, "Shooter", true, true);
+    super(13, "Shooter", false, true);
 
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configTalonDeadband(ShooterConstants.kDeadband);
-    super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(4)});
+    super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(7)});
     
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+
 }

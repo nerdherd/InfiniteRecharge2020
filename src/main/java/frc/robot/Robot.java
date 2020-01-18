@@ -8,10 +8,10 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
+import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
 import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
-import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -20,8 +20,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Intake;
-
+import frc.robot.OI;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -39,6 +38,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static DualMotorIntake feeder;
   public static Intake intake;
+  // public static SingleMotorTalonSRX motor;
   public static OI oi;
   public static Command m_autonomousCommand;
 
@@ -47,16 +47,22 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drive = new Drive();
     shooter = new Shooter();
-    feeder = new DualMotorIntake(new SingleMotorTalonSRX(1, "Top Intake", false, false), new SingleMotorTalonSRX(2, "Bottom Intake", true, false));
+    // motor = new SingleMotorTalonSRX(6, "Motor", true, true);
+    feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
     intake = new Intake();
     chooser = new AutoChooser();
     oi = new OI();
+
+    NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder);
 
   }
 
   @Override
   public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
+    // CommandScheduler.getInstance().run();
+    shooter.reportToSmartDashboard();
+    feeder.reportToSmartDashboard();
+    // motor.reportToSmartDashboard();
   }
 
   @Override
@@ -75,10 +81,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    CommandScheduler.getInstance().run();
   }
 
   @Override
   public void teleopPeriodic() {
+    CommandScheduler.getInstance().run();
+  
   }
 
   @Override

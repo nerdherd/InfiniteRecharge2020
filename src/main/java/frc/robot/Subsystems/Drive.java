@@ -32,7 +32,7 @@ public class Drive extends Drivetrain {
       new NerdyVictorSPX(RobotMap.kRightSlaveVictor1ID),
       new NerdyVictorSPX(RobotMap.kRightSlaveVictor2ID)
     },
-     true, false);
+     true, false, 1);
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
