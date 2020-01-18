@@ -18,7 +18,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +38,7 @@ public class Robot extends TimedRobot {
   public static Drive drive;
   public static Shooter shooter;
   public static DualMotorIntake feeder;
+  public static Intake intake;
   public static OI oi;
   public static Command m_autonomousCommand;
 
@@ -45,6 +48,7 @@ public class Robot extends TimedRobot {
     drive = new Drive();
     shooter = new Shooter();
     feeder = new DualMotorIntake(new SingleMotorTalonSRX(1, "Top Intake", false, false), new SingleMotorTalonSRX(2, "Bottom Intake", true, false));
+    intake = new Intake();
     chooser = new AutoChooser();
     oi = new OI();
 

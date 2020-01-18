@@ -24,6 +24,10 @@ public class RobotMap {
     public static final double kDriveV = 0;
     public static final double kDriveA = 0;
 
+    public static final int kIntakeID1 = 0;
+    public static final int kIntakeID2 = 0;
+    
+
 	// public static int kLeftMasterTalonID;
     
 }
