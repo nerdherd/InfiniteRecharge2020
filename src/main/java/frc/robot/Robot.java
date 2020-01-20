@@ -38,6 +38,8 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static DualMotorIntake feeder;
   public static Intake intake;
+  public static SingleMotorTalonSRX intakeroll;
+  public static SingleMotorTalonSRX index;
   // public static SingleMotorTalonSRX motor;
   public static OI oi;
   public static Command m_autonomousCommand;
@@ -50,10 +52,13 @@ public class Robot extends TimedRobot {
     // motor = new SingleMotorTalonSRX(6, "Motor", true, true);
     feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
     intake = new Intake();
+    index = new SingleMotorTalonSRX(21, "Index", false, true);
+    intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
     chooser = new AutoChooser();
     oi = new OI();
 
     NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder);
+
 
   }
 
@@ -62,6 +67,7 @@ public class Robot extends TimedRobot {
     // CommandScheduler.getInstance().run();
     shooter.reportToSmartDashboard();
     feeder.reportToSmartDashboard();
+    index.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
   }
 
