@@ -29,6 +29,11 @@ public class Intake extends SingleMotorArm {
     intake2.follow(this.motor);
     intake2.setInverted(InvertType.OpposeMaster);
     
+
+    super.configPIDF(IntakeConstants.kIntakeRightP, IntakeConstants.kIntakeRightI, 
+                      IntakeConstants.kIntakeRightD, IntakeConstants.kIntakeRightF); 
+    super.configPIDF(IntakeConstants.kIntakeLeftP, IntakeConstants.kIntakeLeftI, 
+                      IntakeConstants.kIntakeLeftD, IntakeConstants.kIntakeLeftF);  
     // super.configMaxVelocity(IntakeConstants.kMaxVelocity);
      
     //  super.configTicksPerFoot(IntakeConstants.kLeftTicksPerFoot, IntakeConstants.kRightTicksPerFoot);

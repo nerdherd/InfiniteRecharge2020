@@ -12,14 +12,41 @@ import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * Add your docs here.
  */
 public class OI extends DefaultOI {
+
+    public JoystickButton intake_1, feeder_2, index_3, shooter_4, stopShooter_5, stopIntake_6,
+                         stowIntake_7, feederOuttake_8, indexOuttake_9;
     
     public OI(){
         super();
+        intake_1 = new JoystickButton(super.operatorJoy, 1);
+        feeder_2 = new JoystickButton(super.operatorJoy, 2);
+        index_3 = new JoystickButton(super.operatorJoy, 3);
+        shooter_4 = new JoystickButton(super.operatorJoy, 4);
+        stopShooter_5 = new JoystickButton(super.operatorJoy, 5);
+        stopIntake_6 = new JoystickButton(super.operatorJoy, 6);
+        stowIntake_7 = new JoystickButton(super.operatorJoy, 7);
+        feederOuttake_8 = new JoystickButton(super.operatorJoy, 8);
+        indexOuttake_9 = new JoystickButton(super.operatorJoy, 9);
+
+        // intake_1.whenPressed(new IntakeBallToShooter());
+        feeder_2.whenPressed(new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
+        index_3.whenPressed(new SetMotorPower(Robot.index, 0.5));
+        shooter_4.whenPressed(new SetMotorPower(Robot.shooter, 0.75));
+        stopShooter_5.whenPressed(new SetMotorPower(Robot.shooter, 0.0));
+        stopIntake_6.whenPressed(new SetMotorPower(Robot.intake, 0.0));
+        // stowIntake_7.whenPressed(new StowIntake());
+        feederOuttake_8.whenPressed(new SetDualMotorPower(Robot.feeder, -0.3, -0.3));
+        indexOuttake_9.whenPressed(new SetMotorPower(Robot.index, -0.5));
+
+
+
+
         SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
         SmartDashboard.putData("Feeder25", new SetDualMotorPower(Robot.feeder, 0.25, 0.25));
         SmartDashboard.putData("Feeder35", new SetDualMotorPower(Robot.feeder, 0.35, 0.35));

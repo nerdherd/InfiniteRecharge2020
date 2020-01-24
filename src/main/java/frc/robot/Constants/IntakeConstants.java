@@ -16,9 +16,11 @@ public class IntakeConstants {
     public static final double kIntakeLeftP = 0;
 	public static final double kIntakeLeftI = 0;
 	public static final double kIntakeLeftD = 0;
+	public static final double kIntakeLeftF = 0;
 
 	public static final double kIntakeRightP = 0;
 	public static final double kIntakeRightI = 0;
 	public static final double kIntakeRightD = 0;
+	public static final double kIntakeRightF = 0;
     
 }
