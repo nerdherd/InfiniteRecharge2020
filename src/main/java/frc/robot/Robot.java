@@ -8,11 +8,14 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
+import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
 import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
 
+import edu.wpi.first.hal.PDPJNI;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -41,6 +44,7 @@ public class Robot extends TimedRobot {
   public static SingleMotorTalonSRX intakeroll;
   public static SingleMotorTalonSRX index;
   // public static SingleMotorTalonSRX motor;
+  public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
 
@@ -55,9 +59,12 @@ public class Robot extends TimedRobot {
     index = new SingleMotorTalonSRX(21, "Index", false, true);
     intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
     chooser = new AutoChooser();
+    pdp = new PowerDistributionPanel();
     oi = new OI();
 
-    NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder);
+    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+
+    NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
 
 
   }

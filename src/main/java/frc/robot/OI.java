@@ -7,8 +7,10 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
+import com.nerdherd.lib.motor.commands.SetMotorVelocity;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -102,8 +104,16 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("IntakeRoller80%", new SetMotorPower(Robot.intakeroll, 0.8));
         SmartDashboard.putData("IntakeRoller85%", new SetMotorPower(Robot.intakeroll, 0.85));
         SmartDashboard.putData("IntakeRollerOff%", new SetMotorPower(Robot.intakeroll, 0.0));
+      
+        SmartDashboard.putData("ShooterRamp", new MotorVoltageRamping(Robot.shooter, .20));
+        SmartDashboard.putData("Shooter10000", new SetMotorVelocity(Robot.shooter, 10000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter3000", new SetMotorVelocity(Robot.shooter, 3000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter25000", new SetMotorVelocity(Robot.shooter, 25000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter30000", new SetMotorVelocity(Robot.shooter, 30000, 0.0003500*(1023/12)));
 
-
+        //was 0.0005321 got 10000 ticks to 12000
+// 0.0002706 got 10000 ticks to 9000
+// 0.0003000 got 10000 ticks to 9300
 
         
 
