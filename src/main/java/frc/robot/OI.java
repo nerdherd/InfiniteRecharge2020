@@ -11,6 +11,7 @@ import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorVelocity;
+import frc.robot.commands.vision.TurnToAngle;;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,11 +23,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class OI extends DefaultOI {
 
     public JoystickButton intake_1, feeder_2, index_3, shooter_4, stopShooter_5, stopIntake_6,
-                         stowIntake_7, feederOuttake_8, indexOuttake_9;
+                         stowIntake_7, feederOuttake_8, indexOuttake_9, turnToAngle_0;
     
     public OI(){
         super();
-        intake_1 = new JoystickButton(super.operatorJoy, 1);
+        //intake_1 = new JoystickButton(super.operatorJoy, 1);
         feeder_2 = new JoystickButton(super.operatorJoy, 2);
         index_3 = new JoystickButton(super.operatorJoy, 3);
         shooter_4 = new JoystickButton(super.operatorJoy, 4);
@@ -35,8 +36,11 @@ public class OI extends DefaultOI {
         stowIntake_7 = new JoystickButton(super.operatorJoy, 7);
         feederOuttake_8 = new JoystickButton(super.operatorJoy, 8);
         indexOuttake_9 = new JoystickButton(super.operatorJoy, 9);
+        turnToAngle_0 = new JoystickButton(super.operatorJoy, 1);
+
 
         // intake_1.whenPressed(new IntakeBallToShooter());
+
         feeder_2.whenPressed(new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
         index_3.whenPressed(new SetMotorPower(Robot.index, 0.5));
         shooter_4.whenPressed(new SetMotorPower(Robot.shooter, 0.75));
@@ -45,6 +49,7 @@ public class OI extends DefaultOI {
         // stowIntake_7.whenPressed(new StowIntake());
         feederOuttake_8.whenPressed(new SetDualMotorPower(Robot.feeder, -0.3, -0.3));
         indexOuttake_9.whenPressed(new SetMotorPower(Robot.index, -0.5));
+        turnToAngle_0.whenPressed(new TurnToAngle(0.253));
 
 
 
@@ -111,6 +116,7 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("Shooter25000", new SetMotorVelocity(Robot.shooter, 25000, 0.0003500*(1023/12)));
         SmartDashboard.putData("Shooter30000", new SetMotorVelocity(Robot.shooter, 30000, 0.0003500*(1023/12)));
 
+        
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300

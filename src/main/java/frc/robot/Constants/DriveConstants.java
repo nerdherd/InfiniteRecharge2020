@@ -19,8 +19,8 @@ public class DriveConstants {
 	public static final double kRightI = 0;
 	public static final double kRightD = 0;
 	
-    public static int kLeftStatic = 0;
-    public static int kRightStatic = 0;
+    public static double kLeftStatic = 1;
+    public static double kRightStatic = 1;
 
     public static int kLeftF = 0;
     public static int kRightF = 0;

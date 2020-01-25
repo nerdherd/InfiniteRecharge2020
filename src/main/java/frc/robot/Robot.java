@@ -17,12 +17,15 @@ import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
 import edu.wpi.first.hal.PDPJNI;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Jevois;
 import frc.robot.OI;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,8 +39,13 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
+	public static final String kDate = "2020_01_25_";
+  
   public static AutoChooser chooser;
   public static Drive drive;
+  public static Jevois jevois;
+  
+  public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake feeder;
   public static Intake intake;
@@ -52,8 +60,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drive = new Drive();
+    jevois = new Jevois(115200, SerialPort.Port.kUSB);
+		jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorTalonSRX(6, "Motor", true, true);
+    ds = DriverStation.getInstance();
     feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
     intake = new Intake();
     index = new SingleMotorTalonSRX(21, "Index", false, true);
@@ -75,6 +86,7 @@ public class Robot extends TimedRobot {
     shooter.reportToSmartDashboard();
     feeder.reportToSmartDashboard();
     index.reportToSmartDashboard();
+    jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
   }
 
