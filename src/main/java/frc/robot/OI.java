@@ -110,6 +110,14 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("Shooter3000", new SetMotorVelocity(Robot.shooter, 3000, 0.0003500*(1023/12)));
         SmartDashboard.putData("Shooter25000", new SetMotorVelocity(Robot.shooter, 25000, 0.0003500*(1023/12)));
         SmartDashboard.putData("Shooter30000", new SetMotorVelocity(Robot.shooter, 30000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter21500", new SetMotorVelocity(Robot.shooter, 21500, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter23000", new SetMotorVelocity(Robot.shooter, 23000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter27000", new SetMotorVelocity(Robot.shooter, 27000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter28000", new SetMotorVelocity(Robot.shooter, 28000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter26000", new SetMotorVelocity(Robot.shooter, 26000, 0.0003500*(1023/12)));
+        SmartDashboard.putData("Shooter24000", new SetMotorVelocity(Robot.shooter, 24000, 0.0003500*(1023/12)));
+
+
 
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000

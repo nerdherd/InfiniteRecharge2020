@@ -8,11 +8,12 @@
 package frc.robot.subsystems;
 
 import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
+import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
-import com.nerdherd.robot.Robot;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.DriveConstants;
 
@@ -25,12 +26,10 @@ public class Drive extends Drivetrain {
   public Drive() {
     super(new NerdyTalon(RobotMap.kLeftMasterTalonID), new NerdyTalon(RobotMap.kRightMasterTalonID),
     new CANMotorController[] {
-      new NerdyVictorSPX(RobotMap.kLeftSlaveVictor1ID),
-      new NerdyVictorSPX(RobotMap.kLeftSlaveVictor2ID)
+      new NerdyTalon(RobotMap.kLeftSlaveTalon1ID),
     },
     new CANMotorController[] {
-      new NerdyVictorSPX(RobotMap.kRightSlaveVictor1ID),
-      new NerdyVictorSPX(RobotMap.kRightSlaveVictor2ID)
+      new NerdyTalon(RobotMap.kRightSlaveTalon1ID),
     },
      true, false, 1);
     
@@ -42,7 +41,6 @@ public class Drive extends Drivetrain {
      super.configLeftPIDF(0.0, 0, 0, DriveConstants.kLeftF);
      super.configRightPIDF(0.0, 0, 0, DriveConstants.kRightF);
      super.configStaticFeedforward(DriveConstants.kLeftStatic, DriveConstants.kRightStatic);
-
   }
 
   @Override

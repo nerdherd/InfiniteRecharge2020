@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
+import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
@@ -61,7 +62,7 @@ public class Robot extends TimedRobot {
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
     oi = new OI();
-
+    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
     NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
