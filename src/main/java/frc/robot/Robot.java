@@ -15,7 +15,9 @@ import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
 import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
 
-import edu.wpi.first.hal.PDPJNI;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,7 +26,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
-import frc.robot.OI;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
   public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
+  public static UsbCamera jevois;
 
   
   @Override
@@ -61,11 +63,13 @@ public class Robot extends TimedRobot {
     intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
+    jevois = CameraServer.getInstance().startAutomaticCapture();
+    jevois.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
+    // NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
 
 
   }
@@ -73,6 +77,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     // CommandScheduler.getInstance().run();
+    // CameraServer.getInstance().
     shooter.reportToSmartDashboard();
     feeder.reportToSmartDashboard();
     index.reportToSmartDashboard();
