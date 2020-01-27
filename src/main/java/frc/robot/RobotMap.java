@@ -12,13 +12,9 @@ package frc.robot;
  */
 public class RobotMap {
     public static final int kRightMasterTalonID = 17;
-    public static final int kLeftMasterTalonID = 2;
-
-    public static final int kLeftSlaveVictor1ID = 1;
-    public static final int kLeftSlaveVictor2ID = 22;
-  
-    public static final int kRightSlaveVictor1ID = 3;
-    public static final int kRightSlaveVictor2ID = 4;
+    public static final int kLeftMasterTalonID = 22;
+    public static final int kLeftSlaveTalon1ID = 1;
+    public static final int kRightSlaveTalon1ID = 3;
   
     public static final double kDriveS = 0;
     public static final double kDriveV = 0;
