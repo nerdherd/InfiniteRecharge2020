@@ -11,7 +11,7 @@ import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorVelocity;
-import frc.robot.commands.vision.TurnToAngle;;
+import frc.robot.commands.vision.TurnToAngle;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

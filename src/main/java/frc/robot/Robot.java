@@ -58,7 +58,6 @@ public class Robot extends TimedRobot {
   public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
-  public static UsbCamera jevois;
 
   
   @Override
@@ -75,8 +74,6 @@ public class Robot extends TimedRobot {
     intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
-    jevois = CameraServer.getInstance().startAutomaticCapture();
-    jevois.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
