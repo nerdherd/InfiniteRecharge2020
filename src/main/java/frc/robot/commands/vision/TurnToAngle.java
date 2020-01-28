@@ -39,7 +39,7 @@ public class TurnToAngle extends CommandBase {
         double robotAngle = (360 - Robot.drive.getRawYaw()) % 360;
         double power = -m_rotP * getAngularTargetError;
         if (!(Math.abs(getAngularTargetError) < VisionConstants.kDriveRotationDeadband)) {
-            Robot.drive.setPowerFeedforward(power, -power);
+            Robot.drive.setPowerFeedforward(-power, power);
         } else {
             Robot.drive.setPowerFeedforward(-Robot.oi.getDriveJoyRightY(), -Robot.oi.getDriveJoyRightY());
         }

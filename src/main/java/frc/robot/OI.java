@@ -55,7 +55,7 @@ public class OI extends DefaultOI {
         // stowIntake_7.whenPressed(new StowIntake());
         feederOuttake_8.whenPressed(new SetDualMotorPower(Robot.feeder, -0.3, -0.3));
         indexOuttake_9.whenPressed(new SetMotorPower(Robot.index, -0.5));
-        turnToAngle_0.whenPressed(new TurnToAngle(0.253));
+        turnToAngle_0.whenPressed(new TurnToAngle(0.01));
 
 
 

@@ -206,7 +206,7 @@ public class Jevois extends SubsystemBase implements Runnable {
 		SmartDashboard.putNumber("X coord", getTargetX());
     SmartDashboard.putNumber("Old Angle to Turn", getAngleToTurn());
     SmartDashboard.putNumber("New Theta", getAngle());
-		SmartDashboard.putNumber("Distance", getDistance());
+		SmartDashboard.putNumber("Distance", getOldDistance());
 		SmartDashboard.putBoolean("Contour detected", getContourNum() > 0);
 		SmartDashboard.putBoolean("Is Locked on", Math.abs(getAngleToTurn()) <= VisionConstants.kDriveRotationDeadband);
 
