@@ -14,6 +14,7 @@ import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -30,13 +31,12 @@ public class OI extends DefaultOI {
     
     public OI(){
         super();
-        SmartDashboard.putData("Run motor 1V", new SetMotorPower(Robot.hood, 0.15));
+        SmartDashboard.putData("Run motor 1V", new SetMotorPower(Robot.hood, 0.1));
         SmartDashboard.putData("Reset Hood", new ResetSingleMotorEncoder(Robot.hood));
-        SmartDashboard.putData("Run motor -1V", new SetMotorPower(Robot.hood, -0.05));
+        SmartDashboard.putData("Run motor -1V", new SetMotorPower(Robot.hood, -0.1));
         SmartDashboard.putData("Ramp Hood", new MotorVoltageRamping(Robot.hood, 0.025));
+        SmartDashboard.putData("Ramp Hood Down", new MotorVoltageRamping(Robot.hood, -0.025));
         SmartDashboard.putData("pos 4000", new SetMotorMotionMagic(Robot.hood, 4000));
-        
-
 
     }
 }

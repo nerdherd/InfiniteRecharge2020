@@ -25,13 +25,14 @@ public class Hood extends SingleMotorArm {
     super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
     // super.motor.configClosedLoopPeakOutput(0, 0.2);
     // super.motor.closedloop
-    super.motor.configPeakOutputForward(0.2);
-    super.motor.configPeakOutputReverse(-0.2);
+    // super.motor.configPeakOutputForward(0.2);
+    // super.motor.configPeakOutputReverse(-0.2);
   
-    super.motor.configForwardSoftLimitThreshold(7625);
-    super.motor.configForwardSoftLimitEnable(true);
-    super.motor.configReverseSoftLimitThreshold(0);
-    super.motor.configReverseSoftLimitEnable(true);
+    // super.motor.configForwardSoftLimitThreshold(7625);
+    // super.motor.configForwardSoftLimitEnable(true);
+    // super.motor.configReverseSoftLimitThreshold(0);
+    // super.motor.configReverseSoftLimitEnable(true);
+    
   }
 
   @Override
