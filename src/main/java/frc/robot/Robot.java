@@ -62,20 +62,20 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    drive = new Drive();
-    jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		jevois.startCameraStream();
+    // drive = new Drive();
+    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+		// jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorTalonSRX(6, "Motor", true, true);
     ds = DriverStation.getInstance();
-    feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
-    intake = new Intake();
-    index = new SingleMotorTalonSRX(21, "Index", false, true);
-    intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
+    // feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
+    // intake = new Intake();
+    // index = new SingleMotorTalonSRX(21, "Index", false, true);
+    // intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
     // NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
