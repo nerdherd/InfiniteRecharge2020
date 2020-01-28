@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Jevois;
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
   public static AutoChooser chooser;
   public static Drive drive;
   public static Jevois jevois;
-  
+  public static Hood hood;
   public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake feeder;
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
+    hood = new Hood();
     // drive = new Drive();
     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		// jevois.startCameraStream();
@@ -76,9 +78,9 @@ public class Robot extends TimedRobot {
     pdp = new PowerDistributionPanel();
     oi = new OI();
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    // NerdyBadlog.initAndLog("/media/sda1/logs/", "FeederToShooter", 0.02, shooter, feeder, busVoltage);
+    NerdyBadlog.initAndLog("/home/lvuser/logs/", "Hood", 0.02, hood);
 
 
   }
@@ -88,12 +90,17 @@ public class Robot extends TimedRobot {
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
     shooter.reportToSmartDashboard();
-    feeder.reportToSmartDashboard();
-    index.reportToSmartDashboard();
-    jevois.reportToSmartDashboard();
+    // feeder.reportToSmartDashboard();
+    // index.reportToSmartDashboard();
+    // jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
+    hood.reportToSmartDashboard();
   }
 
+  @Override
+  public void disabledInit() {
+    // hood.resetEncoder();
+  }
   @Override
   public void autonomousInit() {
     m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));

@@ -15,13 +15,13 @@ import frc.robot.subsystems.Hood;
 public class HoodConstants {
 
     public static final double kHoodGravityFF = 0;
-    public static final double kHoodStaticFriction = 0;
-    public static final int kMotionMagicAcceleration = 0;
-    public static final int kMotionMagicVelocity = 0;
+    public static final double kHoodStaticFriction = 1.263;
+    public static final int kMotionMagicAcceleration = 125;
+    public static final int kMotionMagicVelocity = 300;
     public static final double kHoodP = 0;
-    public static final double kHoodF = 0;
-    public static final double kHoodAngleRatio = 0;
-    public static final double kHoodAngleOffset = 0;
+    public static final double kHoodF = 0.1092;
+    public static final double kHoodAngleRatio = 0.00582524271;
+    public static final double kHoodAngleOffset = 20;
     
 
 

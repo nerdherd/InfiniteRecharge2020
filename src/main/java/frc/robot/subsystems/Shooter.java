@@ -17,11 +17,11 @@ import frc.robot.constants.ShooterConstants;
  */
 public class Shooter extends SingleMotorTalonSRX {
   public Shooter(){
-    super(13, "Shooter", false, false);
+    super(1, "Shooter", false, false);
 
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configTalonDeadband(ShooterConstants.kDeadband);
-    super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(7)});
+    super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(2)});
     super.configCurrentLimit(80, 60);
     
   }
