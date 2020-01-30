@@ -27,7 +27,9 @@ public class Shooting extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setVelocity(23000, 0.0003500*(1023/12));
+    Robot.shooter.setVelocity(23000, 23000*(0.00035*(1023/12))/1023);
+
+    // Robot.shooter.setVelocity(23000, 0.00035*(1023/12));
     Robot.feeder.setPower(0.35, 0.35);
     Robot.index.setPower(0.65);
   }
