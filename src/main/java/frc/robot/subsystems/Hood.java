@@ -7,33 +7,17 @@
 
 package frc.robot.subsystems;
 
-import com.nerdherd.lib.motor.single.mechanisms.SingleMotorArm;
 
+import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.RobotMap;
 import frc.robot.constants.HoodConstants;
 
-public class Hood extends SingleMotorArm {
+public class Hood extends ProfiledPIDSubsystem  {
   /**
    * Creates a new Hood.
    */
   public Hood() {
-    super(RobotMap.kHoodID, "Hood", true, true);
-    super.configTalonDeadband(0.004);
-    super.configFFs(HoodConstants.kHoodGravityFF, HoodConstants.kHoodStaticFriction);
-    super.configMotionMagic(HoodConstants.kMotionMagicAcceleration, HoodConstants.kMotionMagicVelocity);
-    super.configPIDF(HoodConstants.kHoodP, 0, 0, HoodConstants.kHoodF);
-    super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
-    // super.motor.configClosedLoopPeakOutput(0, 0.2);
-    // super.motor.closedloop
-    // super.motor.configPeakOutputForward(0.2);
-    // super.motor.configPeakOutputReverse(-0.2);
-  
-    // super.motor.configForwardSoftLimitThreshold(7625);
-    // super.motor.configForwardSoftLimitEnable(true);
-    // super.motor.configReverseSoftLimitThreshold(0);
-    // super.motor.configReverseSoftLimitEnable(true);
     
-  }
 
   @Override
   public void periodic() {
