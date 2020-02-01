@@ -8,20 +8,22 @@
 package frc.robot.subsystems;
 
 
+import com.nerdherd.lib.motor.single.mechanisms.SingleMotorArm;
+
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.RobotMap;
 import frc.robot.constants.HoodConstants;
 
-public class Hood extends ProfiledPIDSubsystem  {
-  /**
-   * Creates a new Hood.
-   */
-  public Hood() {
-    
+public class Hood extends SingleMotorArm  {
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    super.reportToSmartDashboard();
+  public Hood() {
+    super(RobotMap.kHoodID, "Hood", true, true );
+    super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
+    super.configTrapezoidalConstraints(new TrapezoidProfile.Constraints(HoodConstants.kHoodVel, HoodConstants.kHoodAccel));
+    super.configPIDF(HoodConstants.kHoodP, 0, 0, 0);
+    super.configOblargConstants(HoodConstants.kHoodS, HoodConstants.kHoodCos, HoodConstants.kHoodV, HoodConstants.kHoodA);
+  //96 for entire arm, -28 for start of middle of hood
+  //
   }
 }

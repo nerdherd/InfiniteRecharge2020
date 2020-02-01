@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.motor.commands.DumbSetPosition;
 import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
 import com.nerdherd.lib.motor.commands.SetMotorMotionMagic;
@@ -31,12 +32,21 @@ public class OI extends DefaultOI {
     
     public OI(){
         super();
-        SmartDashboard.putData("Run motor 1V", new SetMotorPower(Robot.hood, 0.1));
+        SmartDashboard.putData("Run shooter motor 6V", new SetMotorPower(Robot.shooter, 0.5));
         SmartDashboard.putData("Reset Hood", new ResetSingleMotorEncoder(Robot.hood));
-        SmartDashboard.putData("Run motor -1V", new SetMotorPower(Robot.hood, -0.1));
+        SmartDashboard.putData("Run shooter motor -6V", new SetMotorPower(Robot.shooter, -0.5));
         SmartDashboard.putData("Ramp Hood", new MotorVoltageRamping(Robot.hood, 0.025));
         SmartDashboard.putData("Ramp Hood Down", new MotorVoltageRamping(Robot.hood, -0.025));
-        SmartDashboard.putData("pos 4000", new SetMotorMotionMagic(Robot.hood, 4000));
+        // SmartDashboard.putData("Hood Pos 4000", new SetMotorMotionMagic(Robot.hood, 4000));
+        
+        SmartDashboard.putData("set hood pos 1000 or 26 degrees", new DumbSetPosition(Robot.hood, 1000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 2000 or 32 degrees", new DumbSetPosition(Robot.hood, 2000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 3000 or 38 degrees", new DumbSetPosition(Robot.hood, 3000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 4000 or 44 degrees", new DumbSetPosition(Robot.hood, 4000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 5000 or 50 degrees", new DumbSetPosition(Robot.hood, 5000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 6000 or 56 degrees", new DumbSetPosition(Robot.hood, 6000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 7000 or 62 degrees", new DumbSetPosition(Robot.hood, 7000, 0.25, 100));
+        SmartDashboard.putData("set hood pos 7700 or 65 degrees", new DumbSetPosition(Robot.hood, 7700, 0.25, 100));
 
     }
 }

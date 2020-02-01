@@ -25,6 +25,12 @@ public class HoodConstants {
     public static final double kHoodAngleRatio = 0.005897;
     public static final double kHoodAngleOffset = 20;
     
+    public static final double kHoodAccel = 0;
+    public static final double kHoodVel = 0;
 
+    public static final double kHoodV = 0;
+    public static final double kHoodA = 0;
+    public static final double kHoodS = 0;
+    public static final double kHoodCos = 0;
 
 }
