@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
-import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
+import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.mechanisms.SingleMotorArm;
 
 import frc.robot.RobotMap;
@@ -26,7 +26,7 @@ public class Intake extends SingleMotorArm {
     super(RobotMap.kIntakeID1, "Intake", false, false);
 
     intake2 = new NerdyTalon(RobotMap.kIntakeID2);
-    intake2.follow(this.motor);
+    intake2.followCANMotorController(this.motor);
     intake2.setInverted(InvertType.OpposeMaster);
     
 

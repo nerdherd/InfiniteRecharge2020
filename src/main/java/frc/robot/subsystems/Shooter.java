@@ -7,20 +7,21 @@
 
 package frc.robot.subsystems;
 
+import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
-import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
+import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
 import frc.robot.constants.ShooterConstants;
 
 /**
  * Add your docs here.
  */
-public class Shooter extends SingleMotorTalonSRX {
+public class Shooter extends SingleMotorMechanism {
   public Shooter(){
-    super(13, "Shooter", false, false);
+    super(new NerdyFalcon(0), "Shooter", false, false);
 
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
-    super.configTalonDeadband(ShooterConstants.kDeadband);
+    super.configDeadband(ShooterConstants.kDeadband);
     super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(7)});
     super.configCurrentLimit(80, 60);
 

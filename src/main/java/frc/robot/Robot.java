@@ -13,7 +13,7 @@ import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
-import com.nerdherd.lib.motor.single.SingleMotorTalonSRX;
+import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
@@ -52,9 +52,9 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static DualMotorIntake feeder;
   public static Intake intake;
-  public static SingleMotorTalonSRX intakeroll;
-  public static SingleMotorTalonSRX index;
-  // public static SingleMotorTalonSRX motor;
+  public static SingleMotorMechanism intakeroll;
+  public static SingleMotorMechanism index;
+  // public static SingleMotorMechanism motor;
   public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
@@ -66,12 +66,12 @@ public class Robot extends TimedRobot {
     jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		jevois.startCameraStream();
     shooter = new Shooter();
-    // motor = new SingleMotorTalonSRX(6, "Motor", true, true);
+    // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
-    feeder = new DualMotorIntake(new SingleMotorTalonSRX(5, "Top Intake", true, false), new SingleMotorTalonSRX(6, "Bottom Intake", false, false));
+    feeder = new DualMotorIntake(new SingleMotorMechanism(5, "Top Intake", true, false), new SingleMotorMechanism(6, "Bottom Intake", false, false));
     intake = new Intake();
-    index = new SingleMotorTalonSRX(21, "Index", false, true);
-    intakeroll = new SingleMotorTalonSRX(12, "Intake", true, true);
+    index = new SingleMotorMechanism(21, "Index", false, true);
+    intakeroll = new SingleMotorMechanism(12, "Intake", true, true);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
     oi = new OI();
