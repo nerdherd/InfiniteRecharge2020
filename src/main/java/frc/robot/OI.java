@@ -7,19 +7,15 @@
 
 package frc.robot;
 
-import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorVelocity;
-import frc.robot.commands.vision.TurnToAngle;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.StartFlywheel;;
 import frc.robot.commands.StartFeeder;
 import frc.robot.commands.StartFlywheel;
-import frc.robot.commands.StartFeeder;;
 import frc.robot.commands.StopShooting;
 
 /**

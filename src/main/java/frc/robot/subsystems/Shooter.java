@@ -23,6 +23,7 @@ public class Shooter extends SingleMotorTalonSRX {
     super.configTalonDeadband(ShooterConstants.kDeadband);
     super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(7)});
     super.configCurrentLimit(80, 60);
+
     
   }
   // Put methods for controlling this subsystem
