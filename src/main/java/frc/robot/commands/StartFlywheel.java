@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Shooting extends CommandBase {
+public class StartFlywheel extends CommandBase {
   /**
    * Creates a new Shooting.
    */
-  public Shooting() {
-    addRequirements(Robot.shooter, Robot.feeder, Robot.index);
+  public StartFlywheel() {
+    addRequirements(Robot.shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,10 +28,11 @@ public class Shooting extends CommandBase {
   @Override
   public void execute() {
     Robot.shooter.setVelocity(23000, 23000*(0.00035*(1023/12))/1023);
+    // Robot.shooter.setPower(75);
 
     // Robot.shooter.setVelocity(23000, 0.00035*(1023/12));
-    Robot.feeder.setPower(0.35, 0.35);
-    Robot.index.setPower(0.65);
+    // Robot.feeder.setPower(0.35, 0.35);
+    // Robot.index.setPower(0.65);
   }
 
   // Called once the command ends or is interrupted.

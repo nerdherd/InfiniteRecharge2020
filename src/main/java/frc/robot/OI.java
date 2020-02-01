@@ -16,7 +16,10 @@ import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.Shooting;
+import frc.robot.commands.StartFlywheel;;
+import frc.robot.commands.StartFeeder;
+import frc.robot.commands.StartFlywheel;
+import frc.robot.commands.StartFeeder;;
 import frc.robot.commands.StopShooting;
 
 /**
@@ -25,7 +28,7 @@ import frc.robot.commands.StopShooting;
 public class OI extends DefaultOI {
 
     public JoystickButton intake_1, feeder_2, index_3, startShooter_4, stopShooter_5, stopIntake_6,
-                         stowIntake_7, feederOuttake_8, indexOuttake_9, turnToAngle_0;
+                         stowIntake_7, feederOuttake_8, indexOuttake_9, turnToAngle_0, startIndex_3;
     
     
     // intake_1, feeder_2, index_3, shooter_4, stopShooter_5, stopIntake_6,
@@ -38,14 +41,16 @@ public class OI extends DefaultOI {
         // index_3 = new JoystickButton(super.operatorJoy, 3);
         startShooter_4 = new JoystickButton(super.operatorJoy, 4);
         stopShooter_5 = new JoystickButton(super.operatorJoy, 5);
+        startIndex_3 = new JoystickButton(super.operatorJoy, 3);
         // stopIntake_6 = new JoystickButton(super.operatorJoy, 6);
         // stowIntake_7 = new JoystickButton(super.operatorJoy, 7);
         // feederOuttake_8 = new JoystickButton(super.operatorJoy, 8);
         // indexOuttake_9 = new JoystickButton(super.operatorJoy, 9);
         // turnToAngle_0 = new JoystickButton(super.operatorJoy, 1);
 
-        startShooter_4.whenPressed(new Shooting());
+        startShooter_4.whenPressed(new StartFlywheel());
         stopShooter_5.whenPressed(new StopShooting());
+        startIndex_3.whenPressed(new StartFeeder());
         // intake_1.whenPressed(new IntakeBallToShooter());
 
         // feeder_2.whenPressed(new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
@@ -78,8 +83,8 @@ public class OI extends DefaultOI {
 
 
 
-        // // SmartDashboard.putData("12V single", new SetMotorPower(Robot.motor, 1));
-        // SmartDashboard.putData("75%Volts", new SetMotorPower(Robot.shooter, 0.75));        
+        SmartDashboard.putData("12V ", new SetMotorPower(Robot.shooter, 1));
+        SmartDashboard.putData("75%Volts", new SetMotorPower(Robot.shooter, 0.75));        
         // SmartDashboard.putData("70%Volts", new SetMotorPower(Robot.shooter, 0.7));        
         // SmartDashboard.putData("65%Volts", new SetMotorPower(Robot.shooter, 0.65));
         // SmartDashboard.putData("65%Volts", new SetMotorPower(Robot.shooter, 0.65));        
