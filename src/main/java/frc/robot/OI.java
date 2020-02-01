@@ -10,12 +10,10 @@ package frc.robot;
 import com.nerdherd.lib.motor.commands.DumbSetPosition;
 import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
-import com.nerdherd.lib.motor.commands.SetMotorMotionMagic;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
