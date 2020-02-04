@@ -26,10 +26,10 @@ public class Drive extends Drivetrain {
   public Drive() {
     super(new NerdyTalon(RobotMap.kLeftMasterTalonID), new NerdyTalon(RobotMap.kRightMasterTalonID),
     new CANMotorController[] {
-      new NerdyTalon(RobotMap.kLeftSlaveTalon1ID),
+      new NerdyTalon(RobotMap.kLeftFollowerTalon1ID),
     },
     new CANMotorController[] {
-      new NerdyTalon(RobotMap.kRightSlaveTalon1ID),
+      new NerdyTalon(RobotMap.kRightFollowerTalon1ID),
     },
      true, false, 1);
     
