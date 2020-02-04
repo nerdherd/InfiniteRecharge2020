@@ -58,23 +58,23 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    drive = new Drive();
-    jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		jevois.startCameraStream();
-    shooter = new Shooter();
+    // drive = new Drive();
+    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+		// jevois.startCameraStream();
+    // shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
-    feeder = new DualMotorIntake(new SingleMotorMechanism(RobotMap.kFeederID1, "Top Intake", true, false), new SingleMotorMechanism(RobotMap.kFeederID2, "Bottom Intake", false, false));
-    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, true);
+    // feeder = new DualMotorIntake(new SingleMotorMechanism(RobotMap.kFeederID1, "Top Intake", true, false), new SingleMotorMechanism(RobotMap.kFeederID2, "Bottom Intake", false, false));
+    // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, true);
     intakeRoll = new SingleMotorMechanism(RobotMap.kIntakeRoll, "Intake", true, true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
-    pdp = new PowerDistributionPanel();
+    // pdp = new PowerDistributionPanel();
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sdb1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
+    // NerdyBadlog.initAndLog("/media/sdb1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
 
 
   }
@@ -83,10 +83,10 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
-    shooter.reportToSmartDashboard();
-    feeder.reportToSmartDashboard();
-    index.reportToSmartDashboard();
-    jevois.reportToSmartDashboard();
+    // shooter.reportToSmartDashboard();
+    // feeder.reportToSmartDashboard();
+    // index.reportToSmartDashboard();
+    // jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
   }
 

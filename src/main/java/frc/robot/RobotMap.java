@@ -31,8 +31,8 @@ public class RobotMap {
 
     public static final int kIntakeRoll = 0;
 
-    public static final int kIntakePort1 = 0;
-    public static final int kIntakePort2 = 7;
+    public static final int kIntakePort1 = 7;
+    public static final int kIntakePort2 = 0;
 	// public static int kLeftMasterTalonID;
     
 }
