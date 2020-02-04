@@ -19,7 +19,7 @@ public class TurnToAngle extends CommandBase {
     private double m_rotP;
 
     public TurnToAngle(double kRotP) {
-        addRequirements(Robot.drive);
+        addRequirements(Robot.m_drive);
         addRequirements(Robot.jevois);
 
 
@@ -36,12 +36,12 @@ public class TurnToAngle extends CommandBase {
     @Override
     public void execute() {
         double getAngularTargetError = -Robot.jevois.getAngleToTurn();
-        double robotAngle = (360 - Robot.drive.getRawYaw()) % 360;
+        double robotAngle = (360 - Robot.m_drive.getRawYaw()) % 360;
         double power = -m_rotP * getAngularTargetError;
         if (!(Math.abs(getAngularTargetError) < VisionConstants.kDriveRotationDeadband)) {
-            Robot.drive.setPowerFeedforward(-power, power);
+            Robot.m_drive.setPowerFeedforward(-power, power);
         } else {
-            Robot.drive.setPowerFeedforward(-Robot.oi.getDriveJoyRightY(), -Robot.oi.getDriveJoyRightY());
+            Robot.m_drive.setPowerFeedforward(-Robot.oi.getDriveJoyRightY(), -Robot.oi.getDriveJoyRightY());
         }
 
         SmartDashboard.putNumber("Left Power", power);
@@ -56,7 +56,7 @@ public class TurnToAngle extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.drive.setPowerZero();
+        Robot.m_drive.setPowerZero();
     }
 
 }

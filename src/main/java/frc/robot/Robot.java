@@ -8,28 +8,28 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
+import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
+import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Jevois;
-import frc.robot.OI;
+import frc.robot.subsystems.Shooter;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
 	public static final String kDate = "2020_01_25_";
   
   public static AutoChooser chooser;
-  public static Drive drive;
+  public static Drivetrain m_drive;
   public static Jevois jevois;
   
   public static DriverStation ds;
@@ -62,7 +62,10 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    drive = new Drive();
+    m_drive = new Drivetrain(new NerdyTalon(1), new NerdyTalon(2),  	    
+    new CANMotorController[] { new NerdyVictorSPX(19), new NerdyVictorSPX(20) },	  
+    new CANMotorController[] { new NerdyVictorSPX(3), new NerdyVictorSPX(4) }, true, false, 0.63742712872013762571);	
+   
     jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		jevois.startCameraStream();
     shooter = new Shooter();
@@ -75,11 +78,11 @@ public class Robot extends TimedRobot {
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    // m_drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/home/lvuser/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
-    
+    NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, m_drive);
+
 
   }
 
@@ -96,10 +99,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));
-    if (m_autonomousCommand != null) { 
-      m_autonomousCommand.schedule();
-    }
+    // m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));
+    // if (m_autonomousCommand != null) { 
+    //   m_autonomousCommand.schedule();
+    // }
   }
 
   @Override
