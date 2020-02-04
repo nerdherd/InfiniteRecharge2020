@@ -11,9 +11,8 @@ package frc.robot.subsystems;
 import com.nerdherd.lib.motor.single.mechanisms.SingleMotorArm;
 
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
-import edu.wpi.first.wpilibj2.command.ProfiledPIDSubsystem;
 import frc.robot.RobotMap;
-// import frc.robot.constants.HoodConstants;
+import frc.robot.constants.HoodConstants;
 
 public class Hood extends SingleMotorArm  {
 
