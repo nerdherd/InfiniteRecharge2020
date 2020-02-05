@@ -9,9 +9,6 @@ package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.ResetDriveEncoders;
 import com.nerdherd.lib.drivetrain.auto.ResetGyro;
-import com.nerdherd.lib.motor.commands.SetDualMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorVelocity;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.StartFeeder;
 import frc.robot.commands.StartFlywheel;
 import frc.robot.commands.StopShooting;
-import frc.robot.commands.auto.Bryant;
 import frc.robot.commands.auto.Ramsete5Ball;
 
 /**
@@ -103,7 +99,6 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.m_drive.resetXY()));
         SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.m_drive));  
         SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.m_drive));
-        SmartDashboard.putData("Bryant", new Bryant(Robot.m_drive));
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300
