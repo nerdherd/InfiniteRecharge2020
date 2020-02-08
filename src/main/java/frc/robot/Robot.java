@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
@@ -15,12 +16,11 @@ import com.nerdherd.lib.pneumatics.Piston;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Jevois;
 import frc.robot.subsystems.Shooter;
 /**
@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
-    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
     NerdyBadlog.initAndLog("/media/sdb1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
 

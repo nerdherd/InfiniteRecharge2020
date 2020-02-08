@@ -16,6 +16,8 @@ public class RobotMap {
     public static final int kLeftFollowerTalon1ID = 1;
     public static final int kRightFollowerTalon1ID = 3;
   
+    public static final int kHoodID = 0;
+
     public static final double kDriveS = 0;
     public static final double kDriveV = 0;
     public static final double kDriveA = 0;
@@ -27,7 +29,7 @@ public class RobotMap {
     public static final int kFeederID2 = 0; 
 
     public static final int kIndex = 0;
-    //Fortnite is cool, fun and epic. Hail Satan.
+    //Fortnite is cool, fun, and epic. Hail Satan.
 
     public static final int kIntakeRoll = 0;
 

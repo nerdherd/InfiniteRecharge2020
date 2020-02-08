@@ -7,9 +7,13 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.motor.commands.DumbSetPosition;
+import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
+import com.nerdherd.lib.motor.commands.SetMotorPositionPID;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorVelocity;
+import com.nerdherd.lib.motor.commands.mechanisms.MechanismVoltageRampingWithFF;
+import com.nerdherd.lib.motor.commands.mechanisms.SetArmAnglePID;
 import com.nerdherd.lib.oi.DefaultOI;
 
 // import org.graalvm.compiler.lir.aarch64.AArch64Move.StoreConstantOp;
@@ -25,6 +29,7 @@ import frc.robot.commands.PanelRetract;
 import frc.robot.commands.PanelRotate;
 import frc.robot.commands.ShootBall;
 import frc.robot.commands.StopIntake;
+import frc.robot.commands.WallShot;
 
 /**
  * Add your docs here.
@@ -60,7 +65,7 @@ public class OI extends DefaultOI {
         panelExtend_8.whenPressed(new PanelExtend());
         panelRotation_9.whenPressed(new PanelRotate());
         stopIntake_10.whenPressed(new StopIntake());
-
+        wallShot_11.whenPressed(new WallShot());
 
 
         // SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45, 0.45));

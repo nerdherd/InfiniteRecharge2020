@@ -22,7 +22,7 @@ public class Shooter extends SingleMotorMechanism {
 
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configDeadband(ShooterConstants.kDeadband);
-    super.configFollowersTalons(new NerdyTalon[] { new NerdyTalon(7)});
+    super.configFollowerTalons(new NerdyTalon[] { new NerdyTalon(7)});
     super.configCurrentLimit(80, 60);
 
     

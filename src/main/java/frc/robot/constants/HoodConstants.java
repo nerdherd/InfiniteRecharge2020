@@ -33,4 +33,5 @@ public class HoodConstants {
     public static final double kHoodS = 0;
     public static final double kHoodCos = 0;
 
+    public static final double kWallShotAngle = 0;
 }
