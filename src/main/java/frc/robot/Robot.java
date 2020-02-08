@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
-import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
-import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
@@ -43,7 +40,7 @@ public class Robot extends TimedRobot {
   public static AutoChooser chooser;
   public static Drive drive;
   public static Jevois jevois;
-  
+  public static Hood hood;
   public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake feeder;
@@ -62,9 +59,10 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    drive = new Drive();
-    jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		jevois.startCameraStream();
+    hood = new Hood();
+    // drive = new Drive();
+    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+		// jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
@@ -78,8 +76,8 @@ public class Robot extends TimedRobot {
     panelPos = new Piston(3, 4);
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
     NerdyBadlog.initAndLog("/media/sdb1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
 
@@ -91,15 +89,19 @@ public class Robot extends TimedRobot {
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
     shooter.reportToSmartDashboard();
-    feeder.reportToSmartDashboard();
-    index.reportToSmartDashboard();
-    jevois.reportToSmartDashboard();
+    // feeder.reportToSmartDashboard();
+    // index.reportToSmartDashboard();
+    // jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
+    hood.reportToSmartDashboard();
   }
 
   @Override
+  public void disabledInit() {
+    // hood.resetEncoder();
+  }
+  @Override
   public void autonomousInit() {
-    m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }

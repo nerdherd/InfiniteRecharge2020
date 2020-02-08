@@ -90,53 +90,22 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("ShooterOff", new SetMotorPower(Robot.shooter, 0.0));   
  
         
-        // SmartDashboard.putData("index 20%", new SetMotorPower(Robot.index, 0.3));
-        // SmartDashboard.putData("index 250%", new SetMotorPower(Robot.index, 0.3));
-        // SmartDashboard.putData("index 30%", new SetMotorPower(Robot.index, 0.3));
-        // SmartDashboard.putData("index 35%", new SetMotorPower(Robot.index, 0.3));
-        // SmartDashboard.putData("index 40%", new SetMotorPower(Robot.index, 0.3));
-        // SmartDashboard.putData("index 45%", new SetMotorPower(Robot.index, 0.4));
-        // SmartDashboard.putData("index 50%", new SetMotorPower(Robot.index, 0.45));
-        // SmartDashboard.putData("index 55%", new SetMotorPower(Robot.index, 0.55));
-        // SmartDashboard.putData("index 60%", new SetMotorPower(Robot.index, 0.6));
-        SmartDashboard.putData("index 65%", new SetMotorPower(Robot.index, 0.65));
-        // SmartDashboard.putData("index 70%", new SetMotorPower(Robot.index, 0.7));
-        SmartDashboard.putData("index Off", new SetMotorPower(Robot.index, 0.0));
-        SmartDashboard.putData("BackwardsIndex", new SetMotorPower(Robot.index, 0.4));
-
-        // SmartDashboard.putData("IntakeRoller25%", new SetMotorPower(Robot.intakeroll, 0.25));
-        // SmartDashboard.putData("IntakeRoller30%", new SetMotorPower(Robot.intakeroll, 0.3));
-        // SmartDashboard.putData("IntakeRoller35%", new SetMotorPower(Robot.intakeroll, 0.35));
-        // SmartDashboard.putData("IntakeRoller40%", new SetMotorPower(Robot.intakeroll, 0.4));
-        // SmartDashboard.putData("IntakeRoller45%", new SetMotorPower(Robot.intakeroll, 0.45));
-        // SmartDashboard.putData("IntakeRoller50%", new SetMotorPower(Robot.intakeroll, 0.5));
-        // SmartDashboard.putData("IntakeRoller55%", new SetMotorPower(Robot.intakeroll, 0.55));
-        // SmartDashboard.putData("IntakeRoller60%", new SetMotorPower(Robot.intakeroll, 0.6));
-        // SmartDashboard.putData("IntakeRoller65%", new SetMotorPower(Robot.intakeroll, 0.65));
-        // SmartDashboard.putData("IntakeRoller70%", new SetMotorPower(Robot.intakeroll, 0.7));
-        // SmartDashboard.putData("IntakeRoller75%", new SetMotorPower(Robot.intakeroll, 0.75));
-        // SmartDashboard.putData("IntakeRoller80%", new SetMotorPower(Robot.intakeroll, 0.8));
-        // SmartDashboard.putData("IntakeRoller85%", new SetMotorPower(Robot.intakeroll, 0.85));
-        // SmartDashboard.putData("IntakeRollerOff%", new SetMotorPower(Robot.intakeroll, 0.0));
-      
-        // SmartDashboard.putData("ShooterRamp", new MotorVoltageRamping(Robot.shooter, .20));
-        // SmartDashboard.putData("Shooter10000", new SetMotorVelocity(Robot.shooter, 10000, 0.0003500*(1023/12)));
-        // SmartDashboard.putData("Shooter3000", new SetMotorVelocity(Robot.shooter, 3000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter25000", new SetMotorVelocity(Robot.shooter, 25000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter30000", new SetMotorVelocity(Robot.shooter, 30000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter21500", new SetMotorVelocity(Robot.shooter, 21500, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter23000", new SetMotorVelocity(Robot.shooter, 23000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter27000", new SetMotorVelocity(Robot.shooter, 27000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter28000", new SetMotorVelocity(Robot.shooter, 28000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter26000", new SetMotorVelocity(Robot.shooter, 26000, 0.0003500*(1023/12)));
-        SmartDashboard.putData("Shooter24000", new SetMotorVelocity(Robot.shooter, 24000, 0.0003500*(1023/12)));
-
-        
-        //was 0.0005321 got 10000 ticks to 12000
-// 0.0002706 got 10000 ticks to 9000
-// 0.0003000 got 10000 ticks to 9300
-
-        
+        SmartDashboard.putData("set hood pos 1000 or 26 degrees", new DumbSetPosition(Robot.hood, 1000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 2000 or 32 degrees", new DumbSetPosition(Robot.hood, 2000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 3000 or 38 degrees", new DumbSetPosition(Robot.hood, 3000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 4000 or 44 degrees", new DumbSetPosition(Robot.hood, 4000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 5000 or 50 degrees", new DumbSetPosition(Robot.hood, 5000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 6000 or 56 degrees", new DumbSetPosition(Robot.hood, 6000, 0.215, 100));
+        SmartDashboard.putData("set hood pos 7000 or 62 degrees", new DumbSetPosition(Robot.hood, 7000, 0.25, 100));
+        SmartDashboard.putData("set hood pos 7700 or 65 degrees", new DumbSetPosition(Robot.hood, 7700, 0.25, 100));
+        SmartDashboard.putData("set hood position", new SetArmAnglePID(Robot.hood, 45));
+        SmartDashboard.putData("set hood position 4000", new SetMotorPositionPID(Robot.hood, 4000));
+        SmartDashboard.putData("set voltaij 2", new SetMotorPower(Robot.hood, 2./12.));
+        SmartDashboard.putData("set voltaij -2", new SetMotorPower(Robot.hood, -2./12.));
+        SmartDashboard.putData("set voltaij 0", new SetMotorPower(Robot.hood, 0./12.));
+        SmartDashboard.putData("Ramp upwards without ff", new MotorVoltageRamping(Robot.hood, 0.25));
+        SmartDashboard.putData("Ramp up with ff", new MechanismVoltageRampingWithFF(Robot.hood, 0.25));
+        SmartDashboard.putData("Ramp down with ff", new MechanismVoltageRampingWithFF(Robot.hood, -0.25));
 
 
     }
