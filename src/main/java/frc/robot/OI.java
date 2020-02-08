@@ -10,7 +10,10 @@ package frc.robot;
 import com.nerdherd.lib.motor.commands.DumbSetPosition;
 import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
+import com.nerdherd.lib.motor.commands.SetMotorPositionPID;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
+import com.nerdherd.lib.motor.commands.mechanisms.MechanismVoltageRampingWithFF;
+import com.nerdherd.lib.motor.commands.mechanisms.SetArmAnglePID;
 import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,6 +48,15 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("set hood pos 6000 or 56 degrees", new DumbSetPosition(Robot.hood, 6000, 0.215, 100));
         SmartDashboard.putData("set hood pos 7000 or 62 degrees", new DumbSetPosition(Robot.hood, 7000, 0.25, 100));
         SmartDashboard.putData("set hood pos 7700 or 65 degrees", new DumbSetPosition(Robot.hood, 7700, 0.25, 100));
+        SmartDashboard.putData("set hood position", new SetArmAnglePID(Robot.hood, 45));
+        SmartDashboard.putData("set hood position 4000", new SetMotorPositionPID(Robot.hood, 4000));
+        SmartDashboard.putData("set voltaij 2", new SetMotorPower(Robot.hood, 2./12.));
+        SmartDashboard.putData("set voltaij -2", new SetMotorPower(Robot.hood, -2./12.));
+        SmartDashboard.putData("set voltaij 0", new SetMotorPower(Robot.hood, 0./12.));
+        SmartDashboard.putData("Ramp upwards without ff", new MotorVoltageRamping(Robot.hood, 0.25));
+        SmartDashboard.putData("Ramp up with ff", new MechanismVoltageRampingWithFF(Robot.hood, 0.25));
+        SmartDashboard.putData("Ramp down with ff", new MechanismVoltageRampingWithFF(Robot.hood, -0.25));
+
 
     }
 }

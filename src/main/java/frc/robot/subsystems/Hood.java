@@ -21,7 +21,9 @@ public class Hood extends SingleMotorArm  {
     super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
     super.configTrapezoidalConstraints(new TrapezoidProfile.Constraints(HoodConstants.kHoodVel, HoodConstants.kHoodAccel));
     super.configPIDF(HoodConstants.kHoodP, 0, 0, 0);
+    super.configFFs(HoodConstants.kHoodGravityFF, HoodConstants.kHoodStaticFriction);
     super.configOblargConstants(HoodConstants.kHoodS, HoodConstants.kHoodCos, HoodConstants.kHoodV, HoodConstants.kHoodA);
+    super.configMotionMagic(HoodConstants.kMotionMagicAcceleration, HoodConstants.kMotionMagicVelocity);
   //96 for entire arm, -28 for start of middle of hood
   //
   }
