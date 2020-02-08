@@ -29,12 +29,14 @@ public class RobotMap {
     public static final int kFeederID2 = 0; 
 
     public static final int kIndex = 0;
-    //Fortnite is cool, fun, and epic. Hail Satan.
 
     public static final int kIntakeRoll = 0;
 
     public static final int kIntakePort1 = 0;
     public static final int kIntakePort2 = 7;
-	// public static int kLeftMasterTalonID;
+    // public static int kLeftMasterTalonID;
+    
+    public static final int kClimberID1 = 10;
+    public static final int kClimberID2 = 11;
     
 }

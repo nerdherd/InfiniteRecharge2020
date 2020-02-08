@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.panel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class StopShooting extends CommandBase {
+public class PanelExtend extends CommandBase {
   /**
-   * Creates a new StopShootin.
+   * Creates a new PanelExtend.
    */
-  public StopShooting() {
-    addRequirements(Robot.feeder, Robot.shooter, Robot.index);
+  public PanelExtend() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.panelPos);
   }
 
   // Called when the command is initially scheduled.
@@ -27,9 +27,7 @@ public class StopShooting extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.feeder.setPower(0.0, 0.0);
-    Robot.index.setPower(0.0);
-    Robot.shooter.setVelocity(0, 0.0003500*(1023/12));
+    Robot.panelPos.setForwards();
   }
 
   // Called once the command ends or is interrupted.

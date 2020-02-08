@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Stow extends CommandBase {
+public class Intake extends CommandBase {
   /**
-   * Creates a new Stow.
+   * Creates a new Intake.
    */
-  public Stow() {
+  public Intake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll);
+    addRequirements(Robot.intake, Robot.intakeRoll, Robot.feeder);
   }
 
   // Called when the command is initially scheduled.
@@ -27,8 +27,9 @@ public class Stow extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.setReverse();
-    Robot.intakeRoll.setPower(0);
+    Robot.intake.setForwards();
+    Robot.intakeRoll.setPower(0.5);
+    Robot.feeder.setPower(0.5, 0.4);
   }
 
   // Called once the command ends or is interrupted.

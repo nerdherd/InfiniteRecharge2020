@@ -20,24 +20,27 @@ import com.nerdherd.lib.oi.DefaultOI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ClimberExtend;
-import frc.robot.commands.ClimberRetract;
-import frc.robot.commands.InfiniteRecharge;
-import frc.robot.commands.Intake;
-import frc.robot.commands.PanelExtend;
-import frc.robot.commands.PanelRetract;
-import frc.robot.commands.PanelRotate;
 import frc.robot.commands.ShootBall;
-import frc.robot.commands.StopIntake;
 import frc.robot.commands.WallShot;
+import frc.robot.commands.climber.ClimberClimb;
+import frc.robot.commands.flywheel.InfiniteRecharge;
+import frc.robot.commands.intake.Intake;
+import frc.robot.commands.intake.StopIntake;
+import frc.robot.commands.intake.Stow;
+import frc.robot.commands.panel.PanelExtend;
+import frc.robot.commands.panel.PanelRetract;
+import frc.robot.commands.panel.PanelRotate;
+
 
 /**
  * Add your docs here.
  */
 public class OI extends DefaultOI {
 
-    public JoystickButton intake_1, shoot_2, infiniteRecharge_3, stow_4, climberExtend_5, climberRetract_6,
+    public JoystickButton intake_1, shoot_2, infiniteRecharge_3, stow_4, climb_5,
     panelRetract_7, panelExtend_8, panelRotation_9, stopIntake_10, wallShot_11;
+
+    // climberExtend_5, climberRetract_6
     
    
     public OI(){
@@ -45,10 +48,10 @@ public class OI extends DefaultOI {
         intake_1 = new JoystickButton(super.operatorJoy, 1);
         shoot_2 =  new JoystickButton(super.operatorJoy, 2);
         infiniteRecharge_3 =  new JoystickButton(super.operatorJoy, 3);
-        // infinteRecharge = Start flywheel
-        // stow_4 =  new JoystickButton(super.operatorJoy, 4);
-        climberExtend_5 =  new JoystickButton(super.operatorJoy, 5);
-        climberRetract_6 =  new JoystickButton(super.operatorJoy, 6);
+        stow_4 =  new JoystickButton(super.operatorJoy, 4);
+        climb_5 = new JoystickButton(super.operatorJoy, 5);
+        // climberExtend_5 =  new JoystickButton(super.operatorJoy, 5);
+        // climberRetract_6 =  new JoystickButton(super.operatorJoy, 6);
         panelRetract_7 =  new JoystickButton(super.operatorJoy, 7);
         panelExtend_8 =  new JoystickButton(super.operatorJoy, 8);
         panelRotation_9 = new JoystickButton(super.operatorJoy, 9);
@@ -58,9 +61,10 @@ public class OI extends DefaultOI {
         intake_1.whenPressed(new Intake());
         shoot_2.whenPressed(new ShootBall());
         infiniteRecharge_3.whenPressed(new InfiniteRecharge());
-        // stow_4.whenPressed(new Stow());
-        climberExtend_5.whenPressed(new ClimberExtend());
-        climberRetract_6.whenPressed(new ClimberRetract());
+        stow_4.whenPressed(new Stow());
+        climb_5.whenPressed(new ClimberClimb());
+        // climberExtend_5.whenPressed(new ClimberExtend());
+        // climberRetract_6.whenPressed(new ClimberRetract());
         panelRetract_7.whenPressed(new PanelRetract());
         panelExtend_8.whenPressed(new PanelExtend());
         panelRotation_9.whenPressed(new PanelRotate());

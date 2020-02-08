@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.panel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Intake extends CommandBase {
+public class PanelRetract extends CommandBase {
   /**
-   * Creates a new Intake.
+   * Creates a new PanelRetract.
    */
-  public Intake() {
+  public PanelRetract() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll, Robot.feeder);
+    addRequirements(Robot.panelPos);
   }
 
   // Called when the command is initially scheduled.
@@ -27,9 +27,7 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.setForwards();
-    Robot.intakeRoll.setPower(0.5);
-    Robot.feeder.setPower(0.5, 0.4);
+    Robot.panelPos.setReverse();
   }
 
   // Called once the command ends or is interrupted.

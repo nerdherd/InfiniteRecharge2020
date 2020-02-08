@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Jevois;
@@ -51,28 +52,32 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Command m_autonomousCommand;
   public static Piston intake;
-  public static Piston climber;
   public static Piston panelPos;
   public static SingleMotorMechanism panelRot;
+  public static Climber climber;
+  public static Piston climberRatchet;
 
 
   
   @Override
   public void robotInit() {
     hood = new Hood();
+    climber = new Climber();
     // drive = new Drive();
     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		// jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
+    climberRatchet = new Piston(6, 9);
+    climberRatchet.setReverse();
+
     feeder = new DualMotorIntake(new SingleMotorMechanism(RobotMap.kFeederID1, "Top Intake", true, false), new SingleMotorMechanism(RobotMap.kFeederID2, "Bottom Intake", false, false));
     index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, true);
     intakeRoll = new SingleMotorMechanism(RobotMap.kIntakeRoll, "Intake", true, true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
-    climber = new Piston(1, 2);
     panelPos = new Piston(3, 4);
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
@@ -94,6 +99,7 @@ public class Robot extends TimedRobot {
     // jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
+    climber.reportToSmartDashboard();
   }
 
   @Override

@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.flywheel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class StartFeeder extends CommandBase {
+public class InfiniteRecharge extends CommandBase {
   /**
-   * Creates a new StartIndex.
+   * Creates a new InfiniteRecharge.
    */
-  public StartFeeder() {
-    addRequirements(Robot.index, Robot.feeder);
+  public InfiniteRecharge() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -27,8 +27,7 @@ public class StartFeeder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.index.setPower(0.65);
-    Robot.feeder.setPower(0.35, 0.35);
+    Robot.shooter.setPower(0.75);
   }
 
   // Called once the command ends or is interrupted.

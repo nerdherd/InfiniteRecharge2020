@@ -5,44 +5,47 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.climber;
+
+import com.nerdherd.lib.motor.commands.SetMotorPower;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.constants.ClimberConstants;
+import frc.robot.subsystems.Climber;
 
-public class StartFlywheel extends CommandBase {
+public class ClimberReady extends SetMotorPower {
   /**
-   * Creates a new Shooting.
+   * Creates a new ClimberReady.
    */
-  public StartFlywheel() {
-    addRequirements(Robot.shooter);
+  public ClimberReady() {
+    super(Climber.getInstance(), ClimberConstants.kClimberDesiredUpPow);
+    addRequirements(Robot.climberRatchet);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    super.initialize();
+    Robot.climberRatchet.setReverse();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setVelocity(23000, 23000*(0.00035*(1023/12))/1023);
-    // Robot.shooter.setPower(75);
-
-    // Robot.shooter.setVelocity(23000, 0.00035*(1023/12));
-    // Robot.feeder.setPower(0.35, 0.35);
-    // Robot.index.setPower(0.65);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Climber.getInstance().setPower(0);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Climber.getInstance().getHeight() > ClimberConstants.kHardStopPos;     
   }
 }

@@ -5,18 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.climber;
+
+import com.nerdherd.lib.motor.commands.SetMotorPower;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.constants.ClimberConstants;
+import frc.robot.subsystems.Climber;
 
-public class InfiniteRecharge extends CommandBase {
+public class ClimberLift extends SetMotorPower {
   /**
-   * Creates a new InfiniteRecharge.
+   * Creates a new ClimberLift.
    */
-  public InfiniteRecharge() {
+  public ClimberLift() {
+    super(Climber.getInstance(), ClimberConstants.kClimberDesiredLiftPow);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -27,17 +30,18 @@ public class InfiniteRecharge extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setPower(0.75);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Climber.getInstance().setPower(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Climber.getInstance().getHeight() < ClimberConstants.kClimbGoodPos;
+
   }
 }
