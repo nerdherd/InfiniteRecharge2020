@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -45,7 +47,7 @@ public class Robot extends TimedRobot {
 	public static final String kDate = "2020_01_25_";
   
   public static AutoChooser chooser;
-  public static Drivetrain m_drive;
+  public static Drive drive;
   public static Jevois jevois;
   
   public static DriverStation ds;
@@ -62,10 +64,12 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    m_drive = new Drivetrain(new NerdyTalon(1), new NerdyTalon(2),  	    
-    new CANMotorController[] { new NerdyVictorSPX(19), new NerdyVictorSPX(20) },	  
-    new CANMotorController[] { new NerdyVictorSPX(3), new NerdyVictorSPX(4) }, true, false, 0.63742712872013762571);	
-   
+    // drive = new Drivetrain(new NerdyTalon(1), new NerdyTalon(2),  	    
+    // new CANMotorController[] { new NerdyVictorSPX(19), new NerdyVictorSPX(20) },	  
+    // new CANMotorController[] { new NerdyVictorSPX(3), new NerdyVictorSPX(4) }, true, false, 0.63742712872013762571);	
+        
+    drive = new Drive();
+     
     jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		jevois.startCameraStream();
     shooter = new Shooter();
@@ -81,15 +85,15 @@ public class Robot extends TimedRobot {
     // m_drive.setDefaultCommand(new ArcadeDrive(Robot.m_drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, m_drive);
+    NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
 
 
   }
 
   @Override
   public void robotPeriodic() {
-    // CommandScheduler.getInstance().run();
-    // CameraServer.getInstance().
+    CommandScheduler.getInstance().run();
+    // drive.reportToSmartDashboard();
     shooter.reportToSmartDashboard();
     feeder.reportToSmartDashboard();
     index.reportToSmartDashboard();
@@ -113,7 +117,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().run();
+    // CommandScheduler.getInstance().run();
+    drive.setPose(new Pose2d(3.048, -2.404, new Rotation2d(Math.PI)));
   }
 
   @Override

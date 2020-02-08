@@ -97,12 +97,12 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("Shooter10000", new SetMotorVelocity(Robot.shooter, 10000, 0.0003500*(1023/12)));
         // SmartDashboard.putData("Shooter3000", new SetMotorVelocity(Robot.shooter, 3000, 0.0003500*(1023/12)));
      
-        SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.m_drive));
-        SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.m_drive.resetXY()));
-        SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.m_drive));  
-        SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.m_drive));
-        SmartDashboard.putData("Mamba", new Mamba(Robot.m_drive));
-        SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.m_drive));
+        SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.drive));
+        SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.drive.resetXY()));
+        SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.drive));  
+        SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.drive));
+        SmartDashboard.putData("Mamba", new Mamba(Robot.drive));
+        SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.drive));
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300
