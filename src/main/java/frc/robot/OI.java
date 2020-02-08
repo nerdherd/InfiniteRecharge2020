@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.StartFeeder;
 import frc.robot.commands.StartFlywheel;
 import frc.robot.commands.StopShooting;
+import frc.robot.commands.auto.Mamba;
+import frc.robot.commands.auto.Ramsete3BallShoot;
 import frc.robot.commands.auto.Ramsete5Ball;
 
 /**
@@ -99,6 +101,8 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.m_drive.resetXY()));
         SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.m_drive));  
         SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.m_drive));
+        SmartDashboard.putData("Mamba", new Mamba(Robot.m_drive));
+        SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.m_drive));
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300

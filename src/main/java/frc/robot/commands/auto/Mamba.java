@@ -39,7 +39,7 @@ public class Mamba extends SequentialCommandGroup {
     m_drive = drive;
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
-        new SimpleMotorFeedforward(1.2, 0.241, 0.065),
+        new SimpleMotorFeedforward(1.52, 0.234, 0.0928),
         m_drive.m_kinematics,
         10);
 
@@ -50,7 +50,7 @@ public class Mamba extends SequentialCommandGroup {
     List.of(), new Pose2d(2.2, -0.705, new Rotation2d(0)),
         m_config);
      RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(3.6, 0.7), 
-                                    new SimpleMotorFeedforward(1.2, 0.241, 0.065), 
+                                    new SimpleMotorFeedforward(1.52, 0.234, 0.0928), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
                                     new PIDController(3.1, 0, 0), new PIDController(3.1, 0, 0),
                                      m_drive::setVoltage, m_drive); 
@@ -61,7 +61,7 @@ public class Mamba extends SequentialCommandGroup {
       List.of(new Translation2d(9.624, -0.705)), new Pose2d(6.401, -2.404, new Rotation2d(Math.PI)),
       m_config);
       RamseteCommand ramsete3 = new RamseteCommand(m_traj3, m_drive::getPose2d, new RamseteController(0.420, 0.7), 
-      new SimpleMotorFeedforward(1.2, 0.241, 0.065), 
+      new SimpleMotorFeedforward(1.52, 0.234, 0.0928), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(3.1, 0, 0), new PIDController(3.1, 0, 0),
       m_drive::setVoltage, m_drive);   
