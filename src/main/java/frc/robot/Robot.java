@@ -54,6 +54,10 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Command m_autonomousCommand;
   public static Piston intake;
+  public static Piston climber;
+  public static Piston panelPos;
+  public static SingleMotorMechanism panelRot;
+
 
   
   @Override
@@ -70,6 +74,9 @@ public class Robot extends TimedRobot {
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     pdp = new PowerDistributionPanel();
+    climber = new Piston(1, 2);
+    panelPos = new Piston(3, 4);
+    panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());

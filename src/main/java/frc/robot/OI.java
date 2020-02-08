@@ -12,53 +12,54 @@ import com.nerdherd.lib.motor.commands.SetMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorVelocity;
 import com.nerdherd.lib.oi.DefaultOI;
 
+// import org.graalvm.compiler.lir.aarch64.AArch64Move.StoreConstantOp;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.StartFeeder;
-import frc.robot.commands.StartFlywheel;
-import frc.robot.commands.StopShooting;
+import frc.robot.commands.ClimberExtend;
+import frc.robot.commands.ClimberRetract;
+import frc.robot.commands.InfiniteRecharge;
+import frc.robot.commands.Intake;
+import frc.robot.commands.PanelExtend;
+import frc.robot.commands.PanelRetract;
+import frc.robot.commands.PanelRotate;
+import frc.robot.commands.ShootBall;
+import frc.robot.commands.StopIntake;
 
 /**
  * Add your docs here.
  */
 public class OI extends DefaultOI {
 
-    public JoystickButton intake_1, feeder_2, index_3, startShooter_4, stopShooter_5, stopIntake_6,
-                         stowIntake_7, feederOuttake_8, indexOuttake_9, turnToAngle_0, startIndex_3;
+    public JoystickButton intake_1, shoot_2, infiniteRecharge_3, stow_4, climberExtend_5, climberRetract_6,
+    panelRetract_7, panelExtend_8, panelRotation_9, stopIntake_10, wallShot_11;
     
-    
-    // intake_1, feeder_2, index_3, shooter_4, stopShooter_5, stopIntake_6,
-    //                      stowIntake_7, feederOuttake_8, indexOuttake_9;
-    
+   
     public OI(){
         super();
-        //intake_1 = new JoystickButton(super.operatorJoy, 1);
-        // feeder_2 = new JoystickButton(super.operatorJoy, 2);
-        // index_3 = new JoystickButton(super.operatorJoy, 3);
-        startShooter_4 = new JoystickButton(super.operatorJoy, 4);
-        stopShooter_5 = new JoystickButton(super.operatorJoy, 5);
-        startIndex_3 = new JoystickButton(super.operatorJoy, 3);
-        // stopIntake_6 = new JoystickButton(super.operatorJoy, 6);
-        // stowIntake_7 = new JoystickButton(super.operatorJoy, 7);
-        // feederOuttake_8 = new JoystickButton(super.operatorJoy, 8);
-        // indexOuttake_9 = new JoystickButton(super.operatorJoy, 9);
-        // turnToAngle_0 = new JoystickButton(super.operatorJoy, 1);
+        intake_1 = new JoystickButton(super.operatorJoy, 1);
+        shoot_2 =  new JoystickButton(super.operatorJoy, 2);
+        infiniteRecharge_3 =  new JoystickButton(super.operatorJoy, 3);
+        // infinteRecharge = Start flywheel
+        // stow_4 =  new JoystickButton(super.operatorJoy, 4);
+        climberExtend_5 =  new JoystickButton(super.operatorJoy, 5);
+        climberRetract_6 =  new JoystickButton(super.operatorJoy, 6);
+        panelRetract_7 =  new JoystickButton(super.operatorJoy, 7);
+        panelExtend_8 =  new JoystickButton(super.operatorJoy, 8);
+        panelRotation_9 = new JoystickButton(super.operatorJoy, 9);
+        stopIntake_10 =  new JoystickButton(super.operatorJoy, 10);
+        wallShot_11 =  new JoystickButton(super.operatorJoy, 11);
 
-        startShooter_4.whenPressed(new StartFlywheel());
-        stopShooter_5.whenPressed(new StopShooting());
-        startIndex_3.whenPressed(new StartFeeder());
-        // intake_1.whenPressed(new IntakeBallToShooter());
-
-        // feeder_2.whenPressed(new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
-        // index_3.whenPressed(new SetMotorPower(Robot.index, 0.5));
-        // startShooter_4.whenPressed(new SetMotorPower(Robot.shooter, 0.75));
-        // stopShooter_5.whenPressed(new SetMotorPower(Robot.shooter, 0.0));
-        // stopIntake_6.whenPressed(new SetMotorPower(Robot.intake, 0.0));
-        // stowIntake_7.whenPressed(new StowIntake());
-        // feederOuttake_8.whenPressed(new SetDualMotorPower(Robot.feeder, -0.3, -0.3));
-        // indexOuttake_9.whenPressed(new SetMotorPower(Robot.index, -0.5));
-        // turnToAngle_0.whenPressed(new TurnToAngle(0.01));
-
+        intake_1.whenPressed(new Intake());
+        shoot_2.whenPressed(new ShootBall());
+        infiniteRecharge_3.whenPressed(new InfiniteRecharge());
+        // stow_4.whenPressed(new Stow());
+        climberExtend_5.whenPressed(new ClimberExtend());
+        climberRetract_6.whenPressed(new ClimberRetract());
+        panelRetract_7.whenPressed(new PanelRetract());
+        panelExtend_8.whenPressed(new PanelExtend());
+        panelRotation_9.whenPressed(new PanelRotate());
+        stopIntake_10.whenPressed(new StopIntake());
 
 
 
