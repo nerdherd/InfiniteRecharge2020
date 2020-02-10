@@ -41,8 +41,8 @@ public class Drive extends Drivetrain {
      super.configSensorPhase(false, false);
     
      super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
-     super.configLeftPIDF(0.0, 0, 0, DriveConstants.kLeftF);
-     super.configRightPIDF(0.0, 0, 0, DriveConstants.kRightF);
+     super.configLeftPIDF(4.07, 0, 0, DriveConstants.kLeftF);
+     super.configRightPIDF(4.07, 0, 0, DriveConstants.kRightF);
      super.configStaticFeedforward(DriveConstants.kLeftStatic, DriveConstants.kRightStatic);
      super.configKinematics(0.63742712872013762571, new Rotation2d(0), new Pose2d(0,0, new Rotation2d(0)));
      

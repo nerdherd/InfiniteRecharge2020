@@ -37,19 +37,20 @@ public class Mamba extends SequentialCommandGroup {
   private Drivetrain m_drive;
   public Mamba(Drivetrain drive) {
     m_drive = drive;
+    m_drive.setCoastMode();
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
         new SimpleMotorFeedforward(1.61,0.23,0.0849),
         m_drive.m_kinematics,
         10);
 
-    TrajectoryConfig m_config = new TrajectoryConfig(3.2, 2.0);
+    TrajectoryConfig m_config = new TrajectoryConfig(4.5, 2.0);
     m_config.addConstraint(autoVoltageConstraint);
     
     Trajectory m_traj = TrajectoryGenerator.generateTrajectory(new Pose2d(3.048, -2.404, new Rotation2d(Math.PI)),
     List.of(), new Pose2d(2.2, -0.705, new Rotation2d(0)),
         m_config);
-     RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(1.2, 0.7), 
+     RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
                                     new SimpleMotorFeedforward(1.61,0.23,0.0849), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
                                     new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
@@ -58,28 +59,27 @@ public class Mamba extends SequentialCommandGroup {
 
       
       Trajectory m_traj3 = TrajectoryGenerator.generateTrajectory(new Pose2d(2.2, -0.705, new Rotation2d(0)),
-      List.of(), new Pose2d(10.735, -0.705, new Rotation2d(Math.PI)),
+      List.of(new Translation2d(9.624, -0.705)), new Pose2d(11.25, -0.705, new Rotation2d(0)),
       m_config);
-      RamseteCommand ramsete3 = new RamseteCommand(m_traj3, m_drive::getPose2d, new RamseteController(3.0, 0.5), 
+      RamseteCommand ramsete3 = new RamseteCommand(m_traj3, m_drive::getPose2d, new RamseteController(0.5, 1.5), 
       new SimpleMotorFeedforward(1.61,0.23,0.0849), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
       m_drive::setVoltage, m_drive);   
       
-      TrajectoryConfig m_config2 = new TrajectoryConfig(3.2, 2.0);
+      TrajectoryConfig m_config2 = new TrajectoryConfig(4.5, 2.0);
       m_config2.addConstraint(autoVoltageConstraint);
     
       m_config2.setReversed(true);
-      Trajectory m_traj4 = TrajectoryGenerator.generateTrajectory(new Pose2d(9.624, -0.705, new Rotation2d(Math.PI)),
-      List.of(), new Pose2d(6.17, -0.705, new Rotation2d(0)),
-      m_config2);
-      RamseteCommand ramsete4 = new RamseteCommand(m_traj4, m_drive::getPose2d, new RamseteController(3.0, 0.5), 
+      Trajectory m_traj4 = TrajectoryGenerator.generateTrajectory(new Pose2d(11.25, -0.705, new Rotation2d(0)),
+      List.of(), new Pose2d(6.17, -0.705, new Rotation2d(Math.PI)),
+      m_config);
+      RamseteCommand ramsete4 = new RamseteCommand(m_traj4, m_drive::getPose2d, new RamseteController(2.0, 1.5), 
       new SimpleMotorFeedforward(1.61,0.23,0.0849), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
       m_drive::setVoltage, m_drive);   
       
-
 
       addCommands(ramsete, ramsete3, ramsete4, new DriveStraightContinuous(m_drive, 0, 0));
  
