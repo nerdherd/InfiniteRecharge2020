@@ -9,6 +9,7 @@ package frc.robot.commands.flywheel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.constants.ShooterConstants;
 
 public class InfiniteRecharge extends CommandBase {
   /**
@@ -27,7 +28,7 @@ public class InfiniteRecharge extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setPower(0.75);
+    Robot.shooter.setVelocity(25000, 25000/1023*ShooterConstants.kF);
   }
 
   // Called once the command ends or is interrupted.

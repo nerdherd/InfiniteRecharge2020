@@ -16,7 +16,7 @@ public class Stow extends CommandBase {
    */
   public Stow() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll);
+    addRequirements(Robot.intake, Robot.intakeRoll, Robot.feeder);
   }
 
   // Called when the command is initially scheduled.
@@ -29,6 +29,7 @@ public class Stow extends CommandBase {
   public void execute() {
     Robot.intake.setReverse();
     Robot.intakeRoll.setPower(0);
+    Robot.feeder.setPower(0, 0);
   }
 
   // Called once the command ends or is interrupted.

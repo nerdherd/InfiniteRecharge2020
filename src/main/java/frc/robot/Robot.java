@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
   public static SingleMotorMechanism panelRot;
   public static Climber climber;
   public static Piston climberRatchet;
+  public static SingleMotorMechanism falcon;
 
 
   
@@ -63,17 +64,18 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     hood = new Hood();
     climber = new Climber();
+    falcon = new SingleMotorMechanism(1, "shooter", true, true);
     // drive = new Drive();
     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		// jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
-    climberRatchet = new Piston(6, 9);
-    climberRatchet.setReverse();
+    // climberRatchet = new Piston(6, 9);
+    // climberRatchet.setReverse();
 
     feeder = new DualMotorIntake(new SingleMotorMechanism(RobotMap.kFeederID1, "Top Intake", true, false), new SingleMotorMechanism(RobotMap.kFeederID2, "Bottom Intake", false, false));
-    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, true);
+    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", true, true);
     intakeRoll = new SingleMotorMechanism(RobotMap.kIntakeRoll, "Intake", true, true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
@@ -84,7 +86,7 @@ public class Robot extends TimedRobot {
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sdb1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
+    NerdyBadlog.initAndLog("/home/lvuser/logs/", "ShooterTesting", 0.02, shooter);
 
 
   }

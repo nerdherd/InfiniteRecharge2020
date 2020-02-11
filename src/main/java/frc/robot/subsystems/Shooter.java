@@ -7,6 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FollowerType;
+import com.ctre.phoenix.motorcontrol.IMotorController;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
@@ -17,12 +22,18 @@ import frc.robot.constants.ShooterConstants;
  * Add your docs here.
  */
 public class Shooter extends SingleMotorMechanism {
-  public Shooter(){
-    super(new NerdyFalcon(0), "Shooter", false, false);
 
+  private NerdyFalcon follower;
+  public Shooter(){
+    super(new NerdyFalcon(1), "Shooter", true, false);
+    super.motor.setCoastMode();
+    follower = new NerdyFalcon(2);
+    follower.setCoastMode();
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configDeadband(ShooterConstants.kDeadband);
-    super.configFollowerTalons(new NerdyTalon[] { new NerdyTalon(7)});
+    // super.motor.configFollowers(new CANMotorController[] {follower});
+    // follower.setInverted(TalonFXInvertType.OpposeMaster);
+    follower.follow((TalonFX) super.motor);
     super.configCurrentLimit(80, 60);
 
     
