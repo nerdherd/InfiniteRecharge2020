@@ -20,6 +20,7 @@ import frc.robot.commands.StopShooting;
 import frc.robot.commands.auto.Mamba;
 import frc.robot.commands.auto.Ramsete3BallShoot;
 import frc.robot.commands.auto.Ramsete5Ball;
+import frc.robot.commands.auto.TwelveBallAuto;
 
 /**
  * Add your docs here.
@@ -103,6 +104,7 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.drive));
         SmartDashboard.putData("Mamba", new Mamba(Robot.drive));
         SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.drive));
+        SmartDashboard.putData("Ramsete12", new TwelveBallAuto(Robot.drive));
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300

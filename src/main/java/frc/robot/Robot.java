@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     // CommandScheduler.getInstance().run();
-    drive.setPose(new Pose2d(3.048, -2.404, new Rotation2d(Math.PI)));
+    drive.setPose(new Pose2d(3.048, -2.404, new Rotation2d(0)));
   }
 
   @Override

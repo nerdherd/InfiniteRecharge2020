@@ -40,7 +40,7 @@ public class Mamba extends SequentialCommandGroup {
     m_drive.setCoastMode();
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
-        new SimpleMotorFeedforward(1.61,0.23,0.0849),
+        new SimpleMotorFeedforward(1.15,2.79,0.544),
         m_drive.m_kinematics,
         10);
 
@@ -51,9 +51,9 @@ public class Mamba extends SequentialCommandGroup {
     List.of(), new Pose2d(2.2, -0.705, new Rotation2d(0)),
         m_config);
      RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
-                                    new SimpleMotorFeedforward(1.61,0.23,0.0849), 
+                                    new SimpleMotorFeedforward(1.15,2.79,0.544), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-                                    new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
+                                    new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
                                      m_drive::setVoltage, m_drive); 
       
 
@@ -62,9 +62,9 @@ public class Mamba extends SequentialCommandGroup {
       List.of(new Translation2d(9.624, -0.705)), new Pose2d(11.25, -0.705, new Rotation2d(0)),
       m_config);
       RamseteCommand ramsete3 = new RamseteCommand(m_traj3, m_drive::getPose2d, new RamseteController(0.5, 1.5), 
-      new SimpleMotorFeedforward(1.61,0.23,0.0849), 
+      new SimpleMotorFeedforward(1.15,2.79,0.544), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-      new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
+      new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
       m_drive::setVoltage, m_drive);   
       
       TrajectoryConfig m_config2 = new TrajectoryConfig(4.5, 2.0);
@@ -75,9 +75,9 @@ public class Mamba extends SequentialCommandGroup {
       List.of(), new Pose2d(6.17, -0.705, new Rotation2d(Math.PI)),
       m_config);
       RamseteCommand ramsete4 = new RamseteCommand(m_traj4, m_drive::getPose2d, new RamseteController(2.0, 1.5), 
-      new SimpleMotorFeedforward(1.61,0.23,0.0849), 
+      new SimpleMotorFeedforward(1.15,2.79,0.544), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-      new PIDController(4.07, 0, 0), new PIDController(4.07, 0, 0),
+      new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
       m_drive::setVoltage, m_drive);   
       
 
