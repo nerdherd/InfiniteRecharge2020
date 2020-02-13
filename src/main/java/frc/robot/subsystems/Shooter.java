@@ -16,6 +16,7 @@ import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import frc.robot.constants.ShooterConstants;
 
 /**
@@ -31,8 +32,10 @@ public class Shooter extends SingleMotorMechanism {
     follower.setCoastMode();
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configDeadband(ShooterConstants.kDeadband);
+    // super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, 0.2);
     // super.motor.configFollowers(new CANMotorController[] {follower});
     // follower.setInverted(TalonFXInvertType.OpposeMaster);
+    // super.configMotionMagic(accel, cruise_vel); 
     follower.follow((TalonFX) super.motor);
     super.configCurrentLimit(80, 60);
 

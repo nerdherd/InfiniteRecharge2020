@@ -119,6 +119,9 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("3VShooter", new SetMotorPower(Robot.shooter, 0.25));
         SmartDashboard.putData("2VShooter", new SetMotorPower(Robot.shooter, 0.167));
         SmartDashboard.putData("5Vshooter", new SetMotorPower(Robot.shooter, 0.416));
+        SmartDashboard.putData("5.5VShooter", new SetMotorPower(Robot.shooter, 0.45833));
+        SmartDashboard.putData("5.7VShooter", new SetMotorPower(Robot.shooter, 0.475));
+
         SmartDashboard.putData("6VShooter", new SetMotorPower(Robot.shooter, 0.5));
         SmartDashboard.putData("7VShooter", new SetMotorPower(Robot.shooter, 0.58333333));
         SmartDashboard.putData("8VShooter", new SetMotorPower(Robot.shooter, 0.66666));

@@ -15,5 +15,8 @@ public class ShooterConstants {
     public static int kI = 0;
     public static int kD = 0;
     public static double kF= 0.0003500;
+    public static double kS = 0;
+    public static double kV = 0;
+    public static double kA = 0;
     public static int kDeadband = 0;
 }
