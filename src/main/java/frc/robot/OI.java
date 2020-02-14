@@ -144,7 +144,11 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("HoodRamp", new MotorVoltageRamping(Robot.hood, 0.125));
         // SmartDashboard.putData("SetHoodPower", new SetMotorPower(Robot.hood, 0.125));
         // SmartDashboard.putData("-SetHoodPower", new SetMotorPower(Robot.hood, -0.125));
-        SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAnglePID(Robot.hood, 10));
+        SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
+        SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
+        SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
+        SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
         // SmartDashboard.putData("Set hood angle 10", new InstantCommand(() -> Robot.hood.motor.setPositionPID(1000)));
         // SmartDashboard.putData("Tell me what you are", new InstantCommand(() -> System.out.println(Robot.hood.motor.getClass().toString())));
 

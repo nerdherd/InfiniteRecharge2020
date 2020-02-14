@@ -14,7 +14,7 @@ public class HoodConstants {
 
     public static final double kHoodGravityFF = 0.0671;
     // difficult to get data going downward because there is no tension
-    public static final double kHoodStaticFriction = 0.403;// 1.263;
+    public static final double kHoodStaticFriction = 0.3;// 1.263;
     public static final int kMotionMagicAcceleration = 2000;
     public static final int kMotionMagicVelocity = 2000;
     public static final double kHoodP = 1;

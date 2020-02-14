@@ -18,7 +18,7 @@ import frc.robot.constants.HoodConstants;
 public class Hood extends SingleMotorArm  {
 
   public Hood() {
-    super(new NerdyTalon(RobotMap.kHoodID), "Hood", true, true);
+    super(RobotMap.kHoodID, "Hood", true, true);
     // super(RobotMap.kHoodID, "Hood", true, true );
     super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
     super.configTrapezoidalConstraints(new TrapezoidProfile.Constraints(HoodConstants.kHoodVel, HoodConstants.kHoodAccel));
