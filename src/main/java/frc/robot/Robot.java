@@ -84,9 +84,8 @@ public class Robot extends TimedRobot {
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/home/lvuser/logs/", "ShooterTesting", 0.02, shooter);
+    NerdyBadlog.initAndLog("/home/lvuser/logs/", "ShooterTesting", 0.02, shooter, hood);
 
 
   }

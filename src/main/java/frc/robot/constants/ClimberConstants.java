@@ -7,8 +7,6 @@
 
 package frc.robot.constants;
 
-import frc.robot.subsystems.Climber;
-
 /**
  * Add your docs here.
  */

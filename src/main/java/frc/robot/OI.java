@@ -7,13 +7,13 @@
 
 package frc.robot;
 
-import com.nerdherd.lib.motor.commands.DumbSetPosition;
 import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
+import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
 import com.nerdherd.lib.motor.commands.SetDualMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorPositionPID;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
-import com.nerdherd.lib.motor.commands.mechanisms.MechanismVoltageRampingWithFF;
+import com.nerdherd.lib.motor.commands.mechanisms.SetArmAngleMotionMagic;
 import com.nerdherd.lib.motor.commands.mechanisms.SetArmAnglePID;
+import com.nerdherd.lib.motor.commands.mechanisms.SetMechanismPowerWithFF;
 import com.nerdherd.lib.oi.DefaultOI;
 
 // import org.graalvm.compiler.lir.aarch64.AArch64Move.StoreConstantOp;
@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ShootBall;
 import frc.robot.commands.WallShot;
-import frc.robot.commands.climber.ClimberClimb;
 import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.Intake;
 import frc.robot.commands.intake.Stow;
@@ -102,7 +101,14 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("set hood pos 6000 or 56 degrees", new DumbSetPosition(Robot.hood, 6000, 0.215, 100));
         // SmartDashboard.putData("set hood pos 7000 or 62 degrees", new DumbSetPosition(Robot.hood, 7000, 0.25, 100));
         // SmartDashboard.putData("set hood pos 7700 or 65 degrees", new DumbSetPosition(Robot.hood, 7700, 0.25, 100));
-        // SmartDashboard.putData("set hood position", new SetArmAnglePID(Robot.hood, 45));
+        SmartDashboard.putData("set hood position 10", new SetArmAngleMotionMagic(Robot.hood, 10));
+        SmartDashboard.putData("set hood position -10", new SetArmAngleMotionMagic(Robot.hood, -10));
+        SmartDashboard.putData("set hood position 25", new SetArmAngleMotionMagic(Robot.hood, 25));
+        SmartDashboard.putData("reset hood", new ResetSingleMotorEncoder(Robot.hood));
+        SmartDashboard.putData("Set power with FF 2 V", new SetMechanismPowerWithFF(Robot.hood, 2));
+        SmartDashboard.putData("Set power with FF -2 V", new SetMechanismPowerWithFF(Robot.hood, -2));
+        SmartDashboard.putData("Set power with FF 1 V", new SetMechanismPowerWithFF(Robot.hood, 1));
+        SmartDashboard.putData("Set power with FF -1 V", new SetMechanismPowerWithFF(Robot.hood, -1));
         // SmartDashboard.putData("set hood position 4000", new SetMotorPositionPID(Robot.hood, 4000));
         // SmartDashboard.putData("set voltaij 2", new SetMotorPower(Robot.hood, 2./12.));
         // SmartDashboard.putData("set voltaij -2", new SetMotorPower(Robot.hood, -2./12.));
