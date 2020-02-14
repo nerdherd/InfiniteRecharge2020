@@ -17,8 +17,8 @@ public class HoodConstants {
     public static final double kHoodStaticFriction = 0.403;// 1.263;
     public static final int kMotionMagicAcceleration = 2000;
     public static final int kMotionMagicVelocity = 2000;
-    public static final double kHoodP = 0;
-    public static final double kHoodF = 0.00357;
+    public static final double kHoodP = 1;
+    public static final double kHoodF = 0.369644;
     // 0.1092 kHoodF OG
     public static final double kHoodAngleRatio = 360./4096./15.;
     public static final double kHoodAngleOffset = -10;

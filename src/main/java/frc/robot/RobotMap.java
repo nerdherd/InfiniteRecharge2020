@@ -28,7 +28,7 @@ public class RobotMap {
     public static final int kFeederID1 = 5;
     public static final int kFeederID2 = 3; 
 
-    public static final int kIndex = 4;
+    public static final int kIndex = 41;
 
     public static final int kIntakeRoll = 0;
 

@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
   public static SingleMotorMechanism intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
-  public static PowerDistributionPanel pdp;
+  // public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
   public static Piston intake;
@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
     intakeRoll = new SingleMotorMechanism(RobotMap.kIntakeRoll, "Intake", true, true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
-    pdp = new PowerDistributionPanel();
+    // pdp = new PowerDistributionPanel();
     panelPos = new Piston(3, 4);
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
