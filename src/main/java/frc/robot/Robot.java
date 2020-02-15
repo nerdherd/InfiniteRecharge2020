@@ -20,10 +20,12 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Jevois;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -57,6 +59,7 @@ public class Robot extends TimedRobot {
   public static SingleMotorMechanism panelRot;
   public static Climber climber;
   public static Piston climberRatchet;
+  public static Limelight limelight;
   public static SingleMotorMechanism falcon;
 
 
@@ -67,8 +70,9 @@ public class Robot extends TimedRobot {
     climber = new Climber();
     falcon = new SingleMotorMechanism(1, "shooter", true, true);
     // drive = new Drive();
-    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		// jevois.startCameraStream();
+    jevois = new Jevois(115200, SerialPort.Port.kUSB);
+    jevois.startCameraStream();
+    limelight = new Limelight();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
@@ -99,7 +103,8 @@ public class Robot extends TimedRobot {
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
     index.reportToSmartDashboard();
-    // jevois.reportToSmartDashboard();
+    jevois.reportToSmartDashboard();
+    limelight.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
     // climber.reportToSmartDashboard();
