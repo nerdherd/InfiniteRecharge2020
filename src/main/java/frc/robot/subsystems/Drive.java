@@ -10,8 +10,10 @@ package frc.robot.subsystems;
 import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
+import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -24,12 +26,13 @@ public class Drive extends Drivetrain {
    * Creates a new Drive.
    */
   public Drive() {
-    super(new NerdyTalon(RobotMap.kLeftMasterTalonID), new NerdyTalon(RobotMap.kRightMasterTalonID),
+    super(new NerdySparkMax(RobotMap.kLeftMasterTalonID, MotorType.kBrushless),
+     new NerdySparkMax(RobotMap.kRightMasterTalonID, MotorType.kBrushless),
     new CANMotorController[] {
-      new NerdyTalon(RobotMap.kLeftFollowerTalon1ID),
+      new NerdySparkMax(RobotMap.kLeftFollowerTalon1ID, MotorType.kBrushless),
     },
     new CANMotorController[] {
-      new NerdyTalon(RobotMap.kRightFollowerTalon1ID),
+      new NerdySparkMax(RobotMap.kRightFollowerTalon1ID, MotorType.kBrushless),
     },
      true, false, 1);
     

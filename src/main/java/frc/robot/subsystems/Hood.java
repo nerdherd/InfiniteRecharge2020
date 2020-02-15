@@ -16,6 +16,7 @@ import frc.robot.RobotMap;
 import frc.robot.constants.HoodConstants;
 
 public class Hood extends SingleMotorArm  {
+  public double storedAngle = -10;
 
   public Hood() {
     super(RobotMap.kHoodID, "Hood", true, true);
@@ -27,7 +28,16 @@ public class Hood extends SingleMotorArm  {
     super.configOblargConstants(HoodConstants.kHoodS, HoodConstants.kHoodCos, HoodConstants.kHoodV, HoodConstants.kHoodA);
     super.configMotionMagic(HoodConstants.kMotionMagicAcceleration, HoodConstants.kMotionMagicVelocity);
     super.configDeadband(0.0004);
+    
   //96 for entire arm, -28 for start of middle of hood
   //
+  }
+
+  public void storeAngle(double angle){
+    storedAngle = angle;
+  }
+
+  public void setStoredAngle(){
+    this.setAngleMotionMagic(storedAngle);
   }
 }

@@ -9,6 +9,7 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.constants.HoodConstants;
 
 public class Stow extends CommandBase {
   /**
@@ -16,7 +17,7 @@ public class Stow extends CommandBase {
    */
   public Stow() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll, Robot.feeder);
+    addRequirements(Robot.intake, Robot.intakeRoll, Robot.hopper, Robot.hood, Robot.index);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +30,9 @@ public class Stow extends CommandBase {
   public void execute() {
     Robot.intake.setReverse();
     Robot.intakeRoll.setPower(0);
-    Robot.feeder.setPower(0, 0);
+    Robot.hopper.setPower(0, 0);
+    Robot.hood.setAngle(HoodConstants.kStowAngle);
+    Robot.index.setPower(0);
   }
 
   // Called once the command ends or is interrupted.

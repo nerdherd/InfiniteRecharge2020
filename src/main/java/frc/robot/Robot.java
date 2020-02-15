@@ -12,6 +12,7 @@ import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
+import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -44,8 +45,8 @@ public class Robot extends TimedRobot {
   public static Hood hood;
   public static DriverStation ds;
   public static Shooter shooter;
-  public static DualMotorIntake feeder;
-  public static SingleMotorMechanism intakeRoll;
+  public static DualMotorIntake hopper;
+  public static SingleMotorVictorSPX intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
   // public static PowerDistributionPanel pdp;
@@ -74,9 +75,10 @@ public class Robot extends TimedRobot {
     // climberRatchet = new Piston(6, 9);
     // climberRatchet.setReverse();
 
-    feeder = new DualMotorIntake(new SingleMotorMechanism(RobotMap.kFeederID1, "Top Intake", true, false), new SingleMotorMechanism(RobotMap.kFeederID2, "Bottom Intake", false, false));
+    hopper = new DualMotorIntake(new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", true),
+     new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", false));
     index = new SingleMotorMechanism(RobotMap.kIndex, "Index", true, true);
-    intakeRoll = new SingleMotorMechanism(RobotMap.kIntakeRoll, "Intake", true, true);
+    intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "Intake", true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     // pdp = new PowerDistributionPanel();
@@ -95,12 +97,12 @@ public class Robot extends TimedRobot {
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
     shooter.reportToSmartDashboard();
-    // feeder.reportToSmartDashboard();
-    // index.reportToSmartDashboard();
+    hopper.reportToSmartDashboard();
+    index.reportToSmartDashboard();
     // jevois.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
-    climber.reportToSmartDashboard();
+    // climber.reportToSmartDashboard();
   }
 
   @Override
