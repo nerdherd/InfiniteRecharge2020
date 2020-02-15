@@ -34,11 +34,11 @@ public class Drive extends Drivetrain {
     new CANMotorController[] {
       new NerdyVictorSPX(RobotMap.kRightSlaveVictor1ID)
     },
-     true, false, 0.63742712872013762571);
+     false, true, 0.63742712872013762571);
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
-     super.configSensorPhase(false, false);
+     super.configSensorPhase(true, true);
     
      super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configLeftPIDF(4.07, 0, 0, DriveConstants.kLeftF);

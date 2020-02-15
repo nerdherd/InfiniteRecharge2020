@@ -38,7 +38,7 @@ public class Ramsete12Ball extends SequentialCommandGroup {
     m_drive.setCoastMode();
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
-        new SimpleMotorFeedforward(1.15,2.79,0.544),
+        new SimpleMotorFeedforward(1.14,2.72,0.619),
         m_drive.m_kinematics, 
         10);
 
@@ -50,7 +50,7 @@ public class Ramsete12Ball extends SequentialCommandGroup {
     List.of(), new Pose2d(3.048, -2.404, new Rotation2d(Math.PI)),
         m_config);
      RamseteCommand ramsete0 = new RamseteCommand(m_traj0, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
-                                    new SimpleMotorFeedforward(1.15,2.79,0.544), 
+                                    new SimpleMotorFeedforward(1.14,2.72,0.619), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
                                     new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
                                      m_drive::setVoltage, m_drive); 
@@ -59,10 +59,10 @@ public class Ramsete12Ball extends SequentialCommandGroup {
 
    
     Trajectory m_traj = TrajectoryGenerator.generateTrajectory(new Pose2d(3.048, -2.404, new Rotation2d(Math.PI)),
-    List.of(), new Pose2d(3.048, -2.404, new Rotation2d(0)),
+    List.of(), new Pose2d(3.01, -2.404, new Rotation2d(0)),
         m_config);
      RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
-                                    new SimpleMotorFeedforward(1.15,2.79,0.544), 
+                                    new SimpleMotorFeedforward(1.14,2.72,0.619), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
                                     new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
                                      m_drive::setVoltage, m_drive); 
@@ -73,7 +73,7 @@ public class Ramsete12Ball extends SequentialCommandGroup {
       List.of(), new Pose2d(6.163, -3.014, new Rotation2d(0.4548)),
       m_config);
       RamseteCommand ramsete3 = new RamseteCommand(m_traj3, m_drive::getPose2d, new RamseteController(3.0, 0.7), 
-      new SimpleMotorFeedforward(1.15,2.79,0.544), 
+      new SimpleMotorFeedforward(1.14,2.72,0.619), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
       m_drive::setVoltage, m_drive);   
@@ -86,7 +86,7 @@ public class Ramsete12Ball extends SequentialCommandGroup {
       List.of(), new Pose2d(4.097, -2.404, new Rotation2d(Math.PI)),
       m_config);
       RamseteCommand ramsete4 = new RamseteCommand(m_traj4, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
-      new SimpleMotorFeedforward(1.15,2.79,0.544), 
+      new SimpleMotorFeedforward(1.14,2.72,0.619), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
       m_drive::setVoltage, m_drive);   
@@ -95,7 +95,7 @@ public class Ramsete12Ball extends SequentialCommandGroup {
       List.of(), new Pose2d(9.624, -0.705, new Rotation2d(0)),
       m_config);
       RamseteCommand ramsete5 = new RamseteCommand(m_traj5, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
-      new SimpleMotorFeedforward(1.15,2.79,0.544), 
+      new SimpleMotorFeedforward(1.14,2.72,0.619), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(3.11, 0, 0), new PIDController(3.11, 0, 0),
       m_drive::setVoltage, m_drive);   

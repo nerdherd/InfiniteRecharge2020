@@ -103,9 +103,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    // m_autonomousCommand =  new InstantCommand(() -> new DriveStraightContinuous(drive, 50000, 0.3));
+    // m_autonomousCommand =  new DriveStraightContinuous(drive, 50000, 0.3);
     // if (m_autonomousCommand != null) { 
-    //   m_autonomousCommand.schedule();
+      // m_autonomousCommand.schedule();
     // }
   }
 

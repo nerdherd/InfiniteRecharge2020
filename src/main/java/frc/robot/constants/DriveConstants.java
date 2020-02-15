@@ -26,8 +26,8 @@ public class DriveConstants {
     public static int kRightF = 0;
 
     public static int kMaxVelocity = 0;
-    public static int kLeftTicksPerFoot = 25293;
-    public static int kRightTicksPerFoot = 25293;
+    public static int kLeftTicksPerFoot = 2674;
+    public static int kRightTicksPerFoot = 2674;
     
 
 }
