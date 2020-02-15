@@ -22,6 +22,10 @@ public class VisionConstants {
     public final static double kXFocalLength = 341.3307738; // focalLength = px_width / (2 * tan(FOV / 2))
     public final static double kYFocalLength = 332.3115843;
 
+    // LIMELIGHT CONSTANTS!
+    public final static double kHorizontalFOV_lime = 60.22274663;
+    public final static double kVerticalFOV_lime = 55.19214793;
+
     // Physical camera constants
     public final static double kCameraHorizontalMountAngle = -25.2; 
     public final static double kCameraMountHeight = 18.25; //15.25
