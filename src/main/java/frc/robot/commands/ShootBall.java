@@ -12,6 +12,9 @@ import frc.robot.Robot;
 import frc.robot.constants.ShooterConstants;
 
 public class ShootBall extends CommandBase {
+
+  boolean isSafeToShoot = false;
+
   /**
    * Creates a new ShootBall.
    */
@@ -23,14 +26,24 @@ public class ShootBall extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    isSafeToShoot = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Robot.hood.setStoredAngle();
-    Robot.index.setPower(1.0);
-    Robot.hopper.setPower(0.4, 0.8);
+    Robot.hood.setStoredAngle();
+    if (Math.abs(Robot.shooter.getCurrent() - Robot.shooter.getDesiredVel()) < ShooterConstants.kVelocityTolerance){
+      isSafeToShoot = true;
+    
+    }
+    if (isSafeToShoot) {
+      Robot.index.setPower(1.0);
+      Robot.hopper.setPower(0.4, 0.8);
+    }else{
+      Robot.index.setPower(0.0);
+      Robot.hopper.setPower(0.0, 0.0);
+    }
   }
 
   // Called once the command ends or is interrupted.

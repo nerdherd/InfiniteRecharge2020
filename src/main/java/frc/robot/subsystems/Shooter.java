@@ -41,6 +41,10 @@ public class Shooter extends SingleMotorMechanism {
 
     
   }
+
+  public double getDesiredVel(){
+    return ((NerdyFalcon) this.motor).getClosedLoopTarget();
+  }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
