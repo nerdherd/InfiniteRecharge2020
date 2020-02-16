@@ -8,11 +8,13 @@
 package frc.robot.subsystems;
 
 import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
+import com.nerdherd.lib.drivetrain.experimental.ShiftingDrivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
 import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
+import com.nerdherd.lib.pneumatics.Piston;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Robot;
@@ -21,7 +23,7 @@ import frc.robot.constants.DriveConstants;
 
 // import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Drive extends Drivetrain {
+public class Drive extends ShiftingDrivetrain {
   /**
    * Creates a new Drive.
    */
@@ -34,7 +36,7 @@ public class Drive extends Drivetrain {
     new CANMotorController[] {
       new NerdySparkMax(RobotMap.kRightFollowerTalon1ID, MotorType.kBrushless),
     },
-     true, false, 1);
+     true, false, new Piston(0, 7), 1);
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);

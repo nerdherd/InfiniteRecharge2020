@@ -28,21 +28,21 @@ public class ShootBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.hood.setStoredAngle();
-    Robot.index.setPower(0.5);
-    Robot.hopper.setPower(0.69, 0.6);
+    // Robot.hood.setStoredAngle();
+    Robot.index.setPower(1.0);
+    Robot.hopper.setPower(0.4, 0.8);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.index.setPower(0);
+    Robot.hopper.setPower(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Robot.index.setPower(0);
-    Robot.hopper.setPower(0, 0);
 
     return false;
   }

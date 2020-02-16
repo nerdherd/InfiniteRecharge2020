@@ -19,7 +19,7 @@ public class Hood extends SingleMotorArm  {
   public double storedAngle = -10;
 
   public Hood() {
-    super(RobotMap.kHoodID, "Hood", true, true);
+    super(RobotMap.kHoodID, "Hood", false, false);
     // super(RobotMap.kHoodID, "Hood", true, true );
     super.configAngleConversion(HoodConstants.kHoodAngleRatio, HoodConstants.kHoodAngleOffset);
     super.configTrapezoidalConstraints(new TrapezoidProfile.Constraints(HoodConstants.kHoodVel, HoodConstants.kHoodAccel));
@@ -28,6 +28,8 @@ public class Hood extends SingleMotorArm  {
     super.configOblargConstants(HoodConstants.kHoodS, HoodConstants.kHoodCos, HoodConstants.kHoodV, HoodConstants.kHoodA);
     super.configMotionMagic(HoodConstants.kMotionMagicAcceleration, HoodConstants.kMotionMagicVelocity);
     super.configDeadband(0.0004);
+    super.motor.setCoastMode();
+    
     
   //96 for entire arm, -28 for start of middle of hood
   //

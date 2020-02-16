@@ -16,7 +16,7 @@ public class Intake extends CommandBase {
    */
   public Intake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll, Robot.hopper);
+    addRequirements(Robot.intake, Robot.intakeRoll);
   }
 
   // Called when the command is initially scheduled.
@@ -27,9 +27,11 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.intakeRoll.setPower(-0.75);
     Robot.intake.setForwards();
-    Robot.intakeRoll.setPower(0.5);
-    Robot.hopper.setPower(0.5, 0.4);
+    Robot.shooter.setPower(0.0);
+    Robot.hopper.setPower(0.0, 0.0);
+    Robot.index.setPower(0.0);
   }
 
   // Called once the command ends or is interrupted.

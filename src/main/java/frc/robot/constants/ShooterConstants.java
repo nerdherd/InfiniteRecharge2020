@@ -11,16 +11,16 @@ package frc.robot.constants;
  * Add your docs here.
  */
 public class ShooterConstants {
-    public static double kP = 0.53;
+    public static double kP = 0.18;
     public static int kI = 0;
     public static int kD = 0;
-    public static double kF= 0.0003500;
+    public static double kF= 0.0477003133;
     public static double kS = 0;
     public static double kV = 0;
     public static double kA = 0;
     public static int kDeadband = 0;
 
     public static final double kAutolineShotVelocity = 0;
-    public static final double kTrenchShotVelocity = 0;
-    public static final double kWallShotVelocity = 0;
+    public static final double kTrenchShotVelocity = 16200;
+    public static final double kWallShotVelocity = 8000;
 }

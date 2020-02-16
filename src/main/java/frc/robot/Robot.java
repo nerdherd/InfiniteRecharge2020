@@ -7,10 +7,12 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
@@ -46,7 +48,7 @@ public class Robot extends TimedRobot {
   public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake hopper;
-  public static SingleMotorVictorSPX intakeRoll;
+  public static SingleMotorMechanism intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
   // public static PowerDistributionPanel pdp;
@@ -66,7 +68,7 @@ public class Robot extends TimedRobot {
     hood = new Hood();
     climber = new Climber();
     falcon = new SingleMotorMechanism(1, "shooter", true, true);
-    // drive = new Drive();
+    drive = new Drive();
     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		// jevois.startCameraStream();
     shooter = new Shooter();
@@ -75,19 +77,19 @@ public class Robot extends TimedRobot {
     // climberRatchet = new Piston(6, 9);
     // climberRatchet.setReverse();
 
-    hopper = new DualMotorIntake(new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", true),
-     new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", false));
-    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", true, true);
-    intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "Intake", true);
+    hopper = new DualMotorIntake(new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", false),
+     new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", true));
+    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
+    intakeRoll = new SingleMotorMechanism(new NerdyTalon(RobotMap.kIntakeRoll), "Intake", true, true);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     // pdp = new PowerDistributionPanel();
     panelPos = new Piston(3, 4);
     panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
     oi = new OI();
-    // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
 
-    NerdyBadlog.initAndLog("/home/lvuser/logs/", "ShooterTesting", 0.02, shooter, hood);
+    NerdyBadlog.initAndLog("/home/lvuser/logs/", "ShooterCharacterization", 0.02, shooter, hood, index, hopper);
 
 
   }
@@ -96,6 +98,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
+    // System.out.println(shooter.kF);
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
     index.reportToSmartDashboard();
