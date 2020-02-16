@@ -6,13 +6,13 @@ import frc.robot.constants.VisionConstants;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class TargetTrack extends CommandBase {
+public class TargetTrackLime extends CommandBase {
 
     private double m_rotP;
 
-    public TargetTrack(double kRotP) {
+    public TargetTrackLime(double kRotP) {
         addRequirements(Robot.drive);
-        addRequirements(Robot.jevois);
+        addRequirements(Robot.limelight);
 
         m_rotP = kRotP;
     }
@@ -25,7 +25,7 @@ public class TargetTrack extends CommandBase {
 
     @Override
     public void execute() {
-        double getAngularTargetError = -Robot.jevois.getAngleToTurn();
+        double getAngularTargetError = -Robot.limelight.getXOffsetFromTarget();
         double robotAngle = (360 - Robot.drive.getRawYaw()) % 360;
         double power = -m_rotP * getAngularTargetError;
         if (!(Math.abs(getAngularTargetError) < VisionConstants.kDriveRotationDeadband)) {
