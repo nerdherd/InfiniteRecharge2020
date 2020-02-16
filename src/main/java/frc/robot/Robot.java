@@ -103,10 +103,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    // m_autonomousCommand =  new DriveStraightContinuous(drive, 50000, 0.3);
-    // if (m_autonomousCommand != null) { 
-      // m_autonomousCommand.schedule();
-    // }
+    m_autonomousCommand =  new DriveStraightContinuous(drive, 50000, 0.3);
+    if (m_autonomousCommand != null) { 
+      m_autonomousCommand.schedule();
+    }
   }
 
   @Override
@@ -117,7 +117,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // CommandScheduler.getInstance().run();
     drive.setPose(new Pose2d(3.048, -2.404, new Rotation2d(0)));
   }
 

@@ -11,15 +11,15 @@ package frc.robot.constants;
  * Add your docs here.
  */
 public class DriveConstants {
-    public static final double kLeftP = 0.00474;
+    public static final double kLeftP = 3.11;
 	public static final double kLeftI = 0;
 	public static final double kLeftD = 0;
 
-	public static final double kRightP = 0.00474;
+	public static final double kRightP = 3.11; //DONT FORGET TO CHANGE
 	public static final double kRightI = 0;
 	public static final double kRightD = 0;
 	
-    public static double kLeftStatic = 1.61;
+    public static double kLeftStatic = 1.61; //kS
     public static double kRightStatic = 1.61;
 
     public static int kLeftF = 0;

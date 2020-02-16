@@ -11,8 +11,10 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
+import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -27,14 +29,14 @@ public class Drive extends Drivetrain {
    * Creates a new Drive.
    */
   public Drive() {
-    super(new NerdyTalon(RobotMap.kLeftMasterTalonID), new NerdyTalon(RobotMap.kRightMasterTalonID),
+    super(new NerdySparkMax(RobotMap.kLeftMasterNeo, MotorType.kBrushless), new NerdySparkMax(RobotMap.kRightMasterNeo, MotorType.kBrushless),
     new CANMotorController[] {
-      new NerdyVictorSPX(RobotMap.kLeftSlaveVictor1ID)
+      new NerdySparkMax(RobotMap.kLeftSlaveNeo, MotorType.kBrushless),
     },
     new CANMotorController[] {
-      new NerdyVictorSPX(RobotMap.kRightSlaveVictor1ID)
+      new NerdySparkMax(RobotMap.kRightSlaveNeo, MotorType.kBrushless),
     },
-     false, true, 0.63742712872013762571);
+     true, false, 0.637);
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
