@@ -36,7 +36,8 @@ public class Drive extends ShiftingDrivetrain {
     new CANMotorController[] {
       new NerdySparkMax(RobotMap.kRightFollowerTalon1ID, MotorType.kBrushless),
     },
-     true, false, new Piston(0, 7), 1);
+     true, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
+      DriveConstants.kTrackWidth);
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);

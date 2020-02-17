@@ -22,8 +22,11 @@ public class RobotMap {
     public static final double kDriveV = 0;
     public static final double kDriveA = 0;
 
-    public static final int kIntakeID1 = 0;
-    public static final int kIntakeID2 = 0;
+    // public static final int kIntakeID1 = 0;
+    // public static final int kIntakeID2 = 0;
+
+    public static int kShifterPort1ID = 0;
+    public static int kShifterPort2ID = 7;
     
     public static final int kFeederID1 = 7;
     public static final int kFeederID2 = 6; 
@@ -38,5 +41,12 @@ public class RobotMap {
     
     public static final int kClimberID1 = 10;
     public static final int kClimberID2 = 11;
+
+    public static final int kTimeOfFlightSensorID = 0;
+
+    // public static final int kPanelPort1ID = 2;
+    // public static final int kPanelPort2ID = 1000;
+
+    public static final int kPanelRollerID = 25;
     
 }

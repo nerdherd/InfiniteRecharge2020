@@ -5,60 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.other;
+
+import com.nerdherd.robot.OI;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.constants.ShooterConstants;
 
-public class ShootBall extends CommandBase {
-
-  boolean isSafeToShoot = false;
-
+public class AdjustableFlywheelVel extends CommandBase {
   /**
-   * Creates a new ShootBall.
+   * Creates a new AdjustableFlywheelVel.
    */
-  public ShootBall() {
+  public AdjustableFlywheelVel() {
+    super();
+    addRequirements(Robot.shooter);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.index, Robot.hopper, Robot.hood);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // isSafeToShoot = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.index.setPower(0.75);
-    Robot.hopper.setPower(0.4, 0.8);
-    // Robot.hood.setStoredAngle();
-    // if (Math.abs(Robot.shooter.getCurrent() - Robot.shooter.getDesiredVel()) < ShooterConstants.kVelocityTolerance){
-    //   isSafeToShoot = true;
-    
-  // }
-    // if (isSafeToShoot) {
-    //   Robot.index.setPower(1.0);
-    //   Robot.hopper.setPower(0.4, 0.8);
-    // }else{
-    //   Robot.index.setPower(0.0);
-    //   Robot.hopper.setPower(0.0, 0.0);
-    // }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.index.setPower(0);
-    Robot.hopper.setPower(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
     return false;
   }
 }

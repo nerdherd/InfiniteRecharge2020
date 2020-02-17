@@ -27,7 +27,7 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intakeRoll.setPower(-0.75);
+    Robot.intakeRoll.setPower(-0.6);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
     Robot.hopper.setPower(0.0, 0.0);

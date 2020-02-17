@@ -23,6 +23,7 @@ import frc.robot.constants.ShooterConstants;
  * Add your docs here.
  */
 public class Shooter extends SingleMotorMechanism {
+  
 
   private NerdyFalcon follower;
   public Shooter(){

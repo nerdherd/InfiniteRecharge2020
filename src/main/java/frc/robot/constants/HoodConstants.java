@@ -33,6 +33,6 @@ public class HoodConstants {
 
     public static final double kWallShotAngle = -10;
     public static final double kTrenchShotAngle = 34;
-    public static final double kAutolineShotAngle = 0;
+    public static final double kAutolineShotAngle = 28;
     public static final double kStowAngle = -10;
 }

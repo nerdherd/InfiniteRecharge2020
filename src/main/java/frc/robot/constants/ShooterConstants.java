@@ -22,7 +22,7 @@ public class ShooterConstants {
 
     public static double kVelocityTolerance = 500;
 
-    public static final double kAutolineShotVelocity = 0;
+    public static final double kAutolineShotVelocity = 16200;
     public static final double kTrenchShotVelocity = 16200;
-    public static final double kWallShotVelocity = 8000;
+    public static final double kWallShotVelocity = 6750;
 }

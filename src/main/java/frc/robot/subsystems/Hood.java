@@ -11,7 +11,9 @@ import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.SmartCANMotorController;
 import com.nerdherd.lib.motor.single.mechanisms.SingleMotorArm;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.HoodConstants;
 
@@ -33,6 +35,12 @@ public class Hood extends SingleMotorArm  {
     
   //96 for entire arm, -28 for start of middle of hood
   //
+  }
+
+  @Override
+  public void periodic() {
+    // TODO Auto-generated method stub
+    SmartDashboard.putNumber("StoredAngle", storedAngle);
   }
 
   public void storeAngle(double angle){

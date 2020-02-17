@@ -16,16 +16,19 @@ import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
+import com.playingwithfusion.TimeOfFlight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Jevois;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
@@ -47,6 +50,7 @@ public class Robot extends TimedRobot {
   public static Drive drive;
   public static Jevois jevois;
   public static Hood hood;
+  public static Indexer indexer;
   public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake hopper;
@@ -54,7 +58,6 @@ public class Robot extends TimedRobot {
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
   // public static PowerDistributionPanel pdp;
-  public static OI oi;
   public static Command m_autonomousCommand;
   public static Piston intake;
   public static Piston panelPos;
@@ -62,7 +65,9 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static Piston climberRatchet;
   public static Limelight limelight;
-  public static SingleMotorMechanism falcon;
+  public static OI oi;
+
+  // public static SingleMotorMechanism falcon;
 
 
   
@@ -70,7 +75,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     hood = new Hood();
     climber = new Climber();
-    falcon = new SingleMotorMechanism(1, "shooter", true, true);
+    indexer = new Indexer();
+    // falcon = new SingleMotorMechanism(1, "shooter", true, true);
     limelight = new Limelight();
     drive = new Drive();
     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
@@ -88,8 +94,8 @@ public class Robot extends TimedRobot {
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     // pdp = new PowerDistributionPanel();
-    panelPos = new Piston(3, 4);
-    panelRot = new SingleMotorMechanism(5, "Control Panel", false, false);
+    // panelPos = new Piston(RobotMap.kPanelPort1ID, RobotMap.kPanelPort2ID);
+    // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
 
@@ -100,16 +106,19 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("TimeOfFlightDistance", indexer.timeOfFlight.getRange());
+
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().
     // System.out.println(shooter.kF);
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
     index.reportToSmartDashboard();
-    jevois.reportToSmartDashboard();
+    // jevois.reportToSmartDashboard();
     limelight.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
+    
     // climber.reportToSmartDashboard();
   }
 

@@ -28,6 +28,8 @@ public class DriveConstants {
     public static int kMaxVelocity = 0;
     public static int kLeftTicksPerFoot = 0;
     public static int kRightTicksPerFoot = 0;
+
+    public static int kTrackWidth = 1;
     
 
 }
