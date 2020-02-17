@@ -8,15 +8,11 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
-import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
-import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
+import com.nerdherd.lib.drivetrain.teleop.TankDrive;
 import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
-import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -27,7 +23,6 @@ import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Jevois;
@@ -80,12 +75,12 @@ public class Robot extends TimedRobot {
     index = new SingleMotorMechanism(21, "Index", false, true);
     intakeroll = new SingleMotorMechanism(12, "Intake", true, true);
     chooser = new AutoChooser();
-    pdp = new PowerDistributionPanel();
+    // pdp = new PowerDistributionPanel();
     oi = new OI();
-    // m_drive.setDefaultCommand(new ArcadeDrive(Robot.m_drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
+    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
+    // NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, drive);
 
 
   }
@@ -103,7 +98,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand =  new DriveStraightContinuous(drive, 50000, 0.3);
+    m_autonomousCommand =  new DriveStraightContinuous(drive, 50000, 1);
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }

@@ -40,7 +40,7 @@ public class Drive extends Drivetrain {
     
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
-     super.configSensorPhase(true, true);
+     super.configSensorPhase(false, false);
     
      super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configLeftPIDF(4.07, 0, 0, DriveConstants.kLeftF);

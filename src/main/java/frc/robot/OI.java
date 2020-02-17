@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.auto.ResetDriveEncoders;
 import com.nerdherd.lib.drivetrain.auto.ResetGyro;
 import com.nerdherd.lib.oi.DefaultOI;
@@ -54,6 +55,8 @@ public class OI extends DefaultOI {
         startIndex_3.whenPressed(new StartFeeder());
         // intake_1.whenPressed(new IntakeBallToShooter());
 
+        SmartDashboard.putData("SetDriveTrainVoltage", new DriveStraightContinuous(Robot.drive, 1000000, 1));
+
         // feeder_2.whenPressed(new SetDualMotorPower(Robot.feeder, 0.45, 0.45));
         // index_3.whenPressed(new SetMotorPower(Robot.index, 0.5));
         // startShooter_4.whenPressed(new SetMotorPower(Robot.shooter, 0.75));
@@ -99,14 +102,14 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("Shooter10000", new SetMotorVelocity(Robot.shooter, 10000, 0.0003500*(1023/12)));
         // SmartDashboard.putData("Shooter3000", new SetMotorVelocity(Robot.shooter, 3000, 0.0003500*(1023/12)));
      
-        SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.drive));
-        SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.drive.resetXY()));
+        // SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.drive));
+        // SmartDashboard.putData("ResetXY", new InstantCommand(() -> Robot.drive.resetXY()));
         SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.drive));  
-        SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.drive));
-        SmartDashboard.putData("Mamba", new Mamba(Robot.drive));
-        SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.drive));
-        SmartDashboard.putData("Ramsete10", new TenBallAuto(Robot.drive));
-        SmartDashboard.putData("Ramsete12", new Ramsete12Ball(Robot.drive));
+        // SmartDashboard.putData("Ramsete5", new Ramsete5Ball(Robot.drive));
+        // SmartDashboard.putData("Mamba", new Mamba(Robot.drive));
+        // SmartDashboard.putData("Ramsete3", new Ramsete3BallShoot(Robot.drive));
+        // SmartDashboard.putData("Ramsete10", new TenBallAuto(Robot.drive));
+        // SmartDashboard.putData("Ramsete12", new Ramsete12Ball(Robot.drive));
         //was 0.0005321 got 10000 ticks to 12000
 // 0.0002706 got 10000 ticks to 9000
 // 0.0003000 got 10000 ticks to 9300
