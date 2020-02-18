@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.characterization.DriveCharacterizationTest;
 import com.nerdherd.lib.drivetrain.shifting.ShiftHigh;
 import com.nerdherd.lib.drivetrain.shifting.ShiftLow;
 import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
@@ -36,6 +37,7 @@ import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.Intake;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
+import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.constants.ShooterConstants;
 
 /**
@@ -44,13 +46,14 @@ import frc.robot.constants.ShooterConstants;
 public class OI extends DefaultOI {
 
     public JoystickButton intake_1, startShooting_2, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
-            autoDistance_12, hoodAngle_5;
+            autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R;
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
     public OI() {
         super();
-        
+        turnToAngle_1L = new JoystickButton(super.driveJoyLeft, 1);
+        turnToAngle_1R = new JoystickButton(super.driveJoyRight, 1);
         intake_1 = new JoystickButton(super.operatorJoy, 1);
         startShooting_2 = new JoystickButton(super.operatorJoy, 2);
         trenchShot_7 = new JoystickButton(super.operatorJoy, 7);
@@ -60,7 +63,8 @@ public class OI extends DefaultOI {
         autoDistance_12 = new JoystickButton(super.operatorJoy, 12);
         hoodAngle_5 = new JoystickButton(super.operatorJoy, 5);
 
-
+        turnToAngle_1L.whileHeld(new TurnToAngleLime(.009)); //.007 works!
+        turnToAngle_1R.whileHeld(new TurnToAngleLime(.009));
         intake_1.toggleWhenPressed(new Intake());
         startShooting_2.whileHeld(new ShootBall());
         trenchShot_7.whenPressed(new TrenchShot());
@@ -78,6 +82,8 @@ public class OI extends DefaultOI {
         // panelExtend_8.whenPressed(new PanelExtend());
         // panelRotation_9.whenPressed(new PanelRotate());
         // wallShot_11.whenPressed(new WallShot());
+
+        SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(.1));
 
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 
@@ -160,21 +166,21 @@ public class OI extends DefaultOI {
         // 0.25));
         // SmartDashboard.putData("HoodRamp", new MotorVoltageRamping(Robot.hood,
         // 0.125));
-        SmartDashboard.putData("SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
-        SmartDashboard.putData("-SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
-        SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
-        SmartDashboard.putData("SetHoodFF -5 deg", new SetArmAngleMotionMagic(Robot.hood, -5));
-        SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
-        SmartDashboard.putData("SetHoodFF 5 deg", new SetArmAngleMotionMagic(Robot.hood, 5));
-        SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
-        SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
-        SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
-        SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
-        SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
-        SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
-        SmartDashboard.putData("SetHoodFF 28 deg", new SetArmAngleMotionMagic(Robot.hood, 28));
-        SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
-        SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
+        // SmartDashboard.putData("SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
+        // SmartDashboard.putData("-SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
+        // SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
+        // SmartDashboard.putData("SetHoodFF -5 deg", new SetArmAngleMotionMagic(Robot.hood, -5));
+        // SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
+        // SmartDashboard.putData("SetHoodFF 5 deg", new SetArmAngleMotionMagic(Robot.hood, 5));
+        // SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
+        // SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
+        // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        // SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
+        // SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
+        // SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
+        // SmartDashboard.putData("SetHoodFF 28 deg", new SetArmAngleMotionMagic(Robot.hood, 28));
+        // SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
+        // SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
         // SmartDashboard.putData("Set hood angle 10", new InstantCommand(() ->
         // Robot.hood.motor.setPositionPID(1000)));
         // SmartDashboard.putData("Tell me what you are", new InstantCommand(() ->
@@ -203,6 +209,7 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("Shoot", new ShootBallTemp());
         // SmartDashboard.putData("ShootStop", new ShootBallTempStop());
         SmartDashboard.putData("InfiniteRecharge", new InfiniteRecharge());
+        SmartDashboard.putData("drive voltage ramp", new DriveCharacterizationTest(Robot.drive, 0.25));
 
 
     

@@ -21,8 +21,6 @@ public class TurnToAngleLime extends CommandBase {
     public TurnToAngleLime(double kRotP) {
         addRequirements(Robot.drive);
         addRequirements(Robot.limelight);
-
-
         m_rotP = kRotP;
     }
 
@@ -35,7 +33,7 @@ public class TurnToAngleLime extends CommandBase {
 
     @Override
     public void execute() {
-        double getAngularTargetError = -Robot.limelight.getXOffsetFromTarget();
+        double getAngularTargetError = Robot.limelight.getXOffsetFromTarget();
         double robotAngle = (360 - Robot.drive.getRawYaw()) % 360;
         double power = -m_rotP * getAngularTargetError;
         if (!(Math.abs(getAngularTargetError) < VisionConstants.kDriveRotationDeadband)) {
