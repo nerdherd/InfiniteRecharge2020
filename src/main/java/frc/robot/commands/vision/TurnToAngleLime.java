@@ -39,7 +39,7 @@ public class TurnToAngleLime extends CommandBase {
         if (!(Math.abs(getAngularTargetError) < VisionConstants.kDriveRotationDeadband)) {
             Robot.drive.setPowerFeedforward(-power, power);
         } else {
-            Robot.drive.setPowerFeedforward(-Robot.oi.getDriveJoyRightY(), -Robot.oi.getDriveJoyRightY());
+            Robot.drive.setPowerFeedforward(0.0, 0.0);
         }
 
         SmartDashboard.putNumber("Left Power", power);
