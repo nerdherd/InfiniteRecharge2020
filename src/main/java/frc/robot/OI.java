@@ -37,6 +37,7 @@ import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.Intake;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
+import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.constants.ShooterConstants;
 
@@ -193,6 +194,8 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("StopShooter", new SetMotorPower(Robot.shooter, 0.0));
         SmartDashboard.putData("3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.25));
         SmartDashboard.putData("Neg3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.5));
+        SmartDashboard.putData("Neg6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.6
+        ));
 
         SmartDashboard.putData("StopIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.0));
         SmartDashboard.putData("6VIndex", new SetMotorPower(Robot.index, 0.5));
@@ -210,6 +213,10 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("ShootStop", new ShootBallTempStop());
         SmartDashboard.putData("InfiniteRecharge", new InfiniteRecharge());
         SmartDashboard.putData("drive voltage ramp", new DriveCharacterizationTest(Robot.drive, 0.25));
+
+        SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
+        SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
+        SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));
 
 
     

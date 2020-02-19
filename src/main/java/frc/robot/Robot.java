@@ -106,7 +106,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("TimeOfFlightDistance", indexer.timeOfFlight.getRange());
+    SmartDashboard.putNumber("TimeOfFlight1Distance", indexer.timeOfFlight1.getRange());
+    SmartDashboard.putNumber("TimeOfFlight2Distance", indexer.timeOfFlight2.getRange());
+    // SmartDashboard.putNumber("UltrasonicSensor", indexer.ultrasonic.getRangeInches());
+
 
     // CommandScheduler.getInstance().run();
     // CameraServer.getInstance().

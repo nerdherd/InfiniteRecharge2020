@@ -5,18 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.other;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.constants.IndexerConstants;
 
-public class Intake extends CommandBase {
+public class TimeOfFlightStop extends CommandBase {
   /**
-   * Creates a new Intake.
+   * Creates a new TimeOfFlightStop.
    */
-  public Intake() {
+  public TimeOfFlightStop() {
+    addRequirements(Robot.indexer);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll);
   }
 
   // Called when the command is initially scheduled.
@@ -27,11 +28,11 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intakeRoll.setPower(-0.4);
-    Robot.intake.setForwards();
-    Robot.shooter.setPower(0.0);
-    Robot.hopper.setPower(0.0, 0.0);
-    Robot.index.setPower(0.0);
+    if (Robot.indexer.timeOfFlight1.getRange() < 100){
+      Robot.indexer.setPower(0.0);
+    }else{
+      Robot.indexer.setPower(0.42);
+    }
   }
 
   // Called once the command ends or is interrupted.

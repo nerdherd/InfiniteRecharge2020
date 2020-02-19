@@ -42,7 +42,11 @@ public class RobotMap {
     public static final int kClimberID1 = 10;
     public static final int kClimberID2 = 11;
 
-    public static final int kTimeOfFlightSensorID = 0;
+    public static final int kTimeOfFlightSensorID1 = 0;
+    public static final int kTimeOfFlightSensorID2 = 1;
+
+    // public static final int kUltrasonicOut = 0;
+    // public static final int kUltraonsicEcho = 0;
 
     // public static final int kPanelPort1ID = 2;
     // public static final int kPanelPort2ID = 1000;
