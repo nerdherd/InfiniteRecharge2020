@@ -37,7 +37,7 @@ public class Mamba extends SequentialCommandGroup {
   private Drivetrain m_drive;
   public Mamba(Drivetrain drive) {
     m_drive = drive;
-    m_drive.setCoastMode();
+    // m_drive.setCoastMode();
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
         new SimpleMotorFeedforward(1.14,2.72,0.619),

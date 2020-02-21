@@ -77,11 +77,6 @@ public class Robot extends TimedRobot {
     chooser = new AutoChooser();
     // pdp = new PowerDistributionPanel();
     oi = new OI();
-    drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
-    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
-
-    // NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, drive);
-
 
   }
 
