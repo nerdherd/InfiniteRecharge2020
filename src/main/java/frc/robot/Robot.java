@@ -83,9 +83,9 @@ public class Robot extends TimedRobot {
     pdp = new PowerDistributionPanel();
     oi = new OI();
     // m_drive.setDefaultCommand(new ArcadeDrive(Robot.m_drive, Robot.oi));
-    LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
+    // LoggableLambda busVoltage = new LoggableLambda("Bus Voltage", () -> pdp.getVoltage());
 
-    NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
+    // NerdyBadlog.initAndLog("/media/sdbz1/logs/", "FeederToShooter", 0.02, shooter, feeder, index, busVoltage, drive);
 
 
   }
