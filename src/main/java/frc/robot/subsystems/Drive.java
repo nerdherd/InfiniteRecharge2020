@@ -43,7 +43,6 @@ public class Drive extends ShiftingDrivetrain {
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
      super.configSensorPhase(false, false);
      
-     super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configLeftPIDF(0.0, 0, 0, DriveConstants.kLeftF);
      super.configRightPIDF(0.0, 0, 0, DriveConstants.kRightF);
      super.configStaticFeedforward(DriveConstants.kLeftStatic, DriveConstants.kRightStatic);

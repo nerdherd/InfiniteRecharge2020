@@ -19,11 +19,11 @@ public class DriveConstants {
 	public static final double kRightI = 0;
 	public static final double kRightD = 0;
 	
-    public static double kLeftStatic = 0.916;
-    public static double kRightStatic = 0.916;
+    public static double kLeftStatic = 0.28; // 0.916
+    public static double kRightStatic = 0.25; // 0.916
 
-    public static int kLeftF = 0;
-    public static int kRightF = 0;
+    public static double kLeftF = 0.0020308692;
+    public static double kRightF = 0.0020177563;
 
     public static int kMaxVelocity = 0;
     public static int kLeftTicksPerFoot = 0;
