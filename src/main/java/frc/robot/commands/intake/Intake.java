@@ -22,15 +22,16 @@ public class Intake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.hopper.setPower(0.0, 0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intakeRoll.setPower(-0.4);
+    Robot.intakeRoll.setPower(0.75);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
-    Robot.hopper.setPower(0.0, 0.0);
+    Robot.hopper.setTopHopperPower(0.25);
     Robot.index.setPower(0.0);
   }
 

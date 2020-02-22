@@ -35,7 +35,7 @@ public class ShootBall extends CommandBase {
     Robot.index.setPower(0.75);
     Robot.hopper.setPower(0.4, 0.8);
     // Robot.hood.setStoredAngle();
-    // if (Math.abs(Robot.shooter.getCurrent() - Robot.shooter.getDesiredVel()) < ShooterConstants.kVelocityTolerance){
+    // if (Math.abs(Robot.shooter.getVelocity() - Robot.shooter.getDesiredVel()) < ShooterConstants.kVelocityTolerance){
     //   isSafeToShoot = true;
     
   // }

@@ -10,19 +10,22 @@ package frc.robot;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
-import com.nerdherd.lib.motor.dual.DualMotorIntake;
+import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auto.BasicAuto;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Jevois;
 import frc.robot.subsystems.Limelight;
@@ -48,7 +51,7 @@ public class Robot extends TimedRobot {
   public static Indexer indexer;
   public static DriverStation ds;
   public static Shooter shooter;
-  public static DualMotorIntake hopper;
+  public static Hopper hopper;
   public static SingleMotorVictorSPX intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
@@ -61,6 +64,7 @@ public class Robot extends TimedRobot {
   public static Piston climberRatchet;
   public static Limelight limelight;
   public static OI oi;
+  public static ResetSingleMotorEncoder hoodReset;
 
   // public static SingleMotorMechanism falcon;
 
@@ -81,9 +85,10 @@ public class Robot extends TimedRobot {
     ds = DriverStation.getInstance();
     // climberRatchet = new Piston(6, 9);
     // climberRatchet.setReverse();
+    CameraServer.getInstance().startAutomaticCapture();
 
-    hopper = new DualMotorIntake(new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", false),
-     new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", true));
+    hopper = new Hopper();
+
     index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
@@ -91,12 +96,14 @@ public class Robot extends TimedRobot {
     // pdp = new PowerDistributionPanel();
     // panelPos = new Piston(RobotMap.kPanelPort1ID, RobotMap.kPanelPort2ID);
     // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
+    
+    hoodReset = new ResetSingleMotorEncoder(Robot.hood);
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
 
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
-
+    m_autonomousCommand = new BasicAuto();
   }
 
   @Override
@@ -107,7 +114,6 @@ public class Robot extends TimedRobot {
 
 
     // CommandScheduler.getInstance().run();
-    // CameraServer.getInstance().
     // System.out.println(shooter.kF);
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
@@ -123,6 +129,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     // hood.resetEncoder();
+    drive.setCoastMode();
   }
   @Override
   public void autonomousInit() {
@@ -140,6 +147,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().run();
+    drive.setBrakeMode();
   }
 
   @Override
