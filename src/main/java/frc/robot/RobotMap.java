@@ -29,15 +29,16 @@ public class RobotMap {
     public static int kShifterPort1ID = 0;
     public static int kShifterPort2ID = 7;
     
-    public static final int kFeederID1 = 7;
+    public static final int kFeederID1 = 1;
     public static final int kFeederID2 = 6; 
+    public static final int kTopHopperRollerID = 13;
 
     public static final int kIndex = 14;
 
     public static final int kIntakeRoll = 10;
 
-    public static final int kIntakePort1 = 1;
-    public static final int kIntakePort2 = 6;
+    public static final int kIntakePort1 = 6;
+    public static final int kIntakePort2 = 2;
     // public static int kLeftMasterTalonID;
     
     public static final int kClimberID1 = 10;

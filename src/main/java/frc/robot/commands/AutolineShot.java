@@ -24,13 +24,13 @@ public class AutolineShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.shooter.setVelocity(ShooterConstants.kAutolineShotVelocity, ShooterConstants.kAutolineShotVelocity/1023*ShooterConstants.kF);
+    Robot.hood.storeAngle(HoodConstants.kAutolineShotAngle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setVelocity(ShooterConstants.kAutolineShotVelocity, ShooterConstants.kAutolineShotVelocity/1023*ShooterConstants.kF);
-    Robot.hood.storeAngle(HoodConstants.kAutolineShotAngle);
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +41,6 @@ public class AutolineShot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
