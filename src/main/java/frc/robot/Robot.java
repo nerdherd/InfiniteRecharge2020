@@ -8,23 +8,18 @@
 package frc.robot;
 
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
-import com.nerdherd.lib.logging.LoggableLambda;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.dual.DualMotorIntake;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
-import com.playingwithfusion.TimeOfFlight;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
@@ -54,7 +49,7 @@ public class Robot extends TimedRobot {
   public static DriverStation ds;
   public static Shooter shooter;
   public static DualMotorIntake hopper;
-  public static SingleMotorMechanism intakeRoll;
+  public static SingleMotorVictorSPX intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
   // public static PowerDistributionPanel pdp;
@@ -90,7 +85,7 @@ public class Robot extends TimedRobot {
     hopper = new DualMotorIntake(new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", false),
      new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", true));
     index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
-    intakeRoll = new SingleMotorMechanism(new NerdyTalon(RobotMap.kIntakeRoll), "Intake", true, true);
+    intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
     // pdp = new PowerDistributionPanel();

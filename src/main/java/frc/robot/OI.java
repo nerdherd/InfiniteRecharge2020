@@ -169,13 +169,13 @@ public class OI extends DefaultOI {
         // 0.125));
         // SmartDashboard.putData("SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
         // SmartDashboard.putData("-SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
-        // SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
+        SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
         // SmartDashboard.putData("SetHoodFF -5 deg", new SetArmAngleMotionMagic(Robot.hood, -5));
-        // SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
+        SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
         // SmartDashboard.putData("SetHoodFF 5 deg", new SetArmAngleMotionMagic(Robot.hood, 5));
         // SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
         // SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
-        // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
         // SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
         // SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
         // SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
@@ -193,12 +193,15 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("StopHopper", new SetDualMotorPower(Robot.hopper, 0.0, 0.0));
         SmartDashboard.putData("StopShooter", new SetMotorPower(Robot.shooter, 0.0));
         SmartDashboard.putData("3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.25));
+        SmartDashboard.putData("6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.5));
         SmartDashboard.putData("Neg3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.5));
         SmartDashboard.putData("Neg6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.6
         ));
 
         SmartDashboard.putData("StopIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.0));
         SmartDashboard.putData("6VIndex", new SetMotorPower(Robot.index, 0.5));
+        SmartDashboard.putData("12VIndex", new SetMotorPower(Robot.index, 1));
+        SmartDashboard.putData("9VIndex", new SetMotorPower(Robot.index, 0.75));
         SmartDashboard.putData("Neg6VIndex", new SetMotorPower(Robot.index, -0.5));
         SmartDashboard.putData("StopIndex", new SetMotorPower(Robot.index, 0.0));
         SmartDashboard.putData("ExtendIntake", new ExtendPiston(Robot.intake));
