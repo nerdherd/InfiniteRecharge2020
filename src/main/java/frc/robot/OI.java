@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.Sendable;
 // import org.graalvm.compiler.lir.aarch64.AArch64Move.StoreConstantOp;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutolineShot;
 import frc.robot.commands.ShootBall;
@@ -39,7 +40,6 @@ import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.vision.TurnToAngleLime;
-import frc.robot.constants.ShooterConstants;
 
 /**
  * Add your docs here.
@@ -76,7 +76,7 @@ public class OI extends DefaultOI {
         stow_10.whenPressed(new Stow());
         wallShot_11.whenPressed(new WallShot());
         hoodAngle_5.whenPressed(new SetAngle());
-        outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
+        outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75).alongWith(new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8))));
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         // autoDistance_12.whenPressed(new AutoDistance());

@@ -32,7 +32,11 @@ public class Hopper extends DualMotorIntake {
     public void setPower(double leftPower, double rightPower) {
         // TODO Auto-generated method stub
         super.setPower(leftPower, rightPower);
-        topRoller.setPower(leftPower);
+        topRoller.setPower(rightPower);
+    }
+
+    public void setPowerWithoutTop(double leftPower, double rightPower) {
+        super.setPower(leftPower, rightPower);
     }
 
     public void setTopHopperPower(double power) {
