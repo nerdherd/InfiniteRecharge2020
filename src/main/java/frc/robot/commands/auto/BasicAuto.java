@@ -12,12 +12,14 @@ import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.commands.AutolineShot;
 import frc.robot.commands.ShootBall;
 import frc.robot.commands.flywheel.InfiniteRecharge;
+import frc.robot.commands.vision.TurnToAngleLime;
 
 /**
  * Add your docs here.
@@ -28,7 +30,7 @@ public class BasicAuto extends SequentialCommandGroup {
         addCommands(
             new AutolineShot(), 
             new InstantCommand(() -> Robot.hood.setStoredAngle(), Robot.hood), 
-            new WaitCommand(2),
+            new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(0.009)),
             new ShootBall(),
             new WaitCommand(2),
             new DriveStraightContinuous(Robot.drive, 10000, -0.25)

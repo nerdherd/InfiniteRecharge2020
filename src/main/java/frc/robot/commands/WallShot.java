@@ -31,7 +31,7 @@ public class WallShot extends CommandBase {
   public void execute() {
 
     Robot.hood.storeAngle(HoodConstants.kWallShotAngle);
-    Robot.shooter.setVelocity(ShooterConstants.kWallShotVelocity,ShooterConstants.kWallShotVelocity/1023*ShooterConstants.kF);
+    Robot.shooter.setVelocity(ShooterConstants.kWallShotVelocity);
   }
 
   // Called once the command ends or is interrupted.

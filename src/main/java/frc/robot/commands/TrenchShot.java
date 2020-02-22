@@ -29,7 +29,7 @@ public class TrenchShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setVelocity(ShooterConstants.kTrenchShotVelocity, ShooterConstants.kTrenchShotVelocity/1023*ShooterConstants.kF);
+    Robot.shooter.setVelocity(ShooterConstants.kTrenchShotVelocity);
     Robot.hood.storeAngle(HoodConstants.kTrenchShotAngle);
   }
 

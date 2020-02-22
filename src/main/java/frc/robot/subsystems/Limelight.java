@@ -45,7 +45,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getXOffsetFromTarget() {
-    double x = tx.getDouble(0.0) - 1;
+    double x = tx.getDouble(0.0) + 1;
     return x;
   }
 

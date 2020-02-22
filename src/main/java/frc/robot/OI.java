@@ -38,6 +38,7 @@ import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.Intake;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
+import frc.robot.commands.other.ShootBallTemp;
 import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.vision.TurnToAngleLime;
 
@@ -46,19 +47,22 @@ import frc.robot.commands.vision.TurnToAngleLime;
  */
 public class OI extends DefaultOI {
 
-    public JoystickButton intake_1, startShooting_2, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
-            autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6;
+    public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
+            autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R;
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
     public OI() {
         super();
+        shiftHigh_6L = new JoystickButton(super.driveJoyLeft, 6);
+        shiftLow_6R = new JoystickButton(super.driveJoyRight, 6);
         turnToAngle_1L = new JoystickButton(super.driveJoyLeft, 1);
         turnToAngle_1R = new JoystickButton(super.driveJoyRight, 1);
         resetEncoders_5L = new JoystickButton(super.driveJoyLeft, 5);
         resetEncoders_5R = new JoystickButton(super.driveJoyRight, 5);
         intake_1 = new JoystickButton(super.operatorJoy, 1);
         startShooting_2 = new JoystickButton(super.operatorJoy, 2);
+        startShootingOld_3 = new JoystickButton(super.operatorJoy, 3);
         trenchShot_7 = new JoystickButton(super.operatorJoy, 7);
         autolineShot_9 = new JoystickButton(super.operatorJoy, 9);
         stow_10 = new JoystickButton(super.operatorJoy, 10);
@@ -67,10 +71,15 @@ public class OI extends DefaultOI {
         hoodAngle_5 = new JoystickButton(super.operatorJoy, 5);
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
 
+        shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
+        shiftLow_6R.whenPressed(new ShiftLow(Robot.drive));
+        
+        
         turnToAngle_1L.whileHeld(new TurnToAngleLime(.009)); //.007 works!
         turnToAngle_1R.whileHeld(new TurnToAngleLime(.009));
         intake_1.whenPressed(new Intake());
         startShooting_2.whileHeld(new ShootBall());
+        startShootingOld_3.whileHeld(new ShootBallTemp());
         trenchShot_7.whenPressed(new TrenchShot());
         autolineShot_9.whenPressed(new AutolineShot());
         stow_10.whenPressed(new Stow());

@@ -24,6 +24,7 @@ import frc.robot.constants.ShooterConstants;
  */
 public class Shooter extends SingleMotorMechanism {
   
+  private double m_desiredVel;
 
   private NerdyFalcon follower;
   public Shooter(){
@@ -39,8 +40,19 @@ public class Shooter extends SingleMotorMechanism {
     // super.configMotionMagic(accel, cruise_vel); 
     follower.follow((TalonFX) super.motor);
     super.configCurrentLimit(80, 60);
+    m_desiredVel = 0;
+  }
 
-    
+  @Override
+  public void setVelocity(double vel) {
+    super.setVelocity(vel);
+    m_desiredVel = vel;
+  }
+
+  @Override
+  public void setVelocity(double vel, double arbFF) {
+    super.setVelocity(vel, arbFF);
+    m_desiredVel = vel;
   }
 
   public double getDesiredVel(){

@@ -21,6 +21,7 @@ public class ShooterConstants {
     public static int kDeadband = 0;
 
     public static double kVelocityTolerance = 500;
+    public static double kVelPercentTolerance = 0.05;
 
     public static final double kAutolineShotVelocity = 16200;
     public static final double kTrenchShotVelocity = 16200;

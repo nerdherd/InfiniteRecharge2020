@@ -24,7 +24,7 @@ public class AutolineShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.shooter.setVelocity(ShooterConstants.kAutolineShotVelocity, ShooterConstants.kAutolineShotVelocity/1023*ShooterConstants.kF);
+    Robot.shooter.setVelocity(ShooterConstants.kAutolineShotVelocity);
     Robot.hood.storeAngle(HoodConstants.kAutolineShotAngle);
   }
 
