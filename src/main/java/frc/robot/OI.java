@@ -48,12 +48,14 @@ import frc.robot.commands.vision.TurnToAngleLime;
 public class OI extends DefaultOI {
 
     public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
-            autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R;
+            autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R,
+            ploughIntake_2;
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
     public OI() {
         super();
+        ploughIntake_2 = new JoystickButton(super.driveJoyLeft, 2); // Check in with Drivers
         shiftHigh_6L = new JoystickButton(super.driveJoyLeft, 6);
         shiftLow_6R = new JoystickButton(super.driveJoyRight, 6);
         turnToAngle_1L = new JoystickButton(super.driveJoyLeft, 1);
@@ -71,10 +73,9 @@ public class OI extends DefaultOI {
         hoodAngle_5 = new JoystickButton(super.operatorJoy, 5);
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
 
+        ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
         shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
         shiftLow_6R.whenPressed(new ShiftLow(Robot.drive));
-        
-        
         turnToAngle_1L.whileHeld(new TurnToAngleLime(.009)); //.007 works!
         turnToAngle_1R.whileHeld(new TurnToAngleLime(.009));
         intake_1.whenPressed(new Intake());
