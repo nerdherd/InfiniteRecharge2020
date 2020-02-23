@@ -147,7 +147,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().run();
-    drive.setBrakeMode();
+    // drive.setBrakeMode();
+    drive.setCoastMode();
   }
 
   @Override

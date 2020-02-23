@@ -38,7 +38,7 @@ public class Intake extends CommandBase {
     Robot.shooter.setPower(0.0);
     Robot.index.setPower(0.0);
     if (Timer.getFPGATimestamp() - m_startTime > 1.5) {
-      Robot.hopper.setTopHopperPower(0.25);
+      Robot.hopper.setTopHopperPower(0.67); //spaget
     }
   }
 

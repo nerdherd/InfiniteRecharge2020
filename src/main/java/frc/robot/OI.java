@@ -86,7 +86,9 @@ public class OI extends DefaultOI {
         stow_10.whenPressed(new Stow());
         wallShot_11.whenPressed(new WallShot());
         hoodAngle_5.whenPressed(new SetAngle());
-        outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75).alongWith(new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8))));
+        outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75)
+                                    .alongWith(new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8)), 
+                                                new SetMotorPower(Robot.indexer, -0.75)));
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         // autoDistance_12.whenPressed(new AutoDistance());

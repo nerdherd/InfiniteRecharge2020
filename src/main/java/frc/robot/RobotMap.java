@@ -26,8 +26,8 @@ public class RobotMap {
     // public static final int kIntakeID1 = 0;
     // public static final int kIntakeID2 = 0;
 
-    public static int kShifterPort1ID = 3;
-    public static int kShifterPort2ID = 7;
+    public static int kShifterPort1ID = 1;
+    public static int kShifterPort2ID = 5;
     
     public static final int kFeederID1 = 1;
     public static final int kFeederID2 = 6; 

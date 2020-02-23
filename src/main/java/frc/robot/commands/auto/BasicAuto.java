@@ -7,9 +7,7 @@
 
 package frc.robot.commands.auto;
 
-import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
-import com.nerdherd.lib.motor.commands.SetDualMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorPower;
+import com.nerdherd.lib.drivetrain.characterization.OpenLoopDrive;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -18,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.commands.AutolineShot;
 import frc.robot.commands.ShootBall;
-import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.vision.TurnToAngleLime;
 
 /**
@@ -31,9 +28,8 @@ public class BasicAuto extends SequentialCommandGroup {
             new AutolineShot(), 
             new InstantCommand(() -> Robot.hood.setStoredAngle(), Robot.hood), 
             new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(0.009)),
-            new ShootBall(),
-            new WaitCommand(2),
-            new DriveStraightContinuous(Robot.drive, 10000, -0.25)
+            new ParallelRaceGroup(new ShootBall(), new WaitCommand(8)),
+            new ParallelRaceGroup(new OpenLoopDrive(Robot.drive, -0.2), new WaitCommand(1))
         );
     }
 
