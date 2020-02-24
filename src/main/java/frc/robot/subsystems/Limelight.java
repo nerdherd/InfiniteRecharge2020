@@ -26,6 +26,7 @@ public class Limelight extends SubsystemBase {
   NetworkTableEntry ty;
   NetworkTableEntry ta;
   NetworkTableEntry ts;
+  NetworkTableEntry tlong;
   NetworkTableEntry pipeline;
   NetworkTableEntry ledMode;
   NetworkTableEntry camMode;
@@ -35,6 +36,7 @@ public class Limelight extends SubsystemBase {
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
     ts = table.getEntry("ts");
+    tlong = table.getEntry("tlong");
     pipeline = table.getEntry("pipeline");
     camMode = table.getEntry("camMode");
     ledMode = table.getEntry("ledMode");
@@ -42,6 +44,10 @@ public class Limelight extends SubsystemBase {
     pipeline.setValue(7);
     camMode.setValue(1);
 
+  }
+  public double getTargetWidth(){
+    double w = tlong.getDouble(0.0);
+    return w;
   }
 
   public double getXOffsetFromTarget() {
@@ -65,9 +71,21 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getDistance(){
+    // distance is head-on
     double dist = (VisionConstants.kTargetHeight-VisionConstants.kCameraMountHeight) / Math.tan(getYOffsetFromTarget());
     return dist;
 }
+  public double getDistanceWidth(){
+    // distance is at an angle
+    double distanceHyp = (VisionConstants.kTargetWidth * VisionConstants.kXFocalLength_lime)/getTargetWidth(); // D = W*F/P; convert to in
+    double theta = Math.asin(74.25/distanceHyp); // angle of elevation to target
+    double fullDist = distanceHyp*Math.cos(theta); // horizontal distance
+    SmartDashboard.putNumber("distanceHyp", distanceHyp);
+    SmartDashboard.putNumber("theta", theta);
+    SmartDashboard.putNumber("fullDist", fullDist);  
+    return (fullDist - VisionConstants.kCameraBumperOffset);
+    
+  }
 
   public void blink() {
     ledMode.setNumber(2);
@@ -81,7 +99,9 @@ public class Limelight extends SubsystemBase {
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Area", getTargetArea());
-    SmartDashboard.putNumber("Limelight Distance", getDistance());
+    SmartDashboard.putNumber("Limelight Distance Vert.", getDistance());
+    SmartDashboard.putNumber("Limelight Distance Horiz.", getDistanceWidth());
+    SmartDashboard.putNumber("Limelight Target Width", getTargetWidth());
   }
   
   @Override
