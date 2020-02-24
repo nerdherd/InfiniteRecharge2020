@@ -41,7 +41,7 @@ public class ShootBall extends CommandBase {
     } else {
       isSafeToShoot = 0;
     }
-    if (isSafeToShoot > 3) {
+    if (isSafeToShoot > 5) {
       Robot.index.setPower(0.75);
       Robot.hopper.setPower(0.4, 0.8);
     }else{

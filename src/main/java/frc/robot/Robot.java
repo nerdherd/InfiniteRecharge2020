@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
     
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
 
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 

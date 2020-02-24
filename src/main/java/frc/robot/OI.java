@@ -76,8 +76,8 @@ public class OI extends DefaultOI {
         ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
         shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
         shiftLow_6R.whenPressed(new ShiftLow(Robot.drive));
-        turnToAngle_1L.whileHeld(new TurnToAngleLime(.009)); //.007 works!
-        turnToAngle_1R.whileHeld(new TurnToAngleLime(.009));
+        turnToAngle_1L.whileHeld(new TurnToAngleLime(.007)); //.009 before
+        turnToAngle_1R.whileHeld(new TurnToAngleLime(.007));
         intake_1.whenPressed(new Intake());
         startShooting_2.whileHeld(new ShootBall());
         startShootingOld_3.whileHeld(new ShootBallTemp());
