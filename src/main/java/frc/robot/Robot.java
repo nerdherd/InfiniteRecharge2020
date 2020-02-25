@@ -90,7 +90,7 @@ public class Robot extends TimedRobot {
 
     hopper = new Hopper();
 
-    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
+    // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();

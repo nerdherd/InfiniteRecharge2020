@@ -283,10 +283,8 @@ public class OI extends DefaultOI {
 
         SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
         SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
-        SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));
+        SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));    
 
-
-    
     }
 
 	private Sendable SetMotorPower(SingleMotorMechanism index, double d) {
