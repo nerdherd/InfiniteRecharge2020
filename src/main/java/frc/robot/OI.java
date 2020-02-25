@@ -193,12 +193,57 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("SetHoodFF 5 deg", new SetArmAngleMotionMagic(Robot.hood, 5));
         // SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
         // SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
-        SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        SmartDashboard.putData("SetHoodFF 7 deg", new SetArmAngleMotionMagic(Robot.hood, 7));
+        SmartDashboard.putData("SetHoodFF 8 deg", new SetArmAngleMotionMagic(Robot.hood, 8));
+        SmartDashboard.putData("SetHoodFF 9 deg", new SetArmAngleMotionMagic(Robot.hood, 9));
+        
+        SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
+        SmartDashboard.putData("SetHoodFF 10.5 deg", new SetArmAngleMotionMagic(Robot.hood, 10.5));
+        SmartDashboard.putData("SetHoodFF 11 deg", new SetArmAngleMotionMagic(Robot.hood, 11));
+        SmartDashboard.putData("SetHoodFF 11.5 deg", new SetArmAngleMotionMagic(Robot.hood, 11.5));
+        SmartDashboard.putData("SetHoodFF 12 deg", new SetArmAngleMotionMagic(Robot.hood, 12));
+        SmartDashboard.putData("SetHoodFF 12.5 deg", new SetArmAngleMotionMagic(Robot.hood, 12.5));
+        SmartDashboard.putData("SetHoodFF 13 deg", new SetArmAngleMotionMagic(Robot.hood, 13));
+        SmartDashboard.putData("SetHoodFF 13.5 deg", new SetArmAngleMotionMagic(Robot.hood, 13.5));
+        
+
+
+        // SmartDashboard.putData("SetHoodFF 14 deg", new SetArmAngleMotionMagic(Robot.hood, 14));
+        // SmartDashboard.putData("SetHoodFF 14.5 deg", new SetArmAngleMotionMagic(Robot.hood, 14.5));
+        // SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
+        // SmartDashboard.putData("SetHoodFF 15.5 deg", new SetArmAngleMotionMagic(Robot.hood, 15.5));
+        // SmartDashboard.putData("SetHoodFF 16 deg", new SetArmAngleMotionMagic(Robot.hood, 16));
+        // SmartDashboard.putData("SetHoodFF 16.5 deg", new SetArmAngleMotionMagic(Robot.hood, 16.5));
+        // SmartDashboard.putData("SetHoodFF 17 deg", new SetArmAngleMotionMagic(Robot.hood, 17));
+        // SmartDashboard.putData("SetHoodFF 17.5 deg", new SetArmAngleMotionMagic(Robot.hood, 17.5));
+        // SmartDashboard.putData("SetHoodFF 18 deg", new SetArmAngleMotionMagic(Robot.hood, 18));
+        // SmartDashboard.putData("SetHoodFF 18.5 deg", new SetArmAngleMotionMagic(Robot.hood, 18.5));
+        // SmartDashboard.putData("SetHoodFF 19 deg", new SetArmAngleMotionMagic(Robot.hood, 19));
+
+        
+        // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
+        // SmartDashboard.putData("SetHoodFF 20.5 deg", new SetArmAngleMotionMagic(Robot.hood, 20.5));
+        // SmartDashboard.putData("SetHoodFF 21 deg", new SetArmAngleMotionMagic(Robot.hood, 21));
+        // SmartDashboard.putData("SetHoodFF 21.5 deg", new SetArmAngleMotionMagic(Robot.hood, 21.5));
+        // SmartDashboard.putData("SetHoodFF 22 deg", new SetArmAngleMotionMagic(Robot.hood, 22));
+        // SmartDashboard.putData("SetHoodFF 22.5 deg", new SetArmAngleMotionMagic(Robot.hood, 22.5));
+        // SmartDashboard.putData("SetHoodFF 23 deg", new SetArmAngleMotionMagic(Robot.hood, 23));
+        // SmartDashboard.putData("SetHoodFF 23.5 deg", new SetArmAngleMotionMagic(Robot.hood, 23.5));
+        // SmartDashboard.putData("SetHoodFF 24 deg", new SetArmAngleMotionMagic(Robot.hood, 24));
+        // SmartDashboard.putData("SetHoodFF 24.5 deg", new SetArmAngleMotionMagic(Robot.hood, 24.5));
         // SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
         // SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
+        // SmartDashboard.putData("SetHoodFF 26.5 deg", new SetArmAngleMotionMagic(Robot.hood, 26.5));
         // SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
         // SmartDashboard.putData("SetHoodFF 28 deg", new SetArmAngleMotionMagic(Robot.hood, 28));
+        // SmartDashboard.putData("SetHoodFF 29 deg", new SetArmAngleMotionMagic(Robot.hood, 29));
+        // SmartDashboard.putData("SetHoodFF 29.5 deg", new SetArmAngleMotionMagic(Robot.hood, 29.5));
         // SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
+        // SmartDashboard.putData("SetHoodFF 30.5 deg", new SetArmAngleMotionMagic(Robot.hood, 30.5));
+        // SmartDashboard.putData("SetHoodFF 31 deg", new SetArmAngleMotionMagic(Robot.hood, 31));
+        // SmartDashboard.putData("SetHoodFF 32 deg", new SetArmAngleMotionMagic(Robot.hood, 32));
+        // SmartDashboard.putData("SetHoodFF 33 deg", new SetArmAngleMotionMagic(Robot.hood, 33));
         // SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
         // SmartDashboard.putData("Set hood angle 10", new InstantCommand(() ->
         // Robot.hood.motor.setPositionPID(1000)));
@@ -229,7 +274,8 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("ShiftDown", new ShiftLow(Robot.drive));
 
         SmartDashboard.putData("ShooterRamp", new MotorVoltageRamping(Robot.shooter, 0.25/12));
-
+        SmartDashboard.putNumber("Encoder Rate Left", Robot.drive.getLeftMasterVelocity());
+        SmartDashboard.putNumber("Encoder Rate Right", Robot.drive.getLeftMasterVelocity());
         // SmartDashboard.putData("Shoot", new ShootBallTemp());
         // SmartDashboard.putData("ShootStop", new ShootBallTempStop());
         SmartDashboard.putData("InfiniteRecharge", new InfiniteRecharge());

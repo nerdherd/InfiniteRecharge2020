@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
@@ -133,6 +134,7 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousInit() {
+    m_autonomousCommand = new DriveStraightContinuous(drive, 30000, 0.3);
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
