@@ -7,9 +7,12 @@
 
 package frc.robot.commands.intake;
 
+import com.playingwithfusion.TimeOfFlight;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.constants.IndexerConstants;
 
 public class Intake extends CommandBase {
 
@@ -36,9 +39,32 @@ public class Intake extends CommandBase {
     Robot.intakeRoll.setPower(0.75);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
-    Robot.index.setPower(0.0);
+    Robot.spagetVictorSPX.setPower(0.1);
+    //Robot.hopper.setPower(0.4, 0.8);
+    // Robot.index.setPower(0.25);
+    // 0 = intake one 
+    // 1 = intake one ready
+    // 2 = intake both
+    // 3 = full
+    // 4 = empty
+    if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1){
+      Robot.indexer.intakeDetermine(0);
+    }else if(Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+      Robot.indexer.intakeDetermine(1);
+    }else if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+      Robot.indexer.intakeDetermine(2);
+    }else if(Robot.indexer.timeOfFlight1.getRange() > IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() > IndexerConstants.kTimeOfFlight2){
+      
+    }
+        /*if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1){
+      Robot.index.setPower(0.25);
+    }else if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+      Robot.index.setPower(0.25);
+    }else if(Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+      Robot.index.setPower(0.0);
+    }*/
     if (Timer.getFPGATimestamp() - m_startTime > 1.5) {
-      Robot.hopper.setTopHopperPower(0.67); //spaget
+      Robot.hopper.setTopHopperPower(0.67); 
     }
   }
 

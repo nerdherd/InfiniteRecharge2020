@@ -37,6 +37,9 @@ public class Indexer extends SingleMotorMechanism {
 
 
   }
+  public int intakeDetermine(int intakeState){
+    return intakeState;
+  }
 
   @Override
   public void periodic() {
@@ -45,5 +48,12 @@ public class Indexer extends SingleMotorMechanism {
     SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
     
     // This method will be called once per scheduler run
+  }
+
+  @Override
+  public void reportToSmartDashboard() {
+    super.reportToSmartDashboard();
+    SmartDashboard.putNumber("time of flight 1", timeOfFlight1.getRange());
+    SmartDashboard.putNumber("time of flight 2", timeOfFlight2.getRange());
   }
 }

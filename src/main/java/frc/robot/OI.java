@@ -106,7 +106,13 @@ public class OI extends DefaultOI {
 
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 
-        SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));        
+        SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));    
+        
+        SmartDashboard.putData("3 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.25));
+        SmartDashboard.putData("4.5 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.375));
+        SmartDashboard.putData("6 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.5));
+        SmartDashboard.putData("12 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 1.0));
+        
 
         // SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45,
         // 0.45));

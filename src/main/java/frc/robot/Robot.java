@@ -7,11 +7,11 @@
 
 package frc.robot;
 
-import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
   public static DriverStation ds;
   public static Shooter shooter;
   public static Hopper hopper;
+  public static SingleMotorVictorSPX spagetVictorSPX;
   public static SingleMotorVictorSPX intakeRoll;
   public static SingleMotorMechanism index;
   // public static SingleMotorMechanism motor;
@@ -89,8 +90,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture();
 
     hopper = new Hopper();
-
-    // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
+    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();

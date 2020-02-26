@@ -25,5 +25,6 @@ public class ShooterConstants {
 
     public static final double kAutolineShotVelocity = 16200;
     public static final double kTrenchShotVelocity = 16200;
-    public static final double kWallShotVelocity = 6750;
+    public static final double kWallShotVelocity = 5400;
+    //6750 Wall shot speed
 }
