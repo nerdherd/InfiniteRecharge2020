@@ -35,7 +35,7 @@ import frc.robot.commands.ShootBall;
 import frc.robot.commands.TrenchShot;
 import frc.robot.commands.WallShot;
 import frc.robot.commands.flywheel.InfiniteRecharge;
-import frc.robot.commands.intake.Intake;
+import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.ShootBallTemp;
@@ -78,7 +78,7 @@ public class OI extends DefaultOI {
         shiftLow_6R.whenPressed(new ShiftLow(Robot.drive));
         turnToAngle_1L.whileHeld(new TurnToAngleLime(.007)); //.009 before
         turnToAngle_1R.whileHeld(new TurnToAngleLime(.007));
-        intake_1.whenPressed(new Intake());
+        intake_1.whenPressed(new IntakeBalls());
         startShooting_2.whileHeld(new ShootBall());
         startShootingOld_3.whileHeld(new ShootBallTemp());
         trenchShot_7.whenPressed(new TrenchShot());
@@ -107,11 +107,6 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 
         SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));    
-        
-        SmartDashboard.putData("3 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.25));
-        SmartDashboard.putData("4.5 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.375));
-        SmartDashboard.putData("6 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 0.5));
-        SmartDashboard.putData("12 V Spaget", new SetMotorPower(Robot.spagetVictorSPX, 1.0));
         
 
         // SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45,

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.sensor.VexUltrasonic;
+import com.nerdherd.lib.sensor.analog.LinearAnalogSensor;
 import com.nerdherd.lib.sensor.digital.TalonTach;
 import com.playingwithfusion.TimeOfFlight;
 
@@ -27,10 +28,10 @@ public class Indexer extends SingleMotorMechanism {
    * Creates a new Indexer.
    */
   public Indexer() {
-    super(RobotMap.kIndex, "Indexer", true, false);
+    super(RobotMap.kIndex, "Indexer", false, false);
     timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID1);
     timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID2);
-    ultrasonic = new VexUltrasonic("Ultrasonic", 1, 3);
+    // ultrasonic = new VexUltrasonic("Ultrasonic", 5, 6);
     // ultrasonic = new Ultrasonic(0, 0);
     super.configPIDF(IndexerConstants.kP, IndexerConstants.kI, IndexerConstants.kD, IndexerConstants.kF);
     super.configDeadband(IndexerConstants.kDeadband);
@@ -43,9 +44,9 @@ public class Indexer extends SingleMotorMechanism {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("TimeOfFlight1", timeOfFlight1.getRange());
-    SmartDashboard.putNumber("TimeOfFlight2", timeOfFlight2.getRange());
-    SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
+    // SmartDashboard.putNumber("TimeOfFlight1", timeOfFlight1.getRange());
+    // SmartDashboard.putNumber("TimeOfFlight2", timeOfFlight2.getRange());
+    // SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
     
     // This method will be called once per scheduler run
   }
@@ -55,5 +56,6 @@ public class Indexer extends SingleMotorMechanism {
     super.reportToSmartDashboard();
     SmartDashboard.putNumber("time of flight 1", timeOfFlight1.getRange());
     SmartDashboard.putNumber("time of flight 2", timeOfFlight2.getRange());
+    // SmartDashboard.putNumber("Ultrasonic", ultrasonic.getRangeInches());
   }
 }

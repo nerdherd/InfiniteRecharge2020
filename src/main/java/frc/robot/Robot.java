@@ -7,11 +7,11 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.motor.single.SingleMotorVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
@@ -53,9 +53,8 @@ public class Robot extends TimedRobot {
   public static DriverStation ds;
   public static Shooter shooter;
   public static Hopper hopper;
-  public static SingleMotorVictorSPX spagetVictorSPX;
   public static SingleMotorVictorSPX intakeRoll;
-  public static SingleMotorMechanism index;
+  public static Indexer index;
   // public static SingleMotorMechanism motor;
   // public static PowerDistributionPanel pdp;
   public static Command m_autonomousCommand;
@@ -90,7 +89,8 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture();
 
     hopper = new Hopper();
-    index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
+    // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
+    index = new Indexer();
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
@@ -109,9 +109,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("TimeOfFlight1Distance", indexer.timeOfFlight1.getRange());
-    SmartDashboard.putNumber("TimeOfFlight2Distance", indexer.timeOfFlight2.getRange());
-    // SmartDashboard.putNumber("UltrasonicSensor", indexer.ultrasonic.getRangeInches());
+    
 
 
     // CommandScheduler.getInstance().run();

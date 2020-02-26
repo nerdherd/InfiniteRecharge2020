@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.constants.IndexerConstants;
 
-public class Intake extends CommandBase {
+public class IntakeBalls extends CommandBase {
 
   private double m_startTime;
   /**
    * Creates a new Intake.
    */
-  public Intake() {
+  public IntakeBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake, Robot.intakeRoll);
   }
@@ -36,10 +36,9 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intakeRoll.setPower(0.75);
+    Robot.intakeRoll.setPower(0.95);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
-    Robot.spagetVictorSPX.setPower(0.1);
     //Robot.hopper.setPower(0.4, 0.8);
     // Robot.index.setPower(0.25);
     // 0 = intake one 

@@ -47,7 +47,7 @@ public class RobotMap {
 
     public static final int kTimeOfFlightSensorID1 = 0;
     public static final int kTimeOfFlightSensorID2 = 1;
-    public static final int kSpagetVictor = 13;
+    // public static final int kSpagetVictor = 13;
     
 
     // public static final int kUltrasonicOut = 0;
