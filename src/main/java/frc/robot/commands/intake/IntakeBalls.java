@@ -11,16 +11,20 @@ import com.playingwithfusion.TimeOfFlight;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Robot;
 import frc.robot.constants.IndexerConstants;
+import frc.robot.subsystems.Indexer.IndexerState;
 
 public class IntakeBalls extends CommandBase {
 
   private double m_startTime;
+  private int state, counter;
   /**
    * Creates a new Intake.
    */
   public IntakeBalls() {
+    state = 0;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake, Robot.intakeRoll);
   }
@@ -30,6 +34,9 @@ public class IntakeBalls extends CommandBase {
   public void initialize() {
     // Robot.hopper.setPower(-0.33, -0.167);
     m_startTime = Timer.getFPGATimestamp();
+    if (Robot.index.indexerState == IndexerState.EMPTY) {
+      Robot.index.indexerState = IndexerState.WAITING_FOR_ONE;
+    }
 
   }
 
@@ -39,22 +46,71 @@ public class IntakeBalls extends CommandBase {
     Robot.intakeRoll.setPower(0.95);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
-    //Robot.hopper.setPower(0.4, 0.8);
-    // Robot.index.setPower(0.25);
+
+    if (Robot.index.indexerState == IndexerState.WAITING_FOR_ONE) {
+      Robot.hopper.setPower(0.4, 0.8);
+      Robot.index.setPower(0.25);
+      if (Robot.index.hopperBallDetected()) {
+        Robot.index.indexerState = IndexerState.INTAKING_ONE;
+      }
+    } else if (Robot.index.indexerState == IndexerState.INTAKING_ONE) {
+      Robot.hopper.setPower(0.4, 0.8);
+      Robot.index.setPower(0.25);
+      if (!Robot.index.hopperBallDetected()) {
+        counter++;
+      } else {
+        counter = 0;
+      }
+      if (counter > 5) {
+        counter = 0;
+        Robot.index.indexerState = IndexerState.WAITING_FOR_TWO;
+      }
+    } else if (Robot.index.indexerState == IndexerState.WAITING_FOR_TWO) {
+      Robot.hopper.setPower(0, 0);
+      Robot.index.setPower(0);
+      if (Robot.index.hopperBallDetected()) {
+        Robot.index.indexerState = IndexerState.INTAKING_TWO;
+      }
+    } else if (Robot.index.indexerState == IndexerState.INTAKING_TWO) {
+      Robot.hopper.setPower(0.4, 0.8);
+      Robot.index.setPower(0.25);
+      if (!Robot.index.hopperBallDetected()) {
+        counter++;
+      } else {
+        counter = 0;
+      }
+      if (counter > 2) {
+        counter = 0;
+        Robot.index.indexerState = IndexerState.FULL;
+      }
+    } else if (Robot.index.indexerState == IndexerState.FULL) {
+      Robot.hopper.setPower(0, 0);
+      Robot.index.setPower(0);
+    }
+
+
+
+    // if(Robot.index.ultrasonic.getRangeInches() <= 4) {
+    //   Robot.index.setPower(0.25);
+    // } else {
+    //   Robot.index.setPower(0);
+
+    //   hasBallInIndexer = true;
+    // }
     // 0 = intake one 
     // 1 = intake one ready
     // 2 = intake both
     // 3 = full
     // 4 = empty
-    if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1){
-      Robot.indexer.intakeDetermine(0);
-    }else if(Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
-      Robot.indexer.intakeDetermine(1);
-    }else if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
-      Robot.indexer.intakeDetermine(2);
-    }else if(Robot.indexer.timeOfFlight1.getRange() > IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() > IndexerConstants.kTimeOfFlight2){
+    // if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1){
+    //   Robot.indexer.intakeDetermine(0);
+    // }else if(Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+    //   Robot.indexer.intakeDetermine(1);
+    // }else if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){
+    //   Robot.indexer.intakeDetermine(2);
+    // }else if(Robot.indexer.timeOfFlight1.getRange() > IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() > IndexerConstants.kTimeOfFlight2){
       
-    }
+    // }
         /*if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1){
       Robot.index.setPower(0.25);
     }else if(Robot.indexer.timeOfFlight1.getRange() <= IndexerConstants.kTimeOfFlight1 && Robot.indexer.timeOfFlight2.getRange() <= IndexerConstants.kTimeOfFlight2){

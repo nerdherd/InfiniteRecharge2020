@@ -41,6 +41,7 @@ import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.ShootBallTemp;
 import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.vision.TurnToAngleLime;
+import frc.robot.subsystems.Indexer.IndexerState;
 
 /**
  * Add your docs here.
@@ -88,10 +89,11 @@ public class OI extends DefaultOI {
         hoodAngle_5.whenPressed(new SetAngle());
         outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75)
                                     .alongWith(new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8)), 
-                                                new SetMotorPower(Robot.indexer, -0.75)));
+                                                new SetMotorPower(Robot.index, -0.75)));
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         // autoDistance_12.whenPressed(new AutoDistance());
+        SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
 
         // shoot_2.whileHeld(new ShootBall());
         // infiniteRecharge_3.whenPressed(new InfiniteRecharge());
@@ -283,8 +285,8 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("drive voltage ramp", new DriveCharacterizationTest(Robot.drive, 0.25));
 
         SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
-        SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
-        SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));    
+        // SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
+        // SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));    
 
     }
 

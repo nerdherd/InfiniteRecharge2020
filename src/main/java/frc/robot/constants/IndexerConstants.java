@@ -18,4 +18,5 @@ public class IndexerConstants {
     public static double kDeadband = 0;
     public static double kTimeOfFlight1 = 250;
     public static double kTimeOfFlight2 = 250;
+    public static double kUltrasonicNoBall = 6;
 }

@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
   public static Drive drive;
   public static Jevois jevois;
   public static Hood hood;
-  public static Indexer indexer;
+  // public static Indexer indexer;
   public static DriverStation ds;
   public static Shooter shooter;
   public static Hopper hopper;
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     hood = new Hood();
     climber = new Climber();
-    indexer = new Indexer();
+    index = new Indexer();
     // falcon = new SingleMotorMechanism(1, "shooter", true, true);
     limelight = new Limelight();
     drive = new Drive();
@@ -90,7 +90,6 @@ public class Robot extends TimedRobot {
 
     hopper = new Hopper();
     // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
-    index = new Indexer();
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
     chooser = new AutoChooser();
@@ -102,7 +101,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
 
-    NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
+    NerdyBadlog.initAndLog("/media/sda1/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     m_autonomousCommand = new BasicAuto();
   }

@@ -16,7 +16,7 @@ public class TimeOfFlightStop extends CommandBase {
    * Creates a new TimeOfFlightStop.
    */
   public TimeOfFlightStop() {
-    addRequirements(Robot.indexer);
+    addRequirements(Robot.index);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,11 +28,11 @@ public class TimeOfFlightStop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.indexer.timeOfFlight1.getRange() < 100){
-      Robot.indexer.setPower(0.0);
-    }else{
-      Robot.indexer.setPower(0.42);
-    }
+    // if (Robot.indexer.timeOfFlight1.getRange() < 100){
+    //   Robot.indexer.setPower(0.0);
+    // }else{
+    //   Robot.indexer.setPower(0.42);
+    // }
   }
 
   // Called once the command ends or is interrupted.
