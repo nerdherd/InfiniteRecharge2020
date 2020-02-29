@@ -20,8 +20,7 @@ import frc.robot.RobotMap;
 import frc.robot.constants.IndexerConstants;
 
 public class Indexer extends SingleMotorMechanism {
-  // public TimeOfFlight timeOfFlight1;
-  // public TimeOfFlight timeOfFlight2;
+  public TimeOfFlight timeOfFlight1, timeOfFlight2, timeOfFlight3;
   public VexUltrasonic ultrasonic;
   public IndexerState indexerState;
 
@@ -30,6 +29,9 @@ public class Indexer extends SingleMotorMechanism {
    */
   public Indexer() {
     super(RobotMap.kIndex, "Indexer", false, false);
+    timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID1);
+    timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID2);
+    timeOfFlight3 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID3);
     ultrasonic = new VexUltrasonic("Ultrasonic", 6, 7);
     super.configPIDF(IndexerConstants.kP, IndexerConstants.kI, IndexerConstants.kD, IndexerConstants.kF);
     super.configDeadband(IndexerConstants.kDeadband);
@@ -57,15 +59,24 @@ public class Indexer extends SingleMotorMechanism {
 
   public enum IndexerState {
     EMPTY,
-    WAITING_FOR_ONE,
+    WAITING,
     INTAKING_ONE,
-    WAITING_FOR_TWO,
     INTAKING_TWO,
-    FULL
+    FULL,
+    ERROR
   }
 
   public boolean hopperBallDetected() {
-    return ultrasonic.getRangeInches() < IndexerConstants.kUltrasonicNoBall;
+    // return ultrasonic.getRangeInches() < IndexerConstants.kUltrasonicNoBall;
+    return timeOfFlight1.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+  }
+
+  public boolean indexerLowBallDetected(){
+    return timeOfFlight2.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+  }
+
+  public boolean indexerHighBallDetected(){
+    return timeOfFlight3.getRange() < IndexerConstants.kTimeOfFlightNoBall;
   }
 
 }
