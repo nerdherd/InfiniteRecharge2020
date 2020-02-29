@@ -396,9 +396,9 @@ class HSVDetector:
 
             center = tuple([getXcoord(new_box), getYcoord(new_box)])
             cv2.circle(self.outimg,center, 5, (0,0,255), 2)
-            jevois.sendSerial(str(contourNum) + "/CENTER:" + str(center) + 
-                            "/DISTANCE:" + str(get_distance_width_onecont(new_box)) + 
-                            "/SOLVEPNP:" + str(distance_PnP(pnp_points)))
+            jevois.sendSerial(str(contourNum) + "/" + str(get_distance_width_onecont(new_box)) + 
+                            "/" + str(getXcoord(new_box)) +
+                            "/" + str(getYcoord(new_box)))
 
 
     def process(self, inframe, outframe):
@@ -547,7 +547,7 @@ class HSVDetector:
         else:
             mode = cv2.RETR_LIST
         method = cv2.CHAIN_APPROX_SIMPLE
-        contours, hierarchy =cv2.findContours(input, mode=mode, method=method)
+        im2, contours, hierarchy =cv2.findContours(input, mode=mode, method=method)
         return contours
 
     @staticmethod
