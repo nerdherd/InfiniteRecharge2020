@@ -41,6 +41,7 @@ import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.ShootBallTemp;
 import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.vision.TurnToAngleLime;
+import frc.robot.commands.vision.SetLights;
 import frc.robot.subsystems.Indexer.IndexerState;
 
 /**
@@ -287,10 +288,7 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
         // SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
         // SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));    
+        SmartDashboard.putData("Turn Limelights off", new SetLights());
 
     }
-
-	private Sendable SetMotorPower(SingleMotorMechanism index, double d) {
-		return null;
-	}
 }
