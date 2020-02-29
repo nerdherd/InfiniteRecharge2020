@@ -50,4 +50,19 @@ public class Hood extends SingleMotorArm  {
   public void setStoredAngle(){
     this.setAngleMotionMagic(storedAngle);
   }
+
+  public void distanceToAngleJevois(){
+    Robot.jevois.getOldDistance();
+    // distance jevois & limelight & average 
+    // function based on constants 
+    // return 
+
+  }
+  public void distanceToAngleLimelight(){
+    Robot.limelight.getDistanceWidth();
+    // distance jevois & limelight & average 
+    // function based on constants 
+    // return 
+
+  }
 }

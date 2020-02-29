@@ -214,6 +214,7 @@ public class Jevois extends SubsystemBase implements Runnable {
 
 	}
 
+
 	public void startLog() {
 		// Check to see if flash drive is mounted.
 		File logFolder1 = new File(m_filePath1);
