@@ -64,7 +64,6 @@ public class Robot extends TimedRobot {
   public static Piston panelPos;
   public static SingleMotorMechanism panelRot;
   public static Climber climber;
-  public static Piston climberRatchet;
   public static Limelight limelight;
   public static OI oi;
   public static ResetSingleMotorEncoder hoodReset;
