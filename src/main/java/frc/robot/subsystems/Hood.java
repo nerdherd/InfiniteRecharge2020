@@ -54,7 +54,7 @@ public class Hood extends SingleMotorArm  {
 
   public double distToAngle(double distance){
     double setpointAngle = -10;
-    if()
+
     if(distance <= 220 && distance > 169){
       setpointAngle = HoodConstants.kFarPolyA*(Math.pow(distance, 2)) +
                       HoodConstants.kFarPolyB*distance +
