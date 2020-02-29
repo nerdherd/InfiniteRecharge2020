@@ -224,7 +224,8 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("SetHoodFF 18.5 deg", new SetArmAngleMotionMagic(Robot.hood, 18.5));
         // SmartDashboard.putData("SetHoodFF 19 deg", new SetArmAngleMotionMagic(Robot.hood, 19));
 
-        
+        // SmartDashboard.putData("SetHoodFF lime -> deg", new SetArmAngleMotionMagic(Robot.hood, Robot.hood.distToAngle(Robot.limelight.getDistanceWidth())));
+        SmartDashboard.putData("SetHoodFF jevois -> deg", new SetArmAngleMotionMagic(Robot.hood, Robot.hood.distToAngle(Robot.jevois.getOldDistance())));
         // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
         // SmartDashboard.putData("SetHoodFF 20.5 deg", new SetArmAngleMotionMagic(Robot.hood, 20.5));
         // SmartDashboard.putData("SetHoodFF 21 deg", new SetArmAngleMotionMagic(Robot.hood, 21));

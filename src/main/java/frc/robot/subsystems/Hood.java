@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.HoodConstants;
+import frc.robot.constants.VisionConstants;
 
 public class Hood extends SingleMotorArm  {
   public double storedAngle = -10;
@@ -51,18 +52,28 @@ public class Hood extends SingleMotorArm  {
     this.setAngleMotionMagic(storedAngle);
   }
 
-  public void distanceToAngleJevois(){
-    Robot.jevois.getOldDistance();
-    // distance jevois & limelight & average 
-    // function based on constants 
-    // return 
+  public double distToAngle(double distance){
+    double setpointAngle = -10;
+    if()
+    if(distance <= 220 && distance > 169){
+      setpointAngle = HoodConstants.kFarPolyA*(Math.pow(distance, 2)) +
+                      HoodConstants.kFarPolyB*distance +
+                      HoodConstants.kFarPolyC;
+    } else if (distance <= 169 && distance > 144){
+      setpointAngle = HoodConstants.kFarLinearA*distance +
+                      HoodConstants.kFarLinearB;
 
-  }
-  public void distanceToAngleLimelight(){
-    Robot.limelight.getDistanceWidth();
-    // distance jevois & limelight & average 
-    // function based on constants 
-    // return 
+    } else if (distance <= 144 && distance > 122) {
+      setpointAngle = HoodConstants.kCloseLinearA*distance +
+                      HoodConstants.kCloseLinearB;
+      
+    } else if(distance >= 44 && distance < 122){
+      setpointAngle = HoodConstants.kClosePolyA*(Math.pow(distance, 2)) +
+                      HoodConstants.kClosePolyB*distance +
+                      HoodConstants.kClosePolyC;
+
+    }
+    return setpointAngle;
 
   }
 }

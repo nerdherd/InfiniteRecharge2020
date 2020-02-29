@@ -37,13 +37,21 @@ public class HoodConstants {
     public static final double kAutolineShotAngle = 28;
     public static final double kStowAngle = -10;
 
-    // POLYNOMIAL REGRESSION - CLOSE
+    // POLYNOMIAL REGRESSION - FAR
     public static final double kFarPolyA = -7.99065708e-04;
     public static final double kFarPolyB = 3.79464011e-01;
     public static final double kFarPolyC = -1.08073022e+01;
 
-    // POLYNOMIAL REGRESSION - FAR
+    // POLYNOMIAL REGRESSION - CLOSE
     public static final double kClosePolyA = -2.40032788e-03;
     public static final double kClosePolyB = 5.96478736e-01;
     public static final double kClosePolyC = -1.04487478e+01;
+
+    // LINEAR REGRESSION - FAR
+    public static final double kFarLinearA = 2.000e-02;
+    public static final double kFarLinearB = 2.712e+01;
+
+    // LINEAR REGRESSION - CLOSE
+    public static final double kCloseLinearA = 0.15909091;
+    public static final double kCloseLinearB = 7.09090909;
 }
