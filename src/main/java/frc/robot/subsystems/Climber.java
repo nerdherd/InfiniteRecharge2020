@@ -19,7 +19,6 @@ import frc.robot.constants.ClimberConstants;
  * Add your docs here.
  */
 public class Climber extends SingleMotorElevator {
-  private static Climber m_climberInstance = new Climber();
   public static NerdyFalcon followerFalcon = new NerdyFalcon(RobotMap.kClimberID2);
   public static NerdyFalcon mainFalcon = new NerdyFalcon(RobotMap.kClimberID1);
 
@@ -40,8 +39,6 @@ public Climber(){
     super.reportToSmartDashboard();
   }
 
-  public static synchronized Climber getInstance(){
-    return m_climberInstance;
-  }
+
 }
 

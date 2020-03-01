@@ -40,13 +40,13 @@ public class ClimberLift extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Climber.getInstance().setPower(0);
+    Robot.climber.setPower(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Climber.getInstance().getHeight() < ClimberConstants.kClimbGoodPos;
+    return Robot.climber.getHeight() < ClimberConstants.kClimbGoodPos;
 
   }
 }
