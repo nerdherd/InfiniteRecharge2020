@@ -5,46 +5,42 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
-
-import com.nerdherd.lib.motor.commands.SetMotorPower;
+package frc.robot.commands.shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.constants.ClimberConstants;
-import frc.robot.subsystems.Climber;
+import frc.robot.constants.HoodConstants;
+import frc.robot.constants.ShooterConstants;
 
-public class ClimberReady extends CommandBase {
+public class AutolineShot extends CommandBase {
   /**
-   * Creates a new ClimberReady.
+   * Creates a new AutolineShot.
    */
-  public ClimberReady() {
-    addRequirements(Robot.climber);
+  public AutolineShot() {
+    addRequirements(Robot.shooter, Robot.hood);
     // Use addRequirements() here to declare subsystem dependencies.
   }
- 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    super.initialize();
+    Robot.shooter.setVelocity(ShooterConstants.kAutolineShotVelocity);
+    Robot.hood.storeAngle(HoodConstants.kAutolineShotAngle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climber.setPower(0.8);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Climber.getInstance().setPower(ClimberConstants.kClimberDesiredUpPow);
-
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Climber.getInstance().getHeight() > ClimberConstants.kHardStopPos;     
+    return true;
   }
 }
