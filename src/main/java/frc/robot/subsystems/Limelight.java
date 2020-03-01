@@ -80,9 +80,9 @@ public class Limelight extends SubsystemBase {
     double distanceHyp = (VisionConstants.kTargetWidth * VisionConstants.kXFocalLength_lime)/getTargetWidth(); // D = W*F/P; convert to in
     double theta = Math.asin(74.25/distanceHyp); // angle of elevation to target
     double fullDist = distanceHyp*Math.cos(theta); // horizontal distance
-    SmartDashboard.putNumber("distanceHyp", distanceHyp);
-    SmartDashboard.putNumber("theta", theta);
-    SmartDashboard.putNumber("fullDist", fullDist);  
+    // SmartDashboard.putNumber("distanceHyp", distanceHyp);
+    // SmartDashboard.putNumber("theta", theta);
+    SmartDashboard.putNumber("Limelight Dist No Offset", fullDist);  
     return (fullDist - VisionConstants.kCameraBumperOffset);
     
   }
@@ -99,8 +99,9 @@ public class Limelight extends SubsystemBase {
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Area", getTargetArea());
-    SmartDashboard.putNumber("Limelight Distance Vert.", getDistance());
-    SmartDashboard.putNumber("Limelight Distance Horiz.", getDistanceWidth());
+    // SmartDashboard.putNumber("Limelight Distance Vert.", getDistance());
+    SmartDashboard.putNumber("Limelight Distance Offset.", getDistanceWidth());
+
     SmartDashboard.putNumber("Limelight Target Width", getTargetWidth());
   }
   

@@ -120,6 +120,7 @@ public class Robot extends TimedRobot {
     limelight.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
+    SmartDashboard.putNumber("DesiredAngle", Robot.hood.distToAngle(Robot.limelight.getDistanceWidth()));
     
     // climber.reportToSmartDashboard();
   }

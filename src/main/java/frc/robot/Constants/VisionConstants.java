@@ -29,7 +29,7 @@ public class VisionConstants {
 
     // Physical camera constants
     public final static double kCameraHorizontalMountAngle = -25.2; 
-    public final static double kCameraMountHeight = 18.25; //15.25
+    public final static double kCameraMountHeight = 26.00; //15.25
     public final static double kCameraHorizontalOffset = 0;
     public final static double kCameraBumperOffset = 15;
     

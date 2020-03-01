@@ -27,8 +27,8 @@ public class RobotMap {
     // public static final int kIntakeID1 = 0;
     // public static final int kIntakeID2 = 0;
 
-    public static int kShifterPort1ID = 1;
-    public static int kShifterPort2ID = 5;
+    public static int kShifterPort1ID = 2;
+    public static int kShifterPort2ID = 6;
     
     public static final int kFeederID1 = 12;
     public static final int kFeederID2 = 1; 
@@ -38,15 +38,15 @@ public class RobotMap {
 
     public static final int kIntakeRoll = 10;
 
-    public static final int kIntakePort1 = 6;
-    public static final int kIntakePort2 = 2;
+    public static final int kIntakePort1 = 1;
+    public static final int kIntakePort2 = 5;
     // public static int kLeftMasterTalonID;
 
     public static final int kShooterID1 = 1;
-    public static final int kShooterID2 = 2;
+    public static final int kShooterID2 = 11;
     
-    public static final int kClimberID1 = 10;
-    public static final int kClimberID2 = 11;
+    public static final int kClimberID1 = 2;
+    public static final int kClimberID2 = 5;
 
     public static final int kTimeOfFlightSensorID1 = 0;
     public static final int kTimeOfFlightSensorID2 = 1;
