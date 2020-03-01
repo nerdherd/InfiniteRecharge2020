@@ -28,20 +28,20 @@ import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.shooting.AutolineShot;
-import frc.robot.commands.shooting.ShootBall;
-// import frc.robot.commands.ShootBallTemp;
-// import frc.robot.commands.ShootBallTempStop;
-import frc.robot.commands.shooting.TrenchShot;
-import frc.robot.commands.shooting.WallShot;
 import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.ShootBallTemp;
 import frc.robot.commands.other.TimeOfFlightStop;
-import frc.robot.commands.vision.TurnToAngleLime;
+import frc.robot.commands.shooting.AutolineShot;
+import frc.robot.commands.shooting.ShootBall;
+// import frc.robot.commands.ShootBallTemp;
+// import frc.robot.commands.ShootBallTempStop;
+import frc.robot.commands.shooting.TrenchShot;
+import frc.robot.commands.shooting.WallShot;
 import frc.robot.commands.vision.DistanceToAngle;
+import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.subsystems.Indexer.IndexerState;
 
 /**
