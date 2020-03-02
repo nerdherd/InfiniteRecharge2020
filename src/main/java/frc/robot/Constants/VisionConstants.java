@@ -17,11 +17,11 @@ public class VisionConstants {
     // OLD CONSTANTS!
     public final static double kHorizontalFOV = 55;
     public final static double kVerticalFOV = 42.65386; // calculated from focalLength
-    public final static double kHorizontalPixels = 320;
-    public final static double kVerticalPixels = 240; 
+    public final static double kHorizontalPixels = 960;
+    public final static double kVerticalPixels = 720; 
     public final static double kXFocalLength = 341.3307738; // focalLength = px_width / (2 * tan(FOV / 2))
-    public final static double kXFocalLength_lime = 249.68216560510;
-    public final static double kYFocalLength = 332.3115843;
+    public final static double kXFocalLength_lime = 709.170231847; //249.68216560510 320*240
+    public final static double kYFocalLength = 332.3115843; //NOT ACCURATE?
 
     // LIMELIGHT CONSTANTS!
     public final static double kHorizontalFOV_lime = 60.22274663;
@@ -31,7 +31,7 @@ public class VisionConstants {
     public final static double kCameraHorizontalMountAngle = -25.2; 
     public final static double kCameraMountHeight = 26.00; //15.25
     public final static double kCameraHorizontalOffset = 0;
-    public final static double kCameraBumperOffset = 15;
+    public final static double kCameraBumperOffset = 16;
     
     public final static double kTargetHeight = 1.50; // inches 74.25 for field 
     public final static double kTargetWidth = 39.25;

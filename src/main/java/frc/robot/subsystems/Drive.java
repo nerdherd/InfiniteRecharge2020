@@ -38,7 +38,8 @@ public class Drive extends ShiftingDrivetrain {
     },
      true, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
       DriveConstants.kTrackWidth);
-    
+    // super.m_leftSlaves[0].followCANMotorController(super.m_leftMaster);
+    // super.m_rightSlaves[]
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
      super.configSensorPhase(false, false);
