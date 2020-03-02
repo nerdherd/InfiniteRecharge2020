@@ -53,7 +53,7 @@ public class Limelight extends SubsystemBase {
   public double getXOffsetFromTarget() {
     // double x = tx.getDouble(0.0) + 1;
     double x = tx.getDouble(0.0);
-    return x;
+    return x + 1;
   }
 
   public double getYOffsetFromTarget() {
@@ -84,7 +84,7 @@ public class Limelight extends SubsystemBase {
     // SmartDashboard.putNumber("distanceHyp", distanceHyp);
     // SmartDashboard.putNumber("theta", theta);
     SmartDashboard.putNumber("Limelight Dist No Offset", fullDist);  
-    return (fullDist - VisionConstants.kCameraBumperOffset);
+    return (fullDist - VisionConstants.kCameraBumperOffset); //PLEASE SUBTRACT BUMPER LATER
     
   }
 
