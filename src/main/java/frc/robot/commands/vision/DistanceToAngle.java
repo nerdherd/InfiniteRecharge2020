@@ -10,6 +10,7 @@ package frc.robot.commands.vision;
 import com.nerdherd.lib.motor.commands.mechanisms.SetArmAngleMotionMagic;
 
 import frc.robot.Robot;
+import frc.robot.constants.ShooterConstants;
 
 /**
  * Add your docs here.
@@ -22,6 +23,11 @@ public class DistanceToAngle extends SetArmAngleMotionMagic {
     public void execute() {
         // TODO Auto-generated method stub
         Robot.hood.setAngleMotionMagic(Robot.hood.distToAngle(Robot.limelight.getDistanceWidth()));
+        if(Robot.limelight.getDistanceWidth() <= 220){
+            Robot.shooter.setVelocity(ShooterConstants.kAutoAngleCloseVelocity);
+        }else{
+            Robot.shooter.setVelocity(0);   
+        }
         
     }
 }

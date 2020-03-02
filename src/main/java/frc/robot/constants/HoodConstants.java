@@ -54,4 +54,14 @@ public class HoodConstants {
     // LINEAR REGRESSION - CLOSE
     public static final double kCloseLinearA = 0.15909091;
     public static final double kCloseLinearB = 7.09090909;
+
+    //WHEN WE'RE DONE W THE TRENCH WOOT WOOT
+
+    public static final double kTrenchSetPointAngle = 30.75;
+    
+    // LINEAR REGRESSION - TRENCH 
+    public static final double kTrenchLinearA = 0.15909091; // need to chANGE
+    public static final double kTrenchLinearB = 7.09090909; // look up 
+
+
 }

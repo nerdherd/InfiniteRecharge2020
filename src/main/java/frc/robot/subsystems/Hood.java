@@ -72,8 +72,11 @@ public class Hood extends SingleMotorArm  {
                       HoodConstants.kClosePolyB*distance +
                       HoodConstants.kClosePolyC;
 
-    } //else if (distance > 220 && distance <= 2)
+    } else if (distance > 220){
+      setpointAngle = HoodConstants.kTrenchSetPointAngle;
+      
+    }
     return setpointAngle;
-
+    
   }
 }
