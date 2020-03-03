@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.ResetDriveEncoders;
+import com.nerdherd.lib.drivetrain.auto.ResetGyro;
 import com.nerdherd.lib.drivetrain.characterization.DriveCharacterizationTest;
 import com.nerdherd.lib.drivetrain.shifting.ShiftHigh;
 import com.nerdherd.lib.drivetrain.shifting.ShiftLow;
@@ -34,6 +36,7 @@ import frc.robot.commands.ShootBall;
 // import frc.robot.commands.ShootBallTempStop;
 import frc.robot.commands.TrenchShot;
 import frc.robot.commands.WallShot;
+import frc.robot.commands.auto.StealTwoEnemyTrench;
 import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
@@ -251,7 +254,15 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("Tell me what you are", new InstantCommand(() ->
         // System.out.println(Robot.hood.motor.getClass().toString())));
         SmartDashboard.putData("ResetHoodEncoder", new ResetSingleMotorEncoder(Robot.hood));
-
+        SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.drive));
+        SmartDashboard.putData("Reset XY", new InstantCommand(() -> Robot.drive.resetXY()));
+        SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.drive));
+        SmartDashboard.putData("Steal Two", new StealTwoEnemyTrench(Robot.drive));
+        
+        // SmartDashboard.putNumber("Right Encoder", Robot.drive.getRightMasterPosition());
+        // SmartDashboard.putNumber("Left Encoder", Robot.drive.getLeftMasterPosition());
+        
+        
         SmartDashboard.putData("3VHopper", new SetDualMotorPower(Robot.hopper, 0.4, 0.6));
         // SmartDashboard.putData("-3VHopper", new SetDualMotorPower(Robot.hopper, -0.45, -0.25));
         SmartDashboard.putData("StopHopper", new SetDualMotorPower(Robot.hopper, 0.0, 0.0));

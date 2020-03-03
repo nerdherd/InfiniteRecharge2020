@@ -11,12 +11,15 @@ import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.experimental.ShiftingDrivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.DriveConstants;
@@ -28,28 +31,33 @@ public class Drive extends ShiftingDrivetrain {
    * Creates a new Drive.
    */
   public Drive() {
-    super(new NerdySparkMax(RobotMap.kLeftMasterTalonID, MotorType.kBrushless),
-     new NerdySparkMax(RobotMap.kRightMasterTalonID, MotorType.kBrushless),
+    super(new NerdyFalcon(RobotMap.kLeftMasterTalonID),
+     new NerdyFalcon(RobotMap.kRightMasterTalonID),
     new CANMotorController[] {
-      new NerdySparkMax(RobotMap.kLeftFollowerTalon1ID, MotorType.kBrushless),
+      new NerdyFalcon(RobotMap.kLeftFollowerTalon1ID),
     },
     new CANMotorController[] {
-      new NerdySparkMax(RobotMap.kRightFollowerTalon1ID, MotorType.kBrushless),
+      new NerdyFalcon(RobotMap.kRightFollowerTalon1ID),
     },
      true, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
       DriveConstants.kTrackWidth);
     
+     super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
      super.configSensorPhase(false, false);
      
-     super.configLeftPIDF(0.0, 0, 0, DriveConstants.kLeftF);
-     super.configRightPIDF(0.0, 0, 0, DriveConstants.kRightF);
-     super.configStaticFeedforward(DriveConstants.kLeftStatic, DriveConstants.kRightStatic);
+     super.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
+     super.configLeftPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kLeftF);
+     super.configRightPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kRightF);
+     super.configStaticFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteS);
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    super.updateOdometry();
+    super.reportToSmartDashboard();
   }
 }

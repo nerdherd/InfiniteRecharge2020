@@ -31,6 +31,7 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
 
   public StealTwoEnemyTrench(Drive drive) {
     m_drive = drive;
+  
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),
       m_drive.m_kinematics, 
@@ -46,7 +47,7 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
       config);
 
     RamseteCommand stealTrench = new RamseteCommand(stealTrenchPath, 
-      m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+      m_drive::getPose2d, new RamseteController(0.5, 0.1), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD), 
@@ -60,7 +61,7 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
       config);
 
     RamseteCommand stealShoot = new RamseteCommand(stealIntoShoot, 
-      m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+      m_drive::getPose2d, new RamseteController(0.5, 0.1), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD), 
@@ -69,11 +70,11 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
     
     
     addCommands(
-      new PowerIntake(),
+      // new PowerIntake(),
       stealTrench,
-      stealShoot,
-      new DriveStraightContinuous(m_drive, 0, 0),
-      new BasicAuto()
+      // stealShoot,
+      new DriveStraightContinuous(m_drive, 0, 0)
+      // new BasicAuto()
     );
   }
 }

@@ -19,10 +19,14 @@ import com.nerdherd.lib.pneumatics.Piston;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.auto.BasicAuto;
+import frc.robot.commands.auto.StealTwoEnemyTrench;
+import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hood;
@@ -100,22 +104,23 @@ public class Robot extends TimedRobot {
     
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
     oi = new OI();
-    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
-
+    // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
+    // drive.resetEncoders();
+    // drive.resetYaw();    
+    // drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
+    
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
-    m_autonomousCommand = new BasicAuto();
+    // m_autonomousCommand = new BasicAuto();
   }
 
   @Override
   public void robotPeriodic() {
-    
-
-
-    // CommandScheduler.getInstance().run();
+    CommandScheduler.getInstance().run();
     // System.out.println(shooter.kF);
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
+    drive.reportToSmartDashboard();
     index.reportToSmartDashboard();
     // jevois.reportToSmartDashboard();
     limelight.reportToSmartDashboard();
@@ -132,7 +137,8 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new DriveStraightContinuous(drive, 30000, 0.3);
+
+    m_autonomousCommand = new DriveStraightContinuous(drive, 3000, 0.4);
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
@@ -146,14 +152,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().run();
+    // CommandScheduler.getInstance().run();
     // drive.setBrakeMode();
     drive.setCoastMode();
+    drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
+  
   }
 
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    // drive.setCoastMode();
+   
   
   }
 
