@@ -27,6 +27,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Jevois;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
   public static PowerDistributionPanel pdp;
   public static OI oi;
   public static Command m_autonomousCommand;
+  public static Limelight limelight;
 
   
   @Override
@@ -65,8 +67,9 @@ public class Robot extends TimedRobot {
         
     drive = new Drive();
      
-    jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		jevois.startCameraStream();
+    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+    // jevois.startCameraStream();
+    limelight = new Limelight();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
@@ -87,7 +90,8 @@ public class Robot extends TimedRobot {
     shooter.reportToSmartDashboard();
     feeder.reportToSmartDashboard();
     index.reportToSmartDashboard();
-    jevois.reportToSmartDashboard();
+    // jevois.reportToSmartDashboard();
+    limelight.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
   }
 
