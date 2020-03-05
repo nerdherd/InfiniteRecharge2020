@@ -25,7 +25,15 @@ public class DriveConstants {
     public static final double kGoalMetersY = -2.404;
     public static final double kAutoLineMeters = 3.048;
     public static final double kEnemyTrenchMetersX = 6.359;
-    public static final double kEnemyTrenchMetersY = -7.506; 
+    public static final double kEnemyTrenchMetersY = -7.506;
+    
+    
+    public static final double kTrenchMetersX = 5.248;
+    public static final double kTrenchMetersY = -0.70485;
+    public static final double kEndTrenchMetersX = 9.62406;
+    public static final double kEndTrenchMetersY = -0.70485;
+    
+    
 
     public static final double kramseteS = 0.246;
     public static final double kramseteV = 0.233;

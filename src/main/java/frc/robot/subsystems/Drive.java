@@ -48,12 +48,11 @@ public class Drive extends ShiftingDrivetrain {
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
      super.configSensorPhase(true, true);
-     
-     super.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
+     super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configLeftPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kLeftF);
      super.configRightPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kRightF);
      super.configStaticFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteS);
-
+     
   }
 
   @Override

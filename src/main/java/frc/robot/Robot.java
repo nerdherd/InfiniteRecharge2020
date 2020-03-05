@@ -77,13 +77,13 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
+    drive = new Drive();
     hood = new Hood();
     climber = new Climber();
     index = new Indexer();
     // falcon = new SingleMotorMechanism(1, "shooter", true, true);
     limelight = new Limelight();
-    drive = new Drive();
-    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
 		// jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
@@ -104,9 +104,7 @@ public class Robot extends TimedRobot {
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
     oi = new OI();
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
-    // drive.resetEncoders();
-    // drive.resetYaw();    
-    // drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
+    drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
@@ -153,8 +151,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().run();
-    // drive.setCoastMode();
     drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
   
   }

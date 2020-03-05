@@ -10,7 +10,6 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Robot;
-import frc.robot.commands.intake.IntakeBalls;
 
 public class PowerIntake extends ParallelCommandGroup {
   public PowerIntake() {
@@ -19,7 +18,5 @@ public class PowerIntake extends ParallelCommandGroup {
       new InstantCommand(() -> Robot.hopper.setPower(0.4, 0.4)),
       new InstantCommand(() -> Robot.index.setPower(0.4, 0.4))
     );
-
-   
   }
 }
