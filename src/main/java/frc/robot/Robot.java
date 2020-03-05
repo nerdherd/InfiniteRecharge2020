@@ -139,7 +139,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    m_autonomousCommand = new DriveStraightContinuous(drive, 3000, 0.4);
+    m_autonomousCommand = new DriveStraightContinuous(drive, 3000, 1);
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
@@ -153,9 +153,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // CommandScheduler.getInstance().run();
-    // drive.setBrakeMode();
-    drive.setCoastMode();
+    CommandScheduler.getInstance().run();
+    // drive.setCoastMode();
     drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
   
   }

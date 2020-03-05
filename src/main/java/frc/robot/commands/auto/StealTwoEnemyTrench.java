@@ -10,6 +10,7 @@ package frc.robot.commands.auto;
 import java.util.List;
 
 import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
+import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
@@ -24,12 +25,11 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.constants.DriveConstants;
-import frc.robot.subsystems.Drive;
 
 public class StealTwoEnemyTrench extends SequentialCommandGroup {
-  private Drive m_drive;
+  private Drivetrain m_drive;
 
-  public StealTwoEnemyTrench(Drive drive) {
+  public StealTwoEnemyTrench(Drivetrain drive) {
     m_drive = drive;
   
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(

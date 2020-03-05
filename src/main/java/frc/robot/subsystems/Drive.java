@@ -31,21 +31,21 @@ public class Drive extends ShiftingDrivetrain {
    * Creates a new Drive.
    */
   public Drive() {
-    super(new NerdyFalcon(RobotMap.kLeftMasterTalonID),
-     new NerdyFalcon(RobotMap.kRightMasterTalonID),
+    super(new NerdyTalon(8),
+     new NerdyTalon(1),
     new CANMotorController[] {
-      new NerdyFalcon(RobotMap.kLeftFollowerTalon1ID),
+      new NerdyVictorSPX(5),
     },
     new CANMotorController[] {
-      new NerdyFalcon(RobotMap.kRightFollowerTalon1ID),
+      new NerdyVictorSPX(4),
     },
-     true, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
+     false, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
       DriveConstants.kTrackWidth);
     
-     super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
+     super .configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
-     super.configSensorPhase(false, false);
+     super.configSensorPhase(true, true);
      
      super.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
      super.configLeftPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kLeftF);

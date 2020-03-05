@@ -23,10 +23,10 @@ public class Climber extends SingleMotorElevator {
   public static NerdyFalcon mainFalcon = new NerdyFalcon(RobotMap.kClimberID1);
 
 public Climber(){
-  super(mainFalcon, "Climber ", false, false);
+  super(mainFalcon.getID(), "Climber ", false, false);
   followerFalcon.follow(mainFalcon);
-  mainFalcon.setBrakeMode();
-  followerFalcon.setBrakeMode();
+  // mainFalcon.setBrakeMode();
+  // followerFalcon.setBrakeMode();
   // followerFalcon.setInverted(TalonFXInvertType.OpposeMaster);
   super.configDeadband(ClimberConstants.kClimberTalonDeadband);
   super.configHeightConversion(ClimberConstants.kClimberDistanceRatio,
