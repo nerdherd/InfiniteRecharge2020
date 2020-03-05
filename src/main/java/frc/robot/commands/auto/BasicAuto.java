@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
-import frc.robot.commands.AutolineShot;
-import frc.robot.commands.ShootBall;
+import frc.robot.commands.shooting.AutolineShot;
+import frc.robot.commands.shooting.ShootBall;
 import frc.robot.commands.vision.TurnToAngleLime;
 
 /**

@@ -17,6 +17,7 @@ import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
+import frc.robot.RobotMap;
 import frc.robot.constants.ShooterConstants;
 
 /**
@@ -28,9 +29,9 @@ public class Shooter extends SingleMotorMechanism {
 
   private NerdyFalcon follower;
   public Shooter(){
-    super(new NerdyFalcon(1), "Shooter", true, false);
+    super(new NerdyFalcon(RobotMap.kShooterID1), "Shooter", true, false);
     super.motor.setCoastMode();
-    follower = new NerdyFalcon(2);
+    follower = new NerdyFalcon(RobotMap.kShooterID2);
     follower.setCoastMode();
     super.configPIDF(ShooterConstants.kP, ShooterConstants.kI, ShooterConstants.kD, ShooterConstants.kF);
     super.configDeadband(ShooterConstants.kDeadband);

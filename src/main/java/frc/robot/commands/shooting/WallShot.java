@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.constants.HoodConstants;
 import frc.robot.constants.ShooterConstants;
 
-public class TrenchShot extends CommandBase {
+public class WallShot extends CommandBase {
   /**
-   * Creates a new TrenchShot.
+   * Creates a new WallShot.
    */
-  public TrenchShot() {
-    addRequirements(Robot.shooter, Robot.hood);
+  public WallShot() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.hood, Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -29,8 +29,10 @@ public class TrenchShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setVelocity(ShooterConstants.kTrenchShotVelocity);
-    Robot.hood.storeAngle(HoodConstants.kTrenchShotAngle);
+
+    Robot.hood.storeAngle(HoodConstants.kWallShotAngle);
+    Robot.shooter.setVelocity(ShooterConstants.kWallShotVelocity);
+    
   }
 
   // Called once the command ends or is interrupted.

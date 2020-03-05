@@ -51,8 +51,9 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getXOffsetFromTarget() {
-    double x = tx.getDouble(0.0) + 1;
-    return x;
+    // double x = tx.getDouble(0.0) + 1;
+    double x = tx.getDouble(0.0);
+    return x + 1;
   }
 
   public double getYOffsetFromTarget() {
@@ -80,10 +81,10 @@ public class Limelight extends SubsystemBase {
     double distanceHyp = (VisionConstants.kTargetWidth * VisionConstants.kXFocalLength_lime)/getTargetWidth(); // D = W*F/P; convert to in
     double theta = Math.asin(74.25/distanceHyp); // angle of elevation to target
     double fullDist = distanceHyp*Math.cos(theta); // horizontal distance
-    SmartDashboard.putNumber("distanceHyp", distanceHyp);
-    SmartDashboard.putNumber("theta", theta);
-    SmartDashboard.putNumber("fullDist", fullDist);  
-    return (fullDist - VisionConstants.kCameraBumperOffset);
+    // SmartDashboard.putNumber("distanceHyp", distanceHyp);
+    // SmartDashboard.putNumber("theta", theta);
+    SmartDashboard.putNumber("Limelight Dist No Offset", fullDist);  
+    return (fullDist - VisionConstants.kCameraBumperOffset); //PLEASE SUBTRACT BUMPER LATER
     
   }
 
@@ -99,8 +100,9 @@ public class Limelight extends SubsystemBase {
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Area", getTargetArea());
-    SmartDashboard.putNumber("Limelight Distance Vert.", getDistance());
-    SmartDashboard.putNumber("Limelight Distance Horiz.", getDistanceWidth());
+    // SmartDashboard.putNumber("Limelight Distance Vert.", getDistance());
+    SmartDashboard.putNumber("Limelight Distance Offset.", getDistanceWidth());
+
     SmartDashboard.putNumber("Limelight Target Width", getTargetWidth());
   }
   

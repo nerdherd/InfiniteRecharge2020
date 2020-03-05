@@ -7,6 +7,7 @@
 
 package frc.robot.constants;
 
+
 /**
  * Add your docs here.
  */
@@ -35,4 +36,32 @@ public class HoodConstants {
     public static final double kTrenchShotAngle = 34;
     public static final double kAutolineShotAngle = 28;
     public static final double kStowAngle = -10;
+
+    // POLYNOMIAL REGRESSION - FAR
+    public static final double kFarPolyA = -7.99065708e-04;
+    public static final double kFarPolyB = 3.79464011e-01;
+    public static final double kFarPolyC = -1.08073022e+01;
+
+    // POLYNOMIAL REGRESSION - CLOSE
+    public static final double kClosePolyA = -2.40032788e-03;
+    public static final double kClosePolyB = 5.96478736e-01;
+    public static final double kClosePolyC = -1.04487478e+01;
+
+    // LINEAR REGRESSION - FAR
+    public static final double kFarLinearA = 2.000e-02;
+    public static final double kFarLinearB = 2.712e+01;
+
+    // LINEAR REGRESSION - CLOSE
+    public static final double kCloseLinearA = 0.15909091;
+    public static final double kCloseLinearB = 7.09090909;
+
+    //WHEN WE'RE DONE W THE TRENCH WOOT WOOT
+
+    public static final double kTrenchSetPointAngle = 30.75;
+    
+    // LINEAR REGRESSION - TRENCH 
+    public static final double kTrenchLinearA = 0.15909091; // need to chANGE
+    public static final double kTrenchLinearB = 7.09090909; // look up 
+
+
 }

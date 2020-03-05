@@ -16,6 +16,7 @@ public class ClimberConstants {
     public static final double kClimberHeightOffset = 2 + 7.5;
     public static final double kClimberDesiredLiftPow = 0.5;
     public static final double kClimberDesiredUpPow = 0.5;
+    public static final double kClimberDesiredHoldPow = 0.5;
     public static final double kHardStopPos = 0;
     public static final double kClimbGoodPos = 0;
 }

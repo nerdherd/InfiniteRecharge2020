@@ -20,10 +20,10 @@ import frc.robot.RobotMap;
 import frc.robot.constants.IndexerConstants;
 
 public class Indexer extends SingleMotorMechanism {
-  public TimeOfFlight timeOfFlight1;
-  public TimeOfFlight timeOfFlight2;
+  public TimeOfFlight timeOfFlight1, timeOfFlight2, timeOfFlight3;
   public VexUltrasonic ultrasonic;
-  // public Ultrasonic ultrasonic;
+  public IndexerState indexerState;
+
   /**
    * Creates a new Indexer.
    */
@@ -31,15 +31,11 @@ public class Indexer extends SingleMotorMechanism {
     super(RobotMap.kIndex, "Indexer", false, false);
     timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID1);
     timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID2);
-    // ultrasonic = new VexUltrasonic("Ultrasonic", 5, 6);
-    // ultrasonic = new Ultrasonic(0, 0);
+    timeOfFlight3 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID3);
+    ultrasonic = new VexUltrasonic("Ultrasonic", 6, 7);
     super.configPIDF(IndexerConstants.kP, IndexerConstants.kI, IndexerConstants.kD, IndexerConstants.kF);
     super.configDeadband(IndexerConstants.kDeadband);
-
-
-  }
-  public int intakeDetermine(int intakeState){
-    return intakeState;
+    indexerState = IndexerState.EMPTY;
   }
 
   @Override
@@ -47,6 +43,7 @@ public class Indexer extends SingleMotorMechanism {
     // SmartDashboard.putNumber("TimeOfFlight1", timeOfFlight1.getRange());
     // SmartDashboard.putNumber("TimeOfFlight2", timeOfFlight2.getRange());
     // SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
+    // SmartDashboard.putNumber("Ultra", ultrasonic.getRangeInches());
     
     // This method will be called once per scheduler run
   }
@@ -54,8 +51,32 @@ public class Indexer extends SingleMotorMechanism {
   @Override
   public void reportToSmartDashboard() {
     super.reportToSmartDashboard();
-    SmartDashboard.putNumber("time of flight 1", timeOfFlight1.getRange());
-    SmartDashboard.putNumber("time of flight 2", timeOfFlight2.getRange());
-    // SmartDashboard.putNumber("Ultrasonic", ultrasonic.getRangeInches());
+    // SmartDashboard.putNumber("time of flight 1", timeOfFlight1.getRange());
+    // SmartDashboard.putNumber("time of flight 2", timeOfFlight2.getRange());
+    SmartDashboard.putNumber("Ultrasonic", ultrasonic.getRangeInches());
+    SmartDashboard.putString("Indexer state", indexerState.toString());
   }
+
+  public enum IndexerState {
+    EMPTY,
+    WAITING,
+    INTAKING_ONE,
+    INTAKING_TWO,
+    FULL,
+    ERROR
+  }
+
+  public boolean hopperBallDetected() {
+    // return ultrasonic.getRangeInches() < IndexerConstants.kUltrasonicNoBall;
+    return timeOfFlight1.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+  }
+
+  public boolean indexerLowBallDetected(){
+    return timeOfFlight2.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+  }
+
+  public boolean indexerHighBallDetected(){
+    return timeOfFlight3.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+  }
+
 }

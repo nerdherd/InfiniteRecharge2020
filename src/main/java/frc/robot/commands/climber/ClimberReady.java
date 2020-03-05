@@ -14,38 +14,37 @@ import frc.robot.Robot;
 import frc.robot.constants.ClimberConstants;
 import frc.robot.subsystems.Climber;
 
-public class ClimberReady extends SetMotorPower {
+public class ClimberReady extends CommandBase {
   /**
    * Creates a new ClimberReady.
    */
   public ClimberReady() {
-    super(Climber.getInstance(), ClimberConstants.kClimberDesiredUpPow);
-    addRequirements(Robot.climberRatchet);
+    addRequirements(Robot.climber);
     // Use addRequirements() here to declare subsystem dependencies.
   }
-
+ 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     super.initialize();
-    Robot.climberRatchet.setReverse();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.climber.setPower(0.8);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Climber.getInstance().setPower(0);
+    Robot.climber.setPower(ClimberConstants.kClimberDesiredUpPow);
 
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Climber.getInstance().getHeight() > ClimberConstants.kHardStopPos;     
+    return Robot.climber.getHeight() > ClimberConstants.kHardStopPos;     
   }
 }

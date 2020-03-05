@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutolineShot;
+import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Drive;
 

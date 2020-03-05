@@ -23,8 +23,11 @@ public class ShooterConstants {
     public static double kVelocityTolerance = 500;
     public static double kVelPercentTolerance = 0.05;
 
+
     public static final double kAutolineShotVelocity = 16200;
     public static final double kTrenchShotVelocity = 16200;
     public static final double kWallShotVelocity = 5400;
+    public static final double kAutoAngleCloseVelocity = 16200;
+    public static final double kAutoAngleFarVelocity = 0;
     //6750 Wall shot speed
 }

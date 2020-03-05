@@ -81,12 +81,12 @@ public class Jevois extends SubsystemBase implements Runnable {
 				if (read.charAt(0) == '/') {
 					parts = dataParse(read);
 					m_contourNum = Integer.parseInt(getData(1));
-          m_distance = Double.parseDouble(getData(2));
-          m_theta = Double.parseDouble(getData(3));
-		  m_distanceOld = Double.parseDouble(getData(4));
-		  m_thetaOld = Double.parseDouble(getData(5));
-          m_centerX = Double.parseDouble(getData(6));
-          m_centerY = Double.parseDouble(getData(7));
+        //   m_distance = Double.parseDouble(getData(2));
+        //   m_theta = Double.parseDouble(getData(3));
+		  m_distanceOld = Double.parseDouble(getData(2));
+		//   m_thetaOld = Double.parseDouble(getData(3));
+          m_centerX = Double.parseDouble(getData(3));
+          m_centerY = Double.parseDouble(getData(4));
 				} else {
 					System.out.println(read);
 				}
@@ -213,6 +213,7 @@ public class Jevois extends SubsystemBase implements Runnable {
 	//	SmartDashboard.putNumber("Exposure", getExp());
 
 	}
+
 
 	public void startLog() {
 		// Check to see if flash drive is mounted.
