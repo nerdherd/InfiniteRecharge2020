@@ -23,7 +23,7 @@ public class Hopper extends DualMotorIntake {
 
     public Hopper() {
         super(leftRoller, 
-            new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", true));
+            new SingleMotorVictorSPX(RobotMap.kFeederID2, "Bottom Intake", false));
         topRoller = new NerdyVictorSPX(RobotMap.kTopHopperRollerID);
         topRoller.follow(leftRoller.motor);
     }
