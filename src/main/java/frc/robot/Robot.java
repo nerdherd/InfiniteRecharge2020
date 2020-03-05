@@ -102,10 +102,9 @@ public class Robot extends TimedRobot {
     // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
     limelight.setOff();
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
-    oi = new OI();
     // drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi, 0.687));
     drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
-    
+    oi = new OI();
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
@@ -114,10 +113,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    drive.reportToSmartDashboard();
     // System.out.println(shooter.kF);
     shooter.reportToSmartDashboard();
     hopper.reportToSmartDashboard();
-    drive.reportToSmartDashboard();
     index.reportToSmartDashboard();
     // jevois.reportToSmartDashboard();
     limelight.reportToSmartDashboard();
@@ -137,7 +136,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    m_autonomousCommand = new DriveStraightContinuous(drive, 3000, 1);
+    // m_autonomousCommand = new DriveStraightContinuous(drive, 3000, 1);
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
