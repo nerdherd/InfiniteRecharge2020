@@ -11,8 +11,9 @@ import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.experimental.ShiftingDrivetrain;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
-import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
+// import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -28,17 +29,19 @@ public class Drive extends ShiftingDrivetrain {
    * Creates a new Drive.
    */
   public Drive() {
-    super(new NerdySparkMax(RobotMap.kLeftMasterTalonID, MotorType.kBrushless),
-     new NerdySparkMax(RobotMap.kRightMasterTalonID, MotorType.kBrushless),
+    super(new NerdyFalcon(RobotMap.kLeftMasterTalonID),
+     new NerdyFalcon(RobotMap.kRightMasterTalonID),
     new CANMotorController[] {
-      new NerdySparkMax(RobotMap.kLeftFollowerTalon1ID, MotorType.kBrushless),
+      new NerdyFalcon(RobotMap.kLeftFollowerTalon1ID),
     },
     new CANMotorController[] {
-      new NerdySparkMax(RobotMap.kRightFollowerTalon1ID, MotorType.kBrushless),
+      new NerdyFalcon(RobotMap.kRightFollowerTalon1ID),
     },
      true, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
       DriveConstants.kTrackWidth);
-    // super.m_leftSlaves[0].followCANMotorController(super.m_leftMaster);
+    // (NerdyFalcon) super.m_leftSlaves[0]
+    // super.m_rightSlaves[0].followCANMotorController(super.m_rightMaster);
+
     // super.m_rightSlaves[]
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
