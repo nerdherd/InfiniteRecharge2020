@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
@@ -61,7 +62,7 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
       
     Trajectory stealIntoShoot = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kEnemyTrenchMetersX, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)),
-      List.of(), new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
+      List.of(new Translation2d(3.777, -6.569)), new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
       config);
 
     RamseteCommand stealShoot = new RamseteCommand(stealIntoShoot, 
