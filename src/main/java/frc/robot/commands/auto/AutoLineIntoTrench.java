@@ -35,6 +35,9 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
   private Drivetrain m_drive;
   public AutoLineIntoTrench(Drivetrain drive) {
     m_drive = drive;
+    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)));
+   
+    
   
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),

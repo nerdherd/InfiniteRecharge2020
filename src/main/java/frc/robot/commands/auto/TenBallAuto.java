@@ -36,7 +36,9 @@ public class TenBallAuto extends SequentialCommandGroup {
   private Drivetrain m_drive;
     public TenBallAuto(Drivetrain drive) {
     m_drive = drive;
-    m_drive.setCoastMode();
+    // m_drive.setCoastMode();
+    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, -2.404, new Rotation2d(0)));
+  
     var autoVoltageConstraint =
     new DifferentialDriveVoltageConstraint(
         new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV,DriveConstants.kramseteA),

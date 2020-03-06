@@ -34,6 +34,7 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
 
   public StealTwoEnemyTrench(Drivetrain drive) {
     m_drive = drive;
+    drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
   
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),

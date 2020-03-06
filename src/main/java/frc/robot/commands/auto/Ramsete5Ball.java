@@ -36,6 +36,8 @@ public class Ramsete5Ball extends SequentialCommandGroup {
   private Drivetrain m_drive;
   public Ramsete5Ball(Drivetrain drive) {
     m_drive = drive;
+    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)));
+   
 
     TrajectoryConfig m_config = new TrajectoryConfig(3, 2.0);
     // m_config.addConstraint(autoVoltageConstraint);
