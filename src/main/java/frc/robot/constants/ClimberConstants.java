@@ -14,9 +14,9 @@ public class ClimberConstants {
     public static final double kClimberTalonDeadband = 0.004;
     public static final double kClimberDistanceRatio = 1./4096. * 1.432 * Math.PI;
     public static final double kClimberHeightOffset = 2 + 7.5;
-    public static final double kClimberDesiredLiftPow = 0.5;
-    public static final double kClimberDesiredUpPow = 0.5;
-    public static final double kClimberDesiredHoldPow = 0.5;
-    public static final double kHardStopPos = 0;
-    public static final double kClimbGoodPos = 0;
+    public static final double kClimberDesiredLiftPow = -0.75;
+    public static final double kClimberDesiredUpPow = 0;
+    public static final double kClimberDesiredHoldPow = -0.1;
+    public static final double kHardStopPos = 716000;
+    public static final double kClimbGoodPos = 550000;
 }

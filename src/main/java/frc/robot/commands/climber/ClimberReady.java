@@ -32,7 +32,7 @@ public class ClimberReady extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climber.setPower(0.8);
+    Robot.climber.setPower(0.5);
   }
 
   // Called once the command ends or is interrupted.
@@ -45,6 +45,7 @@ public class ClimberReady extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Robot.climber.getHeight() > ClimberConstants.kHardStopPos;     
+    return Robot.climber.mainFalcon.getPosition() > ClimberConstants.kHardStopPos
+    && Robot.climber.followerFalcon.getPosition() > ClimberConstants.kHardStopPos;     
   }
 }

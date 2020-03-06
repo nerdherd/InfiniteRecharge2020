@@ -30,11 +30,12 @@ public class ClimberLift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.climber.getPosition() > ClimberConstants.kClimbGoodPos){
-      Robot.climber.setPower(ClimberConstants.kClimberDesiredHoldPow);
-    }else{
-      Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
-    }
+    // if(Robot.climber.mainFalcon.getPosition() > ClimberConstants.kClimbGoodPos){
+    //   Robot.climber.setPower(ClimberConstants.kClimberDesiredHoldPow);
+    // }else{
+    //   Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
+    // }
+    Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
   }
 
   // Called once the command ends or is interrupted.
@@ -46,7 +47,9 @@ public class ClimberLift extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Robot.climber.getHeight() < ClimberConstants.kClimbGoodPos;
+    // return Robot.climber.getHeight() < ClimberConstants.kClimbGoodPos;
+    return Robot.climber.mainFalcon.getPosition() < ClimberConstants.kClimbGoodPos
+    && Robot.climber.followerFalcon.getPosition() < ClimberConstants.kClimbGoodPos;
 
   }
 }

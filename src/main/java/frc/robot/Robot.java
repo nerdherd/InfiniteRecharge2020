@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.BasicAuto;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
@@ -110,10 +111,12 @@ public class Robot extends TimedRobot {
     // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
     limelight.setOff();
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
-    +
-    // drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
-    drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
+    
+    // climberReset = new ParallelCommandGroup(  ));
     oi = new OI();
+    
+    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
@@ -143,7 +146,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("DesiredAngle", Robot.hood.distToAngle(Robot.limelight.getDistanceWidth()));
     SmartDashboard.putNumber("Right Voltage 1", drive.getRightOutputVoltage());
     
-    // climber.reportToSmartDashboard();
+    climber.reportToSmartDashboard();
     
     
   }
@@ -153,8 +156,15 @@ public class Robot extends TimedRobot {
     // hood.resetEncoder();
     drive.setCoastMode();
   }
+
+  @Override
+  public void disabledPeriodic() {
+    Robot.climber.followerFalcon.resetEncoder();
+    Robot.climber.mainFalcon.resetEncoder();
+  }
   @Override
   public void autonomousInit() {
+    m_autonomousCommand = new BasicAuto();
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }

@@ -41,7 +41,7 @@ public class VisionConstants {
     public final static double kTargetHeight = 74.25; // inches 74.25 for field 
     public final static double kTargetWidth = 39.25;
     
-    public final static double kDriveRotationDeadband = 1.5;
+    public final static double kDriveRotationDeadband = 0.5;
     public final static double kDetectDistance = 25;
 
 }
