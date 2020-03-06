@@ -110,6 +110,7 @@ public class Robot extends TimedRobot {
     // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
     limelight.setOff();
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
+    +
     // drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
     drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     oi = new OI();
@@ -123,6 +124,7 @@ public class Robot extends TimedRobot {
     autoChooser.addOption("10 Ball", new TenBallAuto(drive));
     // autoChooser.addOption("Basic Auto", new BasicAuto());
     SmartDashboard.putData(autoChooser);
+    
   }
 
   @Override
@@ -137,6 +139,7 @@ public class Robot extends TimedRobot {
     limelight.reportToSmartDashboard();
     // motor.reportToSmartDashboard();
     hood.reportToSmartDashboard();
+    climber.reportToSmartDashboard();
     SmartDashboard.putNumber("DesiredAngle", Robot.hood.distToAngle(Robot.limelight.getDistanceWidth()));
     SmartDashboard.putNumber("Right Voltage 1", drive.getRightOutputVoltage());
     

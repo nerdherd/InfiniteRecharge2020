@@ -39,6 +39,7 @@ import frc.robot.commands.auto.BasicRamseteForward;
 // import frc.robot.commands.TrenchShot;
 // import frc.robot.commands.WallShot;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
+import frc.robot.commands.climber.ClimberReady;
 import frc.robot.commands.flywheel.InfiniteRecharge;
 import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
@@ -115,6 +116,7 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("Ramsete TEST", new BasicRamseteForward(Robot.drive));
         SmartDashboard.putData("Ramsete Trench", new AutoLineIntoTrench(Robot.drive));
 
+        SmartDashboard.putData("Climber Ready", new ClimberReady());
         // shoot_2.whileHeld(new ShootBall());
         // infiniteRecharge_3.whenPressed(new InfiniteRecharge());
         // stow_4.whenPressed(new Stow());
