@@ -9,19 +9,12 @@ package frc.robot;
 
 import com.nerdherd.lib.drivetrain.auto.ResetDriveEncoders;
 import com.nerdherd.lib.drivetrain.auto.ResetGyro;
-import com.nerdherd.lib.drivetrain.characterization.DriveCharacterizationTest;
 import com.nerdherd.lib.drivetrain.shifting.ShiftHigh;
 import com.nerdherd.lib.drivetrain.shifting.ShiftLow;
-import com.nerdherd.lib.motor.commands.MotorVoltageRamping;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
-import com.nerdherd.lib.motor.commands.SetDualMotorPower;
 import com.nerdherd.lib.motor.commands.SetMotorPower;
-import com.nerdherd.lib.motor.commands.SetMotorVelocity;
-import com.nerdherd.lib.motor.commands.mechanisms.SetArmAngleMotionMagic;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.oi.DefaultOI;
-import com.nerdherd.lib.pneumatics.commands.ExtendPiston;
-import com.nerdherd.lib.pneumatics.commands.RetractPiston;
 
 import edu.wpi.first.wpilibj.Sendable;
 
@@ -30,8 +23,6 @@ import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.auto.AutoLineIntoTrench;
-import frc.robot.commands.auto.BasicRamseteForward;
 // import frc.robot.commands.AutolineShot;
 // import frc.robot.commands.ShootBall;
 // import frc.robot.commands.ShootBallTemp;
@@ -39,19 +30,19 @@ import frc.robot.commands.auto.BasicRamseteForward;
 // import frc.robot.commands.TrenchShot;
 // import frc.robot.commands.WallShot;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
-import frc.robot.commands.flywheel.InfiniteRecharge;
+import frc.robot.commands.climber.ClimberLift;
+import frc.robot.commands.climber.ClimberReady;
 import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
 import frc.robot.commands.other.SetAngle;
 import frc.robot.commands.other.ShootBallTemp;
-import frc.robot.commands.other.TimeOfFlightStop;
 import frc.robot.commands.shooting.AutolineShot;
+import frc.robot.commands.shooting.RendezvousShot;
 import frc.robot.commands.shooting.ShootBall;
 // import frc.robot.commands.ShootBallTemp;
 // import frc.robot.commands.ShootBallTempStop;
 import frc.robot.commands.shooting.TrenchShot;
 import frc.robot.commands.shooting.WallShot;
-import frc.robot.commands.shooting.RendezvousShot;
 import frc.robot.commands.vision.DistanceToAngle;
 import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.subsystems.Indexer.IndexerState;
@@ -111,10 +102,11 @@ public class OI extends DefaultOI {
         autoDistance_12.whenPressed(new DistanceToAngle());
         togglePipeline_4.whenPressed(new InstantCommand(() -> Robot.limelight.togglePipeline()));
         SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
-        
-        SmartDashboard.putData("Ramsete TEST", new BasicRamseteForward(Robot.drive));
-        SmartDashboard.putData("Ramsete Trench", new AutoLineIntoTrench(Robot.drive));
-
+        SmartDashboard.putData("cLIMBER UP" , new ClimberReady());
+        SmartDashboard.putData("Climber Lift", new  ClimberLift());
+        // SmartDashboard.putData("Ramsete TEST", new BasicRamseteForward(Robot.drive));
+        // SmartDashboard.putData("Ramsete Trench", new AutoLineIntoTrench(Robot.drive));
+        // SmartDashboard.putData("Reset Left Climber", new ResetSingleMotorEncoder(Robot.climber.followerFalcon));
         // shoot_2.whileHeld(new ShootBall());
         // infiniteRecharge_3.whenPressed(new InfiniteRecharge());
         // stow_4.whenPressed(new Stow());
@@ -128,7 +120,9 @@ public class OI extends DefaultOI {
 
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 
-        SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));    
+        SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));  
+        
+        
         
 
         // SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45,

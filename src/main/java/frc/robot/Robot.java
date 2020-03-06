@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.BasicAuto;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
@@ -110,6 +111,9 @@ public class Robot extends TimedRobot {
     // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
     limelight.setOff();
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
+    
+    // climberReset = new ParallelCommandGroup(  ));
+    
     // drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
     drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     oi = new OI();
@@ -149,6 +153,12 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
     // hood.resetEncoder();
     drive.setCoastMode();
+  }
+
+  @Override
+  public void disabledPeriodic() {
+    Robot.climber.followerFalcon.resetEncoder();
+    Robot.climber.mainFalcon.resetEncoder();
   }
   @Override
   public void autonomousInit() {

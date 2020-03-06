@@ -27,7 +27,7 @@ public Climber(){
   followerFalcon.follow(mainFalcon);
   // mainFalcon.setBrakeMode();
   // followerFalcon.setBrakeMode();
-  // followerFalcon.setInverted(TalonFXInvertType.OpposeMaster);
+  followerFalcon.setInverted(TalonFXInvertType.OpposeMaster);
   super.configDeadband(ClimberConstants.kClimberTalonDeadband);
   super.configHeightConversion(ClimberConstants.kClimberDistanceRatio,
     ClimberConstants.kClimberHeightOffset);

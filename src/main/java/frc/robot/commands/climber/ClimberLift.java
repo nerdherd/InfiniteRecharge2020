@@ -30,7 +30,7 @@ public class ClimberLift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.climber.getPosition() > ClimberConstants.kClimbGoodPos){
+    if(Robot.climber.mainFalcon.getPosition() > ClimberConstants.kClimbGoodPos){
       Robot.climber.setPower(ClimberConstants.kClimberDesiredHoldPow);
     }else{
       Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
