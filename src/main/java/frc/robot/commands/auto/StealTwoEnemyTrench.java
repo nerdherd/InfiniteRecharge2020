@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.constants.DriveConstants;
 // import frc.robot.auto.BasicAuto;
@@ -52,8 +53,8 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
       m_drive::getPose2d, new RamseteController(2.0, 0.7), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD), 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD),
+      new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+      new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
       m_drive::setVoltage, m_drive);
     
       
@@ -66,17 +67,17 @@ public class StealTwoEnemyTrench extends SequentialCommandGroup {
       m_drive::getPose2d, new RamseteController(2.0, 0.7), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD), 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD),
+      new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+      new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
       m_drive::setVoltage, m_drive);
     
     
     addCommands(
-      // new PowerIntake(),
+      new IntakeBalls(),
       stealTrench,
       stealShoot,
-      new DriveStraightContinuous(m_drive, 0, 0)
-      // new BasicAuto()
+      new DriveStraightContinuous(m_drive, 0, 0),
+      new BasicAuto()
     );
   }
 }

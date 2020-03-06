@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstr
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.constants.DriveConstants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -55,7 +56,7 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
       Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
       List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
-      new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEnd  TrenchMetersY, new Rotation2d(0)),
+      new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
       config);
 
 
@@ -70,8 +71,8 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
     
 
     addCommands(
-      // new BasicAuto(),
-      // new PowerIntake(),
+      new BasicAuto(),
+      new IntakeBalls(),
       stealTrench,
       new DriveStraightContinuous(m_drive, 0, 0)
       
