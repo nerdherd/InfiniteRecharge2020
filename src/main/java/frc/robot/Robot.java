@@ -22,12 +22,15 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.BasicAuto;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
+import frc.robot.commands.auto.TenBallAuto;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
@@ -71,6 +74,9 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
   public static ResetSingleMotorEncoder hoodReset;
+  public static SendableChooser<CommandBase> autoChooser;
+
+
 
   // public static SingleMotorMechanism falcon;
 
@@ -93,6 +99,7 @@ public class Robot extends TimedRobot {
     // climberRatchet.setReverse();
     CameraServer.getInstance().startAutomaticCapture();
 
+
     hopper = new Hopper();
     // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
@@ -109,6 +116,13 @@ public class Robot extends TimedRobot {
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
+    autoChooser = new SendableChooser<>();
+    autoChooser.addOption("Basic Auto", new BasicAuto());
+    autoChooser.addOption("Shoot to Trench", new AutoLineIntoTrench(drive));
+    autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
+    autoChooser.addOption("10 Ball", new TenBallAuto(drive));
+    // autoChooser.addOption("Basic Auto", new BasicAuto());
+    SmartDashboard.putData(autoChooser);
   }
 
   @Override
@@ -127,6 +141,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Right Voltage 1", drive.getRightOutputVoltage());
     
     // climber.reportToSmartDashboard();
+    
+    
   }
 
   @Override
