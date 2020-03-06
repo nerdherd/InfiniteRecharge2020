@@ -113,10 +113,10 @@ public class Robot extends TimedRobot {
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
     
     // climberReset = new ParallelCommandGroup(  ));
-    
-    // drive.setDefaultCommand(new TankDrive(Robot.drive, Robot.oi));
-    drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     oi = new OI();
+    
+    drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
+    drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
@@ -144,7 +144,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("DesiredAngle", Robot.hood.distToAngle(Robot.limelight.getDistanceWidth()));
     SmartDashboard.putNumber("Right Voltage 1", drive.getRightOutputVoltage());
     
-    // climber.reportToSmartDashboard();
+    climber.reportToSmartDashboard();
     
     
   }
@@ -162,6 +162,7 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousInit() {
+    m_autonomousCommand = new BasicAuto();
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
