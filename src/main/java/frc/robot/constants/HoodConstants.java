@@ -35,6 +35,7 @@ public class HoodConstants {
     public static final double kWallShotAngle = -10;
     public static final double kTrenchShotAngle = 34;
     public static final double kAutolineShotAngle = 28;
+    public static final double kRendezvousShotAngle = 29;
     public static final double kStowAngle = -10;
 
     // POLYNOMIAL REGRESSION - FAR
