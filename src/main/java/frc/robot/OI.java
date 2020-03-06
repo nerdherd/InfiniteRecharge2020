@@ -51,6 +51,7 @@ import frc.robot.commands.shooting.ShootBall;
 // import frc.robot.commands.ShootBallTempStop;
 import frc.robot.commands.shooting.TrenchShot;
 import frc.robot.commands.shooting.WallShot;
+import frc.robot.commands.shooting.RendezvousShot;
 import frc.robot.commands.vision.DistanceToAngle;
 import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.subsystems.Indexer.IndexerState;
@@ -62,7 +63,7 @@ public class OI extends DefaultOI {
 
     public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
             autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R,
-            ploughIntake_2;
+            ploughIntake_2, togglePipeline_4, rendezvousShot_8;
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
@@ -85,6 +86,8 @@ public class OI extends DefaultOI {
         autoDistance_12 = new JoystickButton(super.operatorJoy, 12);
         hoodAngle_5 = new JoystickButton(super.operatorJoy, 5);
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
+        togglePipeline_4 = new JoystickButton(super.operatorJoy, 4);
+        rendezvousShot_8 = new JoystickButton(super.operatorJoy, 8);
 
         ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
         shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
@@ -96,6 +99,7 @@ public class OI extends DefaultOI {
         startShootingOld_3.whileHeld(new ShootBallTemp());
         trenchShot_7.whenPressed(new TrenchShot());
         autolineShot_9.whenPressed(new AutolineShot());
+        rendezvousShot_8.whenPressed(new RendezvousShot());
         stow_10.whenPressed(new Stow());
         wallShot_11.whenPressed(new WallShot());
         hoodAngle_5.whenPressed(new SetAngle());
@@ -105,6 +109,7 @@ public class OI extends DefaultOI {
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         autoDistance_12.whenPressed(new DistanceToAngle());
+        togglePipeline_4.whenPressed(new InstantCommand(() -> Robot.limelight.togglePipeline()));
         SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
         
         SmartDashboard.putData("Ramsete TEST", new BasicRamseteForward(Robot.drive));
@@ -119,7 +124,7 @@ public class OI extends DefaultOI {
         // panelRotation_9.whenPressed(new PanelRotate());
         // wallShot_11.whenPressed(new WallShot());
 
-        SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(.1));
+       SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(0.1));
 
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 

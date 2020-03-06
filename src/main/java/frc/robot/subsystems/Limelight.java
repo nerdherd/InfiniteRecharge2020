@@ -41,10 +41,20 @@ public class Limelight extends SubsystemBase {
     camMode = table.getEntry("camMode");
     ledMode = table.getEntry("ledMode");
 
-    pipeline.setValue(7);
+    pipeline.setValue(0);
     camMode.setValue(1);
 
   }
+
+  public void togglePipeline(){
+    if(pipeline.getValue().getDouble() == 0.0) {
+      pipeline.setValue(1);
+    } else {
+      pipeline.setValue(0);
+    }
+
+  }
+
   public double getTargetWidth(){
     double w = tlong.getDouble(0.0);
     return w;
@@ -79,7 +89,7 @@ public class Limelight extends SubsystemBase {
   public double getDistanceWidth(){
     // distance is at an angle
     double distanceHyp = (VisionConstants.kTargetWidth * VisionConstants.kXFocalLength_lime)/getTargetWidth(); // D = W*F/P; convert to in
-    double theta = Math.asin(74.25/distanceHyp); // angle of elevation to target
+    double theta = Math.asin((VisionConstants.kTargetHeight-VisionConstants.kCameraMountHeight)/distanceHyp); // angle of elevation to target
     double fullDist = distanceHyp*Math.cos(theta); // horizontal distance
     // SmartDashboard.putNumber("distanceHyp", distanceHyp);
     // SmartDashboard.putNumber("theta", theta);
