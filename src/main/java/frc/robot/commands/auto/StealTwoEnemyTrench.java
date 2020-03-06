@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.constants.DriveConstants;
+// import frc.robot.auto.BasicAuto;
+
 
 public class StealTwoEnemyTrench extends SequentialCommandGroup {
   private Drivetrain m_drive;

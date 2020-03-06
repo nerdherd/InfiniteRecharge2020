@@ -44,9 +44,9 @@ public class BasicRamseteForward extends SequentialCommandGroup {
     m_config.addConstraint(autoVoltageConstraint);
     
     Trajectory m_traj = TrajectoryGenerator.generateTrajectory(new Pose2d(0, 0, new Rotation2d(0)),
-    List.of(), new Pose2d(0, 5, new Rotation2d(0)),
+    List.of(), new Pose2d(3, 0, new Rotation2d(0)),
         m_config);
-     RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+     RamseteCommand ramsete = new RamseteCommand(m_traj, m_drive::getPose2d, new RamseteController(3.0, 0.7), 
                                     new SimpleMotorFeedforward(1.2, 0.241, 0.065), 
                                     m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
                                     new PIDController(3.1, 0, 0), new PIDController(3.1, 0, 0),

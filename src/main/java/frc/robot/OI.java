@@ -30,6 +30,8 @@ import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.auto.AutoLineIntoTrench;
+import frc.robot.commands.auto.BasicRamseteForward;
 // import frc.robot.commands.AutolineShot;
 // import frc.robot.commands.ShootBall;
 // import frc.robot.commands.ShootBallTemp;
@@ -104,6 +106,9 @@ public class OI extends DefaultOI {
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         autoDistance_12.whenPressed(new DistanceToAngle());
         SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
+        
+        SmartDashboard.putData("Ramsete TEST", new BasicRamseteForward(Robot.drive));
+        SmartDashboard.putData("Ramsete Trench", new AutoLineIntoTrench(Robot.drive));
 
         // shoot_2.whileHeld(new ShootBall());
         // infiniteRecharge_3.whenPressed(new InfiniteRecharge());
@@ -181,29 +186,29 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("11VShooter", new SetMotorPower(Robot.shooter, 0.9166));
         // SmartDashboard.putData("12VShooter", new SetMotorPower(Robot.shooter, 1.0));
 
-        SmartDashboard.putData("15000", new SetMotorVelocity(Robot.shooter, 15000));
-        SmartDashboard.putData("15100", new SetMotorVelocity(Robot.shooter, 15100));
-        SmartDashboard.putData("15200", new SetMotorVelocity(Robot.shooter, 15200));
-        SmartDashboard.putData("15300", new SetMotorVelocity(Robot.shooter, 15300));
-        SmartDashboard.putData("15400", new SetMotorVelocity(Robot.shooter, 15400));
-        SmartDashboard.putData("15500", new SetMotorVelocity(Robot.shooter, 15500));
-        SmartDashboard.putData("15600", new SetMotorVelocity(Robot.shooter, 15600));
-        SmartDashboard.putData("15700", new SetMotorVelocity(Robot.shooter, 15700));
-        SmartDashboard.putData("15800", new SetMotorVelocity(Robot.shooter, 15800));
-        SmartDashboard.putData("15900", new SetMotorVelocity(Robot.shooter, 15900));
+        // SmartDashboard.putData("15000", new SetMotorVelocity(Robot.shooter, 15000));
+        // SmartDashboard.putData("15100", new SetMotorVelocity(Robot.shooter, 15100));
+        // SmartDashboard.putData("15200", new SetMotorVelocity(Robot.shooter, 15200));
+        // SmartDashboard.putData("15300", new SetMotorVelocity(Robot.shooter, 15300));
+        // SmartDashboard.putData("15400", new SetMotorVelocity(Robot.shooter, 15400));
+        // SmartDashboard.putData("15500", new SetMotorVelocity(Robot.shooter, 15500));
+        // SmartDashboard.putData("15600", new SetMotorVelocity(Robot.shooter, 15600));
+        // SmartDashboard.putData("15700", new SetMotorVelocity(Robot.shooter, 15700));
+        // SmartDashboard.putData("15800", new SetMotorVelocity(Robot.shooter, 15800));
+        // SmartDashboard.putData("15900", new SetMotorVelocity(Robot.shooter, 15900));
 
 
-        // SmartDashboard.putData("14000", new SetMotorVelocity(Robot.shooter, 14000));
-        // SmartDashboard.putData("13000", new SetMotorVelocity(Robot.shooter, 13000));
-        SmartDashboard.putData("16000", new SetMotorVelocity(Robot.shooter, 16000));
-        SmartDashboard.putData("16100", new SetMotorVelocity(Robot.shooter, 16100));
-        SmartDashboard.putData("16200", new SetMotorVelocity(Robot.shooter, 16200));
-        SmartDashboard.putData("16300", new SetMotorVelocity(Robot.shooter, 16300));
-        SmartDashboard.putData("16400", new SetMotorVelocity(Robot.shooter, 16400));
-        SmartDashboard.putData("16500", new SetMotorVelocity(Robot.shooter, 16500));
-        SmartDashboard.putData("16600", new SetMotorVelocity(Robot.shooter, 16600));
-        SmartDashboard.putData("16700", new SetMotorVelocity(Robot.shooter, 16700));
-        SmartDashboard.putData("16800", new SetMotorVelocity(Robot.shooter, 16800));
+        // // SmartDashboard.putData("14000", new SetMotorVelocity(Robot.shooter, 14000));
+        // // SmartDashboard.putData("13000", new SetMotorVelocity(Robot.shooter, 13000));
+        // SmartDashboard.putData("16000", new SetMotorVelocity(Robot.shooter, 16000));
+        // SmartDashboard.putData("16100", new SetMotorVelocity(Robot.shooter, 16100));
+        // SmartDashboard.putData("16200", new SetMotorVelocity(Robot.shooter, 16200));
+        // SmartDashboard.putData("16300", new SetMotorVelocity(Robot.shooter, 16300));
+        // SmartDashboard.putData("16400", new SetMotorVelocity(Robot.shooter, 16400));
+        // SmartDashboard.putData("16500", new SetMotorVelocity(Robot.shooter, 16500));
+        // SmartDashboard.putData("16600", new SetMotorVelocity(Robot.shooter, 16600));
+        // SmartDashboard.putData("16700", new SetMotorVelocity(Robot.shooter, 16700));
+        // SmartDashboard.putData("16800", new SetMotorVelocity(Robot.shooter, 16800));
 
 
 
@@ -212,9 +217,9 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("17500", new SetMotorVelocity(Robot.shooter, 17500));
         // SmartDashboard.putData("18000", new SetMotorVelocity(Robot.shooter, 18000));
 
-        for (int i = 16200; i < 16800; i += 100) {
-            SmartDashboard.putData(String.valueOf(i), new SetMotorVelocity(Robot.shooter, i));
-        }
+        // for (int i = 16200; i < 16800; i += 100) {
+        //     SmartDashboard.putData(String.valueOf(i), new SetMotorVelocity(Robot.shooter, i));
+        // }
 
         // SmartDashboard.putData("18050", new SetMotorVelocity(Robot.shooter, 18050));
         // SmartDashboard.putData("18100", new SetMotorVelocity(Robot.shooter, 18100));
@@ -231,9 +236,9 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("19500", new SetMotorVelocity(Robot.shooter, 19500));
         // SmartDashboard.putData("20000", new SetMotorVelocity(Robot.shooter, 20000));
 
-        SmartDashboard.putData("4VShooterVel", new SetMotorVelocity(Robot.shooter, 6750));
-        SmartDashboard.putData("4.5VShooterVel", new SetMotorVelocity(Robot.shooter, 8437));
-        SmartDashboard.putData("4VIndex", new SetMotorPower(Robot.index, 0.));
+        // SmartDashboard.putData("4VShooterVel", new SetMotorVelocity(Robot.shooter, 6750));
+        // SmartDashboard.putData("4.5VShooterVel", new SetMotorVelocity(Robot.shooter, 8437));
+        // SmartDashboard.putData("4VIndex", new SetMotorPower(Robot.index, 0.));
 
 
         // SmartDashboard.putData("1VSingleFalcon", new SetMotorPower(Robot.falcon,
@@ -245,25 +250,25 @@ public class OI extends DefaultOI {
         // 0.125));
         // SmartDashboard.putData("SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
         // SmartDashboard.putData("-SetHoodPower", new SetMotorPower(Robot.hood, 0.15));
-        SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
+        // SmartDashboard.putData("SetHoodFF -10 deg", new SetArmAngleMotionMagic(Robot.hood, -10));
         // SmartDashboard.putData("SetHoodFF -5 deg", new SetArmAngleMotionMagic(Robot.hood, -5));
-        SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
+        // SmartDashboard.putData("SetHoodFF 0 deg", new SetArmAngleMotionMagic(Robot.hood, 0));
         // SmartDashboard.putData("SetHoodFF 5 deg", new SetArmAngleMotionMagic(Robot.hood, 5));
         // SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
         // SmartDashboard.putData("SetHoodFF 15 deg", new SetArmAngleMotionMagic(Robot.hood, 15));
         // SmartDashboard.putData("SetHoodFF 20 deg", new SetArmAngleMotionMagic(Robot.hood, 20));
-        SmartDashboard.putData("SetHoodFF 7 deg", new SetArmAngleMotionMagic(Robot.hood, 7));
-        SmartDashboard.putData("SetHoodFF 8 deg", new SetArmAngleMotionMagic(Robot.hood, 8));
-        SmartDashboard.putData("SetHoodFF 9 deg", new SetArmAngleMotionMagic(Robot.hood, 9));
+        // SmartDashboard.putData("SetHoodFF 7 deg", new SetArmAngleMotionMagic(Robot.hood, 7));
+        // SmartDashboard.putData("SetHoodFF 8 deg", new SetArmAngleMotionMagic(Robot.hood, 8));
+        // SmartDashboard.putData("SetHoodFF 9 deg", new SetArmAngleMotionMagic(Robot.hood, 9));
         
-        SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
-        SmartDashboard.putData("SetHoodFF 10.5 deg", new SetArmAngleMotionMagic(Robot.hood, 10.5));
-        SmartDashboard.putData("SetHoodFF 11 deg", new SetArmAngleMotionMagic(Robot.hood, 11));
-        SmartDashboard.putData("SetHoodFF 11.5 deg", new SetArmAngleMotionMagic(Robot.hood, 11.5));
-        SmartDashboard.putData("SetHoodFF 12 deg", new SetArmAngleMotionMagic(Robot.hood, 12));
-        SmartDashboard.putData("SetHoodFF 12.5 deg", new SetArmAngleMotionMagic(Robot.hood, 12.5));
-        SmartDashboard.putData("SetHoodFF 13 deg", new SetArmAngleMotionMagic(Robot.hood, 13));
-        SmartDashboard.putData("SetHoodFF 13.5 deg", new SetArmAngleMotionMagic(Robot.hood, 13.5));
+        // SmartDashboard.putData("SetHoodFF 10 deg", new SetArmAngleMotionMagic(Robot.hood, 10));
+        // SmartDashboard.putData("SetHoodFF 10.5 deg", new SetArmAngleMotionMagic(Robot.hood, 10.5));
+        // SmartDashboard.putData("SetHoodFF 11 deg", new SetArmAngleMotionMagic(Robot.hood, 11));
+        // SmartDashboard.putData("SetHoodFF 11.5 deg", new SetArmAngleMotionMagic(Robot.hood, 11.5));
+        // SmartDashboard.putData("SetHoodFF 12 deg", new SetArmAngleMotionMagic(Robot.hood, 12));
+        // SmartDashboard.putData("SetHoodFF 12.5 deg", new SetArmAngleMotionMagic(Robot.hood, 12.5));
+        // SmartDashboard.putData("SetHoodFF 13 deg", new SetArmAngleMotionMagic(Robot.hood, 13));
+        // SmartDashboard.putData("SetHoodFF 13.5 deg", new SetArmAngleMotionMagic(Robot.hood, 13.5));
         
 
 
@@ -289,22 +294,22 @@ public class OI extends DefaultOI {
         // SmartDashboard.putData("SetHoodFF 22.5 deg", new SetArmAngleMotionMagic(Robot.hood, 22.5));
         // SmartDashboard.putData("SetHoodFF 23 deg", new SetArmAngleMotionMagic(Robot.hood, 23));
         // SmartDashboard.putData("SetHoodFF 23.5 deg", new SetArmAngleMotionMagic(Robot.hood, 23.5));
-        SmartDashboard.putData("SetHoodFF 24 deg", new SetArmAngleMotionMagic(Robot.hood, 24));
-        SmartDashboard.putData("SetHoodFF 24.5 deg", new SetArmAngleMotionMagic(Robot.hood, 24.5));
-        SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
-        SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
-        SmartDashboard.putData("SetHoodFF 26.5 deg", new SetArmAngleMotionMagic(Robot.hood, 26.5));
-        SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
-        SmartDashboard.putData("SetHoodFF 28 deg", new SetArmAngleMotionMagic(Robot.hood, 28));
-        SmartDashboard.putData("SetHoodFF 29 deg", new SetArmAngleMotionMagic(Robot.hood, 29));
-        SmartDashboard.putData("SetHoodFF 29.5 deg", new SetArmAngleMotionMagic(Robot.hood, 29.5));
-        SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
-        SmartDashboard.putData("SetHoodFF 30.5 deg", new SetArmAngleMotionMagic(Robot.hood, 30.5));
-        SmartDashboard.putData("SetHoodFF 30.75 deg", new SetArmAngleMotionMagic(Robot.hood, 30.75));
-        SmartDashboard.putData("SetHoodFF 31 deg", new SetArmAngleMotionMagic(Robot.hood, 31));
-        SmartDashboard.putData("SetHoodFF 32 deg", new SetArmAngleMotionMagic(Robot.hood, 32));
-        SmartDashboard.putData("SetHoodFF 33 deg", new SetArmAngleMotionMagic(Robot.hood, 33));
-        SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
+        // SmartDashboard.putData("SetHoodFF 24 deg", new SetArmAngleMotionMagic(Robot.hood, 24));
+        // SmartDashboard.putData("SetHoodFF 24.5 deg", new SetArmAngleMotionMagic(Robot.hood, 24.5));
+        // SmartDashboard.putData("SetHoodFF 25 deg", new SetArmAngleMotionMagic(Robot.hood, 25));
+        // SmartDashboard.putData("SetHoodFF 26 deg", new SetArmAngleMotionMagic(Robot.hood, 26));
+        // SmartDashboard.putData("SetHoodFF 26.5 deg", new SetArmAngleMotionMagic(Robot.hood, 26.5));
+        // SmartDashboard.putData("SetHoodFF 27 deg", new SetArmAngleMotionMagic(Robot.hood, 27));
+        // SmartDashboard.putData("SetHoodFF 28 deg", new SetArmAngleMotionMagic(Robot.hood, 28));
+        // SmartDashboard.putData("SetHoodFF 29 deg", new SetArmAngleMotionMagic(Robot.hood, 29));
+        // SmartDashboard.putData("SetHoodFF 29.5 deg", new SetArmAngleMotionMagic(Robot.hood, 29.5));
+        // SmartDashboard.putData("SetHoodFF 30 deg", new SetArmAngleMotionMagic(Robot.hood, 30));
+        // SmartDashboard.putData("SetHoodFF 30.5 deg", new SetArmAngleMotionMagic(Robot.hood, 30.5));
+        // SmartDashboard.putData("SetHoodFF 30.75 deg", new SetArmAngleMotionMagic(Robot.hood, 30.75));
+        // SmartDashboard.putData("SetHoodFF 31 deg", new SetArmAngleMotionMagic(Robot.hood, 31));
+        // SmartDashboard.putData("SetHoodFF 32 deg", new SetArmAngleMotionMagic(Robot.hood, 32));
+        // SmartDashboard.putData("SetHoodFF 33 deg", new SetArmAngleMotionMagic(Robot.hood, 33));
+        // SmartDashboard.putData("SetHoodFF 34 deg", new SetArmAngleMotionMagic(Robot.hood, 34));
         // SmartDashboard.putData("Set hood angle 10", new InstantCommand(() ->
         // Robot.hood.motor.setPositionPID(1000)));
         // SmartDashboard.putData("Tell me what you are", new InstantCommand(() ->
@@ -319,37 +324,37 @@ public class OI extends DefaultOI {
         // SmartDashboard.putNumber("Left Encoder", Robot.drive.getLeftMasterPosition());
         
         
-        SmartDashboard.putData("3VHopper", new SetDualMotorPower(Robot.hopper, 0.4, 0.6));
+        // SmartDashboard.putData("3VHopper", new SetDualMotorPower(Robot.hopper, 0.4, 0.6));
         // SmartDashboard.putData("-3VHopper", new SetDualMotorPower(Robot.hopper, -0.45, -0.25));
-        SmartDashboard.putData("StopHopper", new SetDualMotorPower(Robot.hopper, 0.0, 0.0));
-        SmartDashboard.putData("StopShooter", new SetMotorPower(Robot.shooter, 0.0));
-        SmartDashboard.putData("3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.25));
-        SmartDashboard.putData("6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.5));
-        SmartDashboard.putData("Neg3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.5));
-        SmartDashboard.putData("Neg6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.6
-        ));
+        // SmartDashboard.putData("StopHopper", new SetDualMotorPower(Robot.hopper, 0.0, 0.0));
+        // SmartDashboard.putData("StopShooter", new SetMotorPower(Robot.shooter, 0.0));
+        // SmartDashboard.putData("3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.25));
+        // SmartDashboard.putData("6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.5));
+        // SmartDashboard.putData("Neg3VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.5));
+        // SmartDashboard.putData("Neg6VIntakeRollers", new SetMotorPower(Robot.intakeRoll, -0.6
+        // ));
 
-        SmartDashboard.putData("StopIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.0));
-        SmartDashboard.putData("6VIndex", new SetMotorPower(Robot.index, 0.5));
-        SmartDashboard.putData("12VIndex", new SetMotorPower(Robot.index, 1));
-        SmartDashboard.putData("9VIndex", new SetMotorPower(Robot.index, 0.75));
-        SmartDashboard.putData("Neg6VIndex", new SetMotorPower(Robot.index, -0.5));
-        SmartDashboard.putData("StopIndex", new SetMotorPower(Robot.index, 0.0));
-        SmartDashboard.putData("ExtendIntake", new ExtendPiston(Robot.intake));
-        SmartDashboard.putData("RetractIntake", new RetractPiston(Robot.intake));
+        // SmartDashboard.putData("StopIntakeRollers", new SetMotorPower(Robot.intakeRoll, 0.0));
+        // SmartDashboard.putData("6VIndex", new SetMotorPower(Robot.index, 0.5));
+        // SmartDashboard.putData("12VIndex", new SetMotorPower(Robot.index, 1));
+        // SmartDashboard.putData("9VIndex", new SetMotorPower(Robot.index, 0.75));
+        // SmartDashboard.putData("Neg6VIndex", new SetMotorPower(Robot.index, -0.5));
+        // SmartDashboard.putData("StopIndex", new SetMotorPower(Robot.index, 0.0));
+        // SmartDashboard.putData("ExtendIntake", new ExtendPiston(Robot.intake));
+        // SmartDashboard.putData("RetractIntake", new RetractPiston(Robot.intake));
 
-        SmartDashboard.putData("ShiftUp", new ShiftHigh(Robot.drive));
-        SmartDashboard.putData("ShiftDown", new ShiftLow(Robot.drive));
+        // SmartDashboard.putData("ShiftUp", new ShiftHigh(Robot.drive));
+        // SmartDashboard.putData("ShiftDown", new ShiftLow(Robot.drive));
 
-        SmartDashboard.putData("ShooterRamp", new MotorVoltageRamping(Robot.shooter, 0.25/12));
-        SmartDashboard.putNumber("Encoder Rate Left", Robot.drive.getLeftMasterVelocity());
-        SmartDashboard.putNumber("Encoder Rate Right", Robot.drive.getLeftMasterVelocity());
-        // SmartDashboard.putData("Shoot", new ShootBallTemp());
-        // SmartDashboard.putData("ShootStop", new ShootBallTempStop());
-        SmartDashboard.putData("InfiniteRecharge", new InfiniteRecharge());
-        SmartDashboard.putData("drive voltage ramp", new DriveCharacterizationTest(Robot.drive, 0.25));
+        // SmartDashboard.putData("ShooterRamp", new MotorVoltageRamping(Robot.shooter, 0.25/12));
+        // SmartDashboard.putNumber("Encoder Rate Left", Robot.drive.getLeftMasterVelocity());
+        // SmartDashboard.putNumber("Encoder Rate Right", Robot.drive.getLeftMasterVelocity());
+        // // SmartDashboard.putData("Shoot", new ShootBallTemp());
+        // // SmartDashboard.putData("ShootStop", new ShootBallTempStop());
+        // SmartDashboard.putData("InfiniteRecharge", new InfiniteRecharge());
+        // SmartDashboard.putData("drive voltage ramp", new DriveCharacterizationTest(Robot.drive, 0.25));
 
-        SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
+        // SmartDashboard.putData("TimeOfFlightTest", new TimeOfFlightStop());
         // SmartDashboard.putData("IndexerRamp", new MotorVoltageRamping(Robot.indexer, 0.25));
         // SmartDashboard.putData("6371Indexer", new SetMotorVelocity(Robot.indexer, 6371));    
 

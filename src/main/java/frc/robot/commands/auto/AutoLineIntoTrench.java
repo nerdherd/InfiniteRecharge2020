@@ -9,6 +9,7 @@ package frc.robot.commands.auto;
 
 import java.util.List;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstraint;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -37,22 +39,32 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),
       m_drive.m_kinematics, 
       DriveConstants.kRamseteMaxVolts);
+
+      var autoCentripetalAccelerationConstraint = new CentripetalAccelerationConstraint(DriveConstants.kMaxCentripetalAcceleration);
   
     TrajectoryConfig config = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
-    config.addConstraint(autoVoltageConstraint);
+    // config.addConstraints(autoVoltageConstraint);
+    config.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
 
-    Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
+    // Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
+    //   new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
+    //   List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
+    //   new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+    //   config);
+    
+      Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
-      List.of(new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
-      new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+      List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
+      new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEnd  TrenchMetersY, new Rotation2d(0)),
       config);
 
+
     RamseteCommand stealTrench = new RamseteCommand(shootIntoTrench, 
-      m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+      m_drive::getPose2d, new RamseteController(1.25, 0.4), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD), 
-      new PIDController(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteD),
+      new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+      new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
       m_drive::setVoltage, m_drive);
     
     
@@ -60,7 +72,8 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
     addCommands(
       // new BasicAuto(),
       // new PowerIntake(),
-      stealTrench
+      stealTrench,
+      new DriveStraightContinuous(m_drive, 0, 0)
       
 
 

@@ -39,19 +39,19 @@ public class Drive extends ShiftingDrivetrain {
     new CANMotorController[] {
       new NerdyFalcon(RobotMap.kRightFollowerTalon1ID),
     },
-     false, false, new Piston(RobotMap.kShifterPort1ID, RobotMap.kShifterPort2ID),
+     true, false, new Piston(RobotMap.  kShifterPort1ID, RobotMap.kShifterPort2ID),
       DriveConstants.kTrackWidth);
     // (NerdyFalcon) super.m_leftSlaves[0]
     // super.m_rightSlaves[0].followCANMotorController(super.m_rightMaster);
 
-    // super.m_rightSlaves[]
+    // super.m_rightSlaves[]  
      super.configAutoChooser(Robot.chooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
-     super.configSensorPhase(true, true);
+     super.configSensorPhase(false, true);
      super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);
-     super.configLeftPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kLeftF);
-     super.configRightPIDF(DriveConstants.kramseteP, DriveConstants.kramseteI, DriveConstants.kramseteP, DriveConstants.kRightF);
-     super.configStaticFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteS);
+     super.configLeftPIDF(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD, DriveConstants.kLeftF);
+     super.configRightPIDF(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD, DriveConstants.kRightF);
+     super.configStaticFeedforward(DriveConstants.kLeftRamseteS, DriveConstants.kRightRamseteS);
      
   }
 
@@ -59,6 +59,6 @@ public class Drive extends ShiftingDrivetrain {
   public void periodic() {
     // This method will be called once per scheduler run
     super.updateOdometry();
-    // super.reportToSmartDashboard();
+    super.reportToSmartDashboard();
   }
 }
