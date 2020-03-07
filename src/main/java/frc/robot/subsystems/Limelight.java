@@ -47,11 +47,8 @@ public class Limelight extends SubsystemBase {
   }
 
   public void togglePipeline(){
-    if(pipeline.getValue().getDouble() == 0.0) {
-      pipeline.setValue(1);
-    } else {
-      pipeline.setValue(0);
-    }
+    pipeline.setValue(1.0);
+    
 
   }
 

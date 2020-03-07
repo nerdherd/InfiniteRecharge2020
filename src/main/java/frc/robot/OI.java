@@ -54,7 +54,7 @@ public class OI extends DefaultOI {
 
     public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
             autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R,
-            ploughIntake_2, togglePipeline_4, rendezvousShot_8, climbReady_3R, climbLift_4R; 
+            ploughIntake_2, togglePipeline_4, rendezvousShot_8, climbReady_3L, climbLift_4L; 
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
@@ -79,8 +79,8 @@ public class OI extends DefaultOI {
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
         togglePipeline_4 = new JoystickButton(super.operatorJoy, 4);
         rendezvousShot_8 = new JoystickButton(super.operatorJoy, 8);
-        climbReady_3R = new JoystickButton(super.driveJoyRight, 3);
-        climbLift_4R = new JoystickButton(super.driveJoyRight, 4);
+        climbReady_3L = new JoystickButton(super.driveJoyLeft, 3);
+        climbLift_4L = new JoystickButton(super.driveJoyLeft, 4);
         
 
         ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
@@ -104,8 +104,8 @@ public class OI extends DefaultOI {
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         autoDistance_12.whenPressed(new DistanceToAngle());
         togglePipeline_4.whenPressed(new InstantCommand(() -> Robot.limelight.togglePipeline()));
-        climbReady_3R.whenPressed(new ClimberReady());
-        climbLift_4R.whileHeld(new ClimberLift());
+        climbReady_3L.whenPressed(new ClimberReady());
+        climbLift_4L.whileHeld(new ClimberLift());
         
         SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
         SmartDashboard.putData("cLIMBER UP" , new ClimberReady());
@@ -127,6 +127,8 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));   
         SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166)); 
         SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));  
+
+        SmartDashboard.putData("TogglePipeline", new InstantCommand(() -> Robot.limelight.togglePipeline()));
         
         
         
