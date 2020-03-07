@@ -153,14 +153,23 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    // hood.resetEncoder();
+    hood.resetEncoder();
+    Robot.climber.followerFalcon.resetEncoder();
+    Robot.climber.mainFalcon.resetEncoder();
+    
     drive.setCoastMode();
   }
 
   @Override
   public void disabledPeriodic() {
-    Robot.climber.followerFalcon.resetEncoder();
-    Robot.climber.mainFalcon.resetEncoder();
+    if(oi.driveJoyLeft.getRawButton(5) || oi.driveJoyRight.getRawButton(5)) {
+      hood.resetEncoder();
+      Robot.climber.followerFalcon.resetEncoder();
+      Robot.climber.mainFalcon.resetEncoder();
+    }
+    // Robot.climber.followerFalcon.resetEncoder();
+    // Robot.climber.mainFalcon.resetEncoder();
+    
   }
   @Override
   public void autonomousInit() {

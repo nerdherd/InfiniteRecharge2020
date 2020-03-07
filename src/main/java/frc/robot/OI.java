@@ -54,7 +54,7 @@ public class OI extends DefaultOI {
 
     public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10, wallShot_11,
             autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R, resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R,
-            ploughIntake_2, togglePipeline_4, rendezvousShot_8;
+            ploughIntake_2, togglePipeline_4, rendezvousShot_8, climbReady_3R, climbLift_4R; 
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
@@ -79,6 +79,9 @@ public class OI extends DefaultOI {
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
         togglePipeline_4 = new JoystickButton(super.operatorJoy, 4);
         rendezvousShot_8 = new JoystickButton(super.operatorJoy, 8);
+        climbReady_3R = new JoystickButton(super.driveJoyRight, 3);
+        climbLift_4R = new JoystickButton(super.driveJoyRight, 4);
+        
 
         ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
         shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
@@ -101,6 +104,9 @@ public class OI extends DefaultOI {
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         autoDistance_12.whenPressed(new DistanceToAngle());
         togglePipeline_4.whenPressed(new InstantCommand(() -> Robot.limelight.togglePipeline()));
+        climbReady_3R.whenPressed(new ClimberReady());
+        climbLift_4R.whileHeld(new ClimberLift());
+        
         SmartDashboard.putData("Reset indexer", new InstantCommand(() -> Robot.index.indexerState = IndexerState.EMPTY));
         SmartDashboard.putData("cLIMBER UP" , new ClimberReady());
         SmartDashboard.putData("Climber Lift", new  ClimberLift());

@@ -19,7 +19,7 @@ import frc.robot.RobotMap;
 public class Hopper extends DualMotorIntake {
 
     public static NerdyVictorSPX topRoller;
-    static SingleMotorVictorSPX leftRoller = new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", false);
+    static SingleMotorVictorSPX leftRoller = new SingleMotorVictorSPX(RobotMap.kFeederID1, "Top Intake", true);
 
     public Hopper() {
         super(leftRoller, 

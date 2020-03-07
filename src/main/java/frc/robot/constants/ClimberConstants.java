@@ -17,6 +17,6 @@ public class ClimberConstants {
     public static final double kClimberDesiredLiftPow = -0.75;
     public static final double kClimberDesiredUpPow = 0;
     public static final double kClimberDesiredHoldPow = -0.1;
-    public static final double kHardStopPos = 716000;
-    public static final double kClimbGoodPos = 550000;
+    public static final double kHardStopPos = 740000;
+    public static final double kClimbGoodPos = 400000;
 }

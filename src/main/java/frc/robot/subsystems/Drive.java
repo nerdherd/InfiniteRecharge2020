@@ -7,19 +7,11 @@
 
 package frc.robot.subsystems;
 
-import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
 import com.nerdherd.lib.drivetrain.experimental.ShiftingDrivetrain;
-import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
-// import com.nerdherd.lib.motor.motorcontrollers.NerdySparkMax;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
-import com.nerdherd.lib.motor.motorcontrollers.NerdyVictorSPX;
 import com.nerdherd.lib.pneumatics.Piston;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.DriveConstants;
@@ -52,7 +44,18 @@ public class Drive extends ShiftingDrivetrain {
      super.configLeftPIDF(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD, DriveConstants.kLeftF);
      super.configRightPIDF(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD, DriveConstants.kRightF);
      super.configStaticFeedforward(DriveConstants.kLeftRamseteS, DriveConstants.kRightRamseteS);
-     
+    
+     super.m_leftMaster.configCurrentLimitContinuous(50);
+     super.m_rightMaster.configCurrentLimitContinuous(50);
+     super.m_leftMaster.configCurrentLimitPeak(50);
+     super.m_rightMaster.configCurrentLimitPeak(50);
+
+     super.m_leftSlaves[0].configCurrentLimitContinuous(50);
+     super.m_rightSlaves[0].configCurrentLimitContinuous(50);
+     super.m_leftSlaves[0].configCurrentLimitPeak(50);
+     super.m_rightSlaves[0].configCurrentLimitPeak(50);
+     setCoastMode();
+
   }
 
   @Override
