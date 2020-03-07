@@ -101,7 +101,8 @@ public class OI extends DefaultOI {
         hoodAngle_5.whenPressed(new SetAngle());
         outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75).alongWith(
                 new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8)),
-                new SetMotorPower(Robot.index, -0.33)));
+                new SetMotorPower(Robot.index, -0.33),
+                new InstantCommand(() -> Robot.hopper.setTopHopperPower(0.41))));
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
         autoDistance_12.whenPressed(new DistanceToAngle());

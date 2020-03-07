@@ -34,8 +34,7 @@ public class Stow extends CommandBase {
     Robot.hopper.setTopHopperPower(0.4167);
     Robot.hood.setAngle(HoodConstants.kStowAngle);
     Robot.index.setPower(0);
-    Robot.shooter.setPower(0.0);
-
+    Robot.shooter.setVelocity(0);
   }
 
   // Called once the command ends or is interrupted.
