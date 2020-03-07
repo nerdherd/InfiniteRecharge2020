@@ -5,19 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.constants.HoodConstants;
 
-public class Stow extends CommandBase {
+public class InGameResetHood extends CommandBase {
   /**
-   * Creates a new Stow.
+   * Creates a new InGameResetHood.
    */
-  public Stow() {
+  public InGameResetHood() {
+    addRequirements(Robot.hood);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake, Robot.intakeRoll, Robot.hopper, Robot.hood, Robot.index);
   }
 
   // Called when the command is initially scheduled.
@@ -28,19 +27,13 @@ public class Stow extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.setReverse();
-    Robot.intakeRoll.setPower(0);
-    Robot.hopper.setPowerWithoutTop(0, 0);
-    Robot.hopper.setTopHopperPower(0.67);
-    Robot.hood.setAngle(HoodConstants.kStowAngle);
-    Robot.index.setPower(0);
-    Robot.shooter.setPower(0.0);
-
+    Robot.hood.setPower(-0.25);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.hood.resetEncoder();
   }
 
   // Returns true when the command should end.

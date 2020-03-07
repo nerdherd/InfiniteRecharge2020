@@ -42,8 +42,9 @@ public class Indexer extends SingleMotorMechanism {
   public void periodic() {
     // SmartDashboard.putNumber("TimeOfFlight1", timeOfFlight1.getRange());
     // SmartDashboard.putNumber("TimeOfFlight2", timeOfFlight2.getRange());
-    // SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
+    SmartDashboard.putNumber("VEXultra", ultrasonic.getRangeInches());
     // SmartDashboard.putNumber("Ultra", ultrasonic.getRangeInches());
+    SmartDashboard.putBoolean("IndexerBall", indexerBallDetected());
     
     // This method will be called once per scheduler run
   }
@@ -66,6 +67,11 @@ public class Indexer extends SingleMotorMechanism {
     ERROR
   }
 
+  public boolean indexerBallDetected(){
+    return ultrasonic.getRangeInches() > IndexerConstants.kUltrasonicNoBallUpperLimit;
+  }
+
+  
   public boolean hopperBallDetected() {
     // return ultrasonic.getRangeInches() < IndexerConstants.kUltrasonicNoBall;
     return timeOfFlight1.getRange() < IndexerConstants.kTimeOfFlightNoBall;

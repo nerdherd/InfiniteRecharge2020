@@ -53,7 +53,7 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       Trajectory goalIntoTrench = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
       List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
-      new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+      new Pose2d(DriveConstants.kTrenchThirdBallX, -0.6, new Rotation2d(0)),
       config);
 
 

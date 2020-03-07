@@ -19,7 +19,7 @@ public class DriveConstants {
 	public static final double kRightI = 0;
     public static final double kRightD = 0;
     
-    public static final double kDriveMaxVel = 3.0;
+    public static final double kDriveMaxVel = 1.0;
     public static final double kDriveMaxAccel = 2.0;
     
     public static final double kGoalMetersY = -2.404;
@@ -32,7 +32,7 @@ public class DriveConstants {
     public static final double kTrenchMetersY = -0.70485;
     public static final double kTrenchThirdBallX = 7.991602;
     public static final double kEndTrenchMetersX = 9.62406;
-    public static final double kEndTrenchMetersY = -0.70485;
+    public static final double kEndTrenchMetersY = -0.6;
     
     public static final double kLeftRamseteS = 0.39;
     public static final double kLeftRamseteV = 2.05;

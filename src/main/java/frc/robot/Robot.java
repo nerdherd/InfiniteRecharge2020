@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
 
     // m_autonomousCommand = new BasicAuto();
     autoChooser = new SendableChooser<>();
-    autoChooser.addOption("Basic Auto", new BasicAuto());
+    autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
     autoChooser.addOption("Shoot to Trench", new AutoLineIntoTrench(drive));
     autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
     autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
@@ -167,8 +167,11 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     if(oi.driveJoyLeft.getRawButton(5) || oi.driveJoyRight.getRawButton(5)) {
       hood.resetEncoder();
-      Robot.climber.followerFalcon.resetEncoder();
-      Robot.climber.mainFalcon.resetEncoder();
+      climber.followerFalcon.resetEncoder();
+      climber.mainFalcon.resetEncoder();
+      drive.resetEncoders();
+      drive.resetYaw();
+      drive.resetXY();
     }
     // Robot.climber.followerFalcon.resetEncoder();
     // Robot.climber.mainFalcon.resetEncoder();
@@ -176,6 +179,7 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousInit() {
+    drive.setBrakeMode();
     m_autonomousCommand = new BasicAuto();
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
@@ -190,6 +194,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    drive.setCoastMode();
     // drive.setPose(new Pose2d(0, 0, new Rotation2d(Math.PI)));
   
   }

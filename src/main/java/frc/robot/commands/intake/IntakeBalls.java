@@ -46,39 +46,49 @@ public class IntakeBalls extends CommandBase {
     Robot.intakeRoll.setPower(0.95);
     Robot.intake.setForwards();
     Robot.shooter.setPower(0.0);
-    if (Robot.index.indexerHighBallDetected() && !Robot.index.indexerLowBallDetected()){
-      Robot.index.indexerState = IndexerState.ERROR;
-    }
-    if (Robot.index.indexerState == IndexerState.ERROR){
-      Robot.hopper.setPower(0.0, 0.0);
-      Robot.index.setPower(-0.15);
-      if(Robot.index.indexerLowBallDetected()){
-        Robot.index.indexerState = IndexerState.WAITING;
-      }
-    }else if (Robot.index.indexerState == IndexerState.WAITING) {
-      Robot.hopper.setPower(0.0, 0.0);
+
+    if (Robot.index.indexerBallDetected()){
       Robot.index.setPower(0.0);
-      if (Robot.index.hopperBallDetected() && !Robot.index.indexerLowBallDetected()) {
-        Robot.index.indexerState = IndexerState.INTAKING_ONE;
-      }else if(Robot.index.hopperBallDetected() && Robot.index.indexerLowBallDetected()){
-        Robot.index.indexerState = IndexerState.INTAKING_TWO;
-      }
-    } else if (Robot.index.indexerState == IndexerState.INTAKING_ONE) {
-      Robot.hopper.setPower(0.4, 0.8);
-      Robot.index.setPower(0.25);
-      if(Robot.index.indexerLowBallDetected()){
-        Robot.index.indexerState = IndexerState.INTAKING_TWO;
-      }
-    } else if (Robot.index.indexerState == IndexerState.INTAKING_TWO) {
-      Robot.hopper.setPower(0.4, 0.8);
-      Robot.index.setPower(0.25);
-      if(Robot.index.indexerHighBallDetected() && Robot.index.indexerLowBallDetected()){
-        Robot.index.indexerState = IndexerState.FULL;
-      }
-    } else if (Robot.index.indexerState == IndexerState.FULL) {
-      Robot.hopper.setPower(0, 0);
-      Robot.index.setPower(0);
+      Robot.hopper.setPowerWithoutTop(0.0, 0.0);
+    }else{
+      Robot.index.setPower(0.16);
+      // Robot.hopper.setPowerWithoutTop(0.4, 0.8);
     }
+
+
+    // if (Robot.index.indexerHighBallDetected() && !Robot.index.indexerLowBallDetected()){
+    //   Robot.index.indexerState = IndexerState.ERROR;
+    // }
+    // if (Robot.index.indexerState == IndexerState.ERROR){
+    //   Robot.hopper.setPower(0.0, 0.0);
+    //   Robot.index.setPower(-0.15);
+    //   if(Robot.index.indexerLowBallDetected()){
+    //     Robot.index.indexerState = IndexerState.WAITING;
+    //   }
+    // }else if (Robot.index.indexerState == IndexerState.WAITING) {
+    //   Robot.hopper.setPower(0.0, 0.0);
+    //   Robot.index.setPower(0.0);
+    //   if (Robot.index.hopperBallDetected() && !Robot.index.indexerLowBallDetected()) {
+    //     Robot.index.indexerState = IndexerState.INTAKING_ONE;
+    //   }else if(Robot.index.hopperBallDetected() && Robot.index.indexerLowBallDetected()){
+    //     Robot.index.indexerState = IndexerState.INTAKING_TWO;
+    //   }
+    // } else if (Robot.index.indexerState == IndexerState.INTAKING_ONE) {
+    //   Robot.hopper.setPower(0.4, 0.8);
+    //   Robot.index.setPower(0.25);
+    //   if(Robot.index.indexerLowBallDetected()){
+    //     Robot.index.indexerState = IndexerState.INTAKING_TWO;
+    //   }
+    // } else if (Robot.index.indexerState == IndexerState.INTAKING_TWO) {
+    //   Robot.hopper.setPower(0.4, 0.8);
+    //   Robot.index.setPower(0.25);
+    //   if(Robot.index.indexerHighBallDetected() && Robot.index.indexerLowBallDetected()){
+    //     Robot.index.indexerState = IndexerState.FULL;
+    //   }
+    // } else if (Robot.index.indexerState == IndexerState.FULL) {
+    //   Robot.hopper.setPower(0, 0);
+    //   Robot.index.setPower(0);
+    // }
 
 
 

@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstraint;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.intake.IntakeBalls;
@@ -35,9 +37,6 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
   private Drivetrain m_drive;
   public AutoLineIntoTrench(Drivetrain drive) {
     m_drive = drive;
-    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)));
-   
-    
   
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),
@@ -59,12 +58,12 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
       Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
       List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
-      new Pose2d(DriveConstants.kEndTrenchMetersX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+      new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
       config);
 
 
     RamseteCommand stealTrench = new RamseteCommand(shootIntoTrench, 
-      m_drive::getPose2d, new RamseteController(1.25, 0.4), 
+      m_drive::getPose2d, new RamseteController(1.0, 0.4), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
@@ -75,11 +74,9 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
 
     addCommands(
       new BasicAuto(),
-      new IntakeBalls(),
-      stealTrench,
+      new InstantCommand( () -> m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)))),
+      new ParallelRaceGroup(new IntakeBalls(), stealTrench),
       new DriveStraightContinuous(m_drive, 0, 0)
-      
-
 
     );
   }
