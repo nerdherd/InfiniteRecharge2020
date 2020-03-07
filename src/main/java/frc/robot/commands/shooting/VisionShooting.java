@@ -7,6 +7,7 @@
 
 package frc.robot.commands.shooting;
 
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.vision.TargetTrackLime;
 import frc.robot.commands.vision.TurnToAngleLime;
@@ -21,6 +22,6 @@ public class VisionShooting extends SequentialCommandGroup {
   public VisionShooting() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new TurnToAngleLime(0.007));
+    super(new ParallelRaceGroup(new TurnToAngleLime(0.007)));
   }
 }

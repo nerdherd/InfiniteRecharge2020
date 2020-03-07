@@ -4,6 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+//http://10.6.87.98:5801/
 
 package frc.robot.subsystems;
 
@@ -42,7 +43,7 @@ public class Limelight extends SubsystemBase {
     ledMode = table.getEntry("ledMode");
 
     pipeline.setValue(0);
-    camMode.setValue(1);
+    camMode.setValue(0);
 
   }
 

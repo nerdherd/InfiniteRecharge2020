@@ -43,7 +43,7 @@ public class RobotMap {
     public static final int kIntakePort2 = 5;
     // public static int kLeftMasterTalonID;
 
-    public static final int kShooterID1 = 1;
+    public static final int kShooterID1 = 21;
     public static final int kShooterID2 = 11;
     
     public static final int kClimberID1 = 2;

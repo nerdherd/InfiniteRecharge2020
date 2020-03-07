@@ -31,7 +31,7 @@ public class Stow extends CommandBase {
     Robot.intake.setReverse();
     Robot.intakeRoll.setPower(0);
     Robot.hopper.setPowerWithoutTop(0, 0);
-    Robot.hopper.setTopHopperPower(0.67);
+    Robot.hopper.setTopHopperPower(0.4167);
     Robot.hood.setAngle(HoodConstants.kStowAngle);
     Robot.index.setPower(0);
     Robot.shooter.setPower(0.0);

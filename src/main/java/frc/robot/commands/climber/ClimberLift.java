@@ -35,7 +35,12 @@ public class ClimberLift extends CommandBase {
     // }else{
     //   Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
     // }
-    Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
+    if(Robot.climber.mainFalcon.getPosition() < ClimberConstants.kClimbGoodPos
+    && Robot.climber.followerFalcon.getPosition() < ClimberConstants.kClimbGoodPos){
+      Robot.climber.setPower(ClimberConstants.kClimberDesiredHoldPow);
+    }else{
+      Robot.climber.setPower(ClimberConstants.kClimberDesiredLiftPow);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -48,8 +53,7 @@ public class ClimberLift extends CommandBase {
   @Override
   public boolean isFinished() {
     // return Robot.climber.getHeight() < ClimberConstants.kClimbGoodPos;
-    return Robot.climber.mainFalcon.getPosition() < ClimberConstants.kClimbGoodPos
-    && Robot.climber.followerFalcon.getPosition() < ClimberConstants.kClimbGoodPos;
+    return false;
 
   }
 }

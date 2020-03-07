@@ -100,7 +100,7 @@ public class OI extends DefaultOI {
         wallShot_11.whenPressed(new WallShot());
         hoodAngle_5.whenPressed(new SetAngle());
         outtake_6.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75).alongWith(
-                new InstantCommand(() -> Robot.hopper.setPower(-0.4, -0.8)),
+                new InstantCommand(() -> Robot.hopper.setPowerWithoutTop(-0.4, -0.8)),
                 new SetMotorPower(Robot.index, -0.33)));
         resetEncoders_5L.whenPressed(Robot.hoodReset);
         resetEncoders_5R.whenPressed(Robot.hoodReset);
