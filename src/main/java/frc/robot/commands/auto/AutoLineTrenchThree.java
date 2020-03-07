@@ -73,7 +73,7 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       Trajectory shootFromTrench = TrajectoryGenerator.generateTrajectory(
         new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
         List.of(), 
-        new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
+        new Pose2d(DriveConstants.kTrenchMetersX, -0.6, new Rotation2d(0.31316)),
         config2);
   
   
