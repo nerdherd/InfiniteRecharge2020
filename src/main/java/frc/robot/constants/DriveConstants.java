@@ -30,6 +30,7 @@ public class DriveConstants {
     
     public static final double kTrenchMetersX = 5.248;
     public static final double kTrenchMetersY = -0.70485;
+    public static final double kTrenchThirdBallX = 7.991602;
     public static final double kEndTrenchMetersX = 9.62406;
     public static final double kEndTrenchMetersY = -0.70485;
     

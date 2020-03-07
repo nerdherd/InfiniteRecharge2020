@@ -21,44 +21,37 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstraint;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.intake.IntakeBalls;
+import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.constants.DriveConstants;
+// import frc.robot.auto.BasicAuto;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoLineTrenchThree extends SequentialCommandGroup {
+public class StealTwoIntoTrench extends SequentialCommandGroup {
   private Drivetrain m_drive;
-  public AutoLineTrenchThree(Drivetrain drive) {
+
+  public StealTwoIntoTrench(Drivetrain drive) {
     m_drive = drive;
-    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)));
-   
-    
+    drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)));
   
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),
       m_drive.m_kinematics, 
       DriveConstants.kRamseteMaxVolts);
-
-      var autoCentripetalAccelerationConstraint = new CentripetalAccelerationConstraint(DriveConstants.kMaxCentripetalAcceleration);
   
     TrajectoryConfig config = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
-    config.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
+    config.addConstraint(autoVoltageConstraint);
 
-    
-      Trajectory goalIntoTrench = TrajectoryGenerator.generateTrajectory(
-      new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
-      List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
-      new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+    Trajectory stealTrenchPath = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)),
+      List.of(), 
+      new Pose2d(DriveConstants.kEnemyTrenchMetersX, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)),
       config);
 
-
-    RamseteCommand driveToTrench = new RamseteCommand(goalIntoTrench, 
-      m_drive::getPose2d, new RamseteController(1.25, 0.4), 
+    RamseteCommand stealTrench = new RamseteCommand(stealTrenchPath, 
+      m_drive::getPose2d, new RamseteController(2.0, 0.7), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
@@ -66,36 +59,43 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       m_drive::setVoltage, m_drive);
     
       
+    Trajectory stealIntoShoot = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(DriveConstants.kEnemyTrenchMetersX, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)),
+      List.of(new Translation2d(3.777, -6.569)), new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
+      config);
 
-      TrajectoryConfig config2 = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
-      config2.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
-      config2.setReversed(true);
-      Trajectory shootFromTrench = TrajectoryGenerator.generateTrajectory(
-        new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
-        List.of(), 
+    RamseteCommand stealShoot = new RamseteCommand(stealIntoShoot, 
+      m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+      new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
+      m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
+      new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+      new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
+      m_drive::setVoltage, m_drive);
+    
+      Trajectory shootIntoTrench = TrajectoryGenerator.generateTrajectory(
         new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)),
-        config2);
+        List.of(new Translation2d(2, -0.85), new Translation2d(DriveConstants.kTrenchMetersX, DriveConstants.kTrenchMetersY)), 
+        new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
+        config);
   
   
-      RamseteCommand trenchShoot = new RamseteCommand(shootFromTrench, 
-        m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+      RamseteCommand trenchPath = new RamseteCommand(shootIntoTrench, 
+        m_drive::getPose2d, new RamseteController(1.25, 0.4), 
         new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
         m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
         new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
         new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
         m_drive::setVoltage, m_drive);
-      
+     
     
     addCommands(
-      new BasicAuto(),
       new IntakeBalls(),
-      driveToTrench,
-      trenchShoot,
+      stealTrench,
+      stealShoot,
       new BasicAuto(),
+      trenchPath,
       new DriveStraightContinuous(m_drive, 0, 0)
-      
-
-
+      // new BasicAuto()
     );
   }
 }

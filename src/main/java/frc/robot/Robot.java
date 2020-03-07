@@ -29,9 +29,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.auto.AutoLineIntoTrench;
+import frc.robot.commands.auto.AutoLineTrenchThree;
 import frc.robot.commands.auto.BasicAuto;
 import frc.robot.commands.auto.StealTwoEnemyTrench;
-import frc.robot.commands.auto.TenBallAuto;
+import frc.robot.commands.auto.StealTwoIntoTrench;
+// import frc.robot.commands.auto.TenBallAuto;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
@@ -123,8 +125,9 @@ public class Robot extends TimedRobot {
     autoChooser = new SendableChooser<>();
     autoChooser.addOption("Basic Auto", new BasicAuto());
     autoChooser.addOption("Shoot to Trench", new AutoLineIntoTrench(drive));
+    autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
     autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
-    autoChooser.addOption("10 Ball", new TenBallAuto(drive));
+    autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
     // autoChooser.addOption("Basic Auto", new BasicAuto());
     SmartDashboard.putData(autoChooser);
     
