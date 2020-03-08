@@ -21,11 +21,15 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstraint;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Robot;
 import frc.robot.commands.intake.IntakeBalls;
-import frc.robot.commands.shooting.AutolineShot;
+import frc.robot.commands.intake.Stow;
 import frc.robot.constants.DriveConstants;
 // import frc.robot.auto.BasicAuto;
 
@@ -41,8 +45,10 @@ public class StealTwoIntoTrench extends SequentialCommandGroup {
       m_drive.m_kinematics, 
       DriveConstants.kRamseteMaxVolts);
   
+    var autoCentripetalAccelerationConstraint = new CentripetalAccelerationConstraint(DriveConstants.kMaxCentripetalAcceleration);
+  
     TrajectoryConfig config = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
-    config.addConstraint(autoVoltageConstraint);
+    config.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
 
     Trajectory stealTrenchPath = TrajectoryGenerator.generateTrajectory(
       new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kEnemyTrenchMetersY, new Rotation2d(0)),
@@ -86,16 +92,36 @@ public class StealTwoIntoTrench extends SequentialCommandGroup {
         new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
         new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
         m_drive::setVoltage, m_drive);
+
+        TrajectoryConfig config2 = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
+        config2.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
+        config2.setReversed(true);
+        Trajectory shootFromTrench = TrajectoryGenerator.generateTrajectory(
+          new Pose2d(DriveConstants.kEndTrenchMetersX, -0.6, new Rotation2d(0)),
+          List.of(new Translation2d(DriveConstants.kTrenchMetersX, -0.6)), 
+          new Pose2d(5.430,-1.568, new Rotation2d(3.23)),
+          config2);
+    
+    
+        RamseteCommand trenchShoot = new RamseteCommand(shootFromTrench, 
+          m_drive::getPose2d, new RamseteController(1.5, 0.7), 
+          new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
+          m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
+          new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+          new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
+          m_drive::setVoltage, m_drive);
+        
      
     
     addCommands(
-      new IntakeBalls(),
-      stealTrench,
-      stealShoot,
-      new BasicAuto(),
-      trenchPath,
-      new DriveStraightContinuous(m_drive, 0, 0)
-      // new BasicAuto()
+      new InstantCommand(()-> Robot.hood.setAngleMotionMagic(-10)),
+      new ParallelRaceGroup(new IntakeBalls(), stealTrench),
+      new ParallelRaceGroup(new Stow(), stealShoot),
+      new BasicAutoNoMove(),
+      new ParallelRaceGroup(new IntakeBalls(), trenchPath),
+      new ParallelRaceGroup(new Stow(), trenchShoot),
+      new DriveStraightContinuous(m_drive, 0, 0),
+      new BasicAutoNoMove()
     );
   }
 }

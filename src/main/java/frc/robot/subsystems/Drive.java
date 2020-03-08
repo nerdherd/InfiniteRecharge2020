@@ -38,7 +38,7 @@ public class Drive extends ShiftingDrivetrain {
     // super.m_rightSlaves[0].followCANMotorController(super.m_rightMaster);
 
     // super.m_rightSlaves[]  
-     super.configAutoChooser(Robot.chooser);
+    //  super.configAutoChooser(Robot.autoChooser);
      super.configMaxVelocity(DriveConstants.kMaxVelocity);
      super.configSensorPhase(false, true);
      super.configTicksPerFoot(DriveConstants.kLeftTicksPerFoot, DriveConstants.kRightTicksPerFoot);

@@ -24,8 +24,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auto.AutoLineIntoTrench;
+import frc.robot.commands.auto.AutoLineIntoTrenchFive;
 import frc.robot.commands.auto.AutoLineTrenchThree;
 import frc.robot.commands.auto.BasicAuto;
+import frc.robot.commands.auto.StealTwoEnemyTrench;
+import frc.robot.commands.auto.StealTwoIntoTrench;
 // import frc.robot.commands.auto.TenBallAuto;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
@@ -36,6 +40,7 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Jevois;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -48,8 +53,8 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
-	public static final String kDate = "2020_01_25_";
-  
+  public static final String kDate = "2020_01_25_";
+
   public static AutoChooser chooser;
   public static Drive drive;
   public static Jevois jevois;
@@ -70,14 +75,10 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
   public static ResetSingleMotorEncoder hoodReset;
-  public static SendableChooser<String> autoChooser;
-
-
+  public static SendableChooser<Command> autoChooser;
 
   // public static SingleMotorMechanism falcon;
 
-
-  
   @Override
   public void robotInit() {
     drive = new Drive();
@@ -86,8 +87,8 @@ public class Robot extends TimedRobot {
     index = new Indexer();
     // falcon = new SingleMotorMechanism(1, "shooter", true, true);
     limelight = new Limelight();
-     // jevois = new Jevois(115200, SerialPort.Port.kUSB);
-		// jevois.startCameraStream();
+    // jevois = new Jevois(115200, SerialPort.Port.kUSB);
+    // jevois.startCameraStream();
     shooter = new Shooter();
     // motor = new SingleMotorMechanism(6, "Motor", true, true);
     ds = DriverStation.getInstance();
@@ -95,34 +96,33 @@ public class Robot extends TimedRobot {
     // climberRatchet.setReverse();
     CameraServer.getInstance().startAutomaticCapture();
 
-
     hopper = new Hopper();
     // index = new SingleMotorMechanism(RobotMap.kIndex, "Index", false, false);
     intakeRoll = new SingleMotorVictorSPX(RobotMap.kIntakeRoll, "intake rollers", false);
     intake = new Piston(RobotMap.kIntakePort1, RobotMap.kIntakePort2);
-    chooser = new AutoChooser();
-    // pdp = new PowerDistributionPanel();
+    // / pdp = new PowerDistributionPanel();
     // panelPos = new Piston(RobotMap.kPanelPort1ID, RobotMap.kPanelPort2ID);
-    // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel", false, false);
+    // panelRot = new SingleMotorMechanism(RobotMap.kPanelRollerID, "Control Panel",
+    // false, false);
     limelight.setOff();
     hoodReset = new ResetSingleMotorEncoder(Robot.hood);
-    
-    // climberReset = new ParallelCommandGroup(  ));
+
+    // climberReset = new ParallelCommandGroup( ));
     oi = new OI();
-    
+
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
     NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
-    autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("Basic Auto", "basic");
-    autoChooser.addOption("Shoot to Trench", "3ball");
-    // autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
-    // autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
-    // autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
-    // autoChooser.addOption("Basic Auto", new BasicAuto());
-    SmartDashboard.putData(autoChooser);
+    autoChooser = new SendableChooser<Command>();
+    autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
+    autoChooser.addOption("6Ball", new AutoLineTrenchThree(drive));
+    autoChooser.addOption("8Ball", new AutoLineIntoTrenchFive(drive));
+    autoChooser.addOption("5 Steal", new StealTwoEnemyTrench(drive));
+    autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
+    SmartDashboard.putData("Autos", autoChooser);
+    
     
   }
 
@@ -173,13 +173,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     drive.setBrakeMode();
-    // m_autonomousCommand = new AutoLineTrenchThree(drive);
-    // m_autonomousCommand = autoChooser.getSelected();
-    if (autoChooser.getSelected() == "basic") {
-      m_autonomousCommand = new BasicAuto();
-    } else if (autoChooser.getSelected() == "3ball") {
-      m_autonomousCommand = new AutoLineTrenchThree(drive);
-    }
+    m_autonomousCommand = autoChooser.getSelected();
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }
