@@ -28,8 +28,8 @@ import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.AutoLineIntoTrenchFive;
 import frc.robot.commands.auto.AutoLineTrenchThree;
 import frc.robot.commands.auto.BasicAuto;
-import frc.robot.commands.auto.StealTwoEnemyTrench;
-import frc.robot.commands.auto.StealTwoIntoTrench;
+// import frc.robot.commands.auto.StealTwoEnemyTrench;
+// import frc.robot.commands.auto.StealTwoIntoTrench;
 // import frc.robot.commands.auto.TenBallAuto;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
@@ -118,9 +118,9 @@ public class Robot extends TimedRobot {
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
     autoChooser.addOption("6Ball", new AutoLineTrenchThree(drive));
-    autoChooser.addOption("8Ball", new AutoLineIntoTrenchFive(drive));
-    autoChooser.addOption("5 Steal", new StealTwoEnemyTrench(drive));
-    autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
+    // autoChooser.addOption("8Ball", new AutoLineIntoTrenchFive(drive));
+    // autoChooser.addOption("5 Steal", new StealTwoEnemyTrench(drive));
+    // autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
     SmartDashboard.putData("Autos", autoChooser);
     
     

@@ -41,11 +41,12 @@ import frc.robot.constants.VisionConstants;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoLineTrenchThree extends SequentialCommandGroup {
+public class GoalTrenchRendevous extends SequentialCommandGroup {
   private Drivetrain m_drive;
-  public AutoLineTrenchThree(Drivetrain drive) {
+  public GoalTrenchRendevous(Drivetrain drive) {
     m_drive = drive;
-    
+    m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)));
+
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA),
       m_drive.m_kinematics, 
@@ -63,7 +64,6 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       new Pose2d(DriveConstants.kTrenchThirdBallX, -0.6, new Rotation2d(0)),
       config);
 
-
     RamseteCommand driveToTrench = new RamseteCommand(goalIntoTrench, 
       m_drive::getPose2d, new RamseteController(0.842, 0.118), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
@@ -71,20 +71,19 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
       new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
       m_drive::setVoltage, m_drive);
-    
-      
+       
 
       TrajectoryConfig config2 = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel);
       config2.addConstraints(List.of(autoVoltageConstraint, autoCentripetalAccelerationConstraint));
       config2.setReversed(true);
+
       Trajectory shootFromTrench = TrajectoryGenerator.generateTrajectory(
         new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
-        List.of(new Translation2d(DriveConstants.kTrenchMetersX, -0.6)), 
-        new Pose2d(5.430,-1.568, new Rotation2d(3.23)),
+        List.of(), 
+        new Pose2d(DriveConstants.kTrenchMetersX, -0.6, new Rotation2d(0)),
         config2);
   
-  
-      RamseteCommand trenchShoot = new RamseteCommand(shootFromTrench, 
+      RamseteCommand backUp = new RamseteCommand(shootFromTrench, 
         m_drive::getPose2d, new RamseteController(1.5, 0.7), 
         new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
         m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
@@ -92,16 +91,31 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
         new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
         m_drive::setVoltage, m_drive);
       
+        Trajectory trenchToRendevous = TrajectoryGenerator.generateTrajectory(
+          new Pose2d(DriveConstants.kTrenchMetersX, -0.6, new Rotation2d(0)),
+          List.of(), 
+          new Pose2d(6.163, -2.3009, new Rotation2d(0.377)),
+          config2);
     
+        RamseteCommand trenchRendevous = new RamseteCommand(trenchToRendevous, 
+          m_drive::getPose2d, new RamseteController(1.5, 0.7), 
+          new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
+          m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
+          new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
+          new PIDController(DriveConstants.kRightP, DriveConstants.kRightI, DriveConstants.kRightD),
+          m_drive::setVoltage, m_drive);
+      
+        
+        
     addCommands(
       new BasicAutoNoMove(),
       // new IntakeBalls(),
       new InstantCommand(()-> Robot.hood.setAngleMotionMagic(-10)),
       new ParallelRaceGroup(new IntakeBalls(), driveToTrench),
-      new ParallelRaceGroup(new Stow(), trenchShoot)
-      // new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(VisionConstants.kRotP_lime)),
-      // new TrenchShot(),
-      // new ParallelRaceGroup(new ShootBall(), new WaitCommand(5))
+      new ParallelRaceGroup(new Stow(), backUp),
+      new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(VisionConstants.kRotP_lime)),
+      new TrenchShot(),
+      new ParallelRaceGroup(new ShootBall(), new WaitCommand(5))
       // new DriveStraightContinuous(m_drive, 0, 0)
       
 

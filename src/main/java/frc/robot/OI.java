@@ -31,7 +31,7 @@ import frc.robot.commands.auto.AutoLineIntoTrench;
 // import frc.robot.commands.ShootBallTempStop;
 // import frc.robot.commands.TrenchShot;
 // import frc.robot.commands.WallShot;
-import frc.robot.commands.auto.StealTwoEnemyTrench;
+// import frc.robot.commands.auto.StealTwoEnemyTrench;
 import frc.robot.commands.climber.ClimberLift;
 import frc.robot.commands.climber.ClimberReady;
 import frc.robot.commands.intake.IntakeBalls;
@@ -391,7 +391,7 @@ public class OI extends DefaultOI {
         SmartDashboard.putData("Reset Encoders", new ResetDriveEncoders(Robot.drive));
         SmartDashboard.putData("Reset XY", new InstantCommand(() -> Robot.drive.resetXY()));
         SmartDashboard.putData("Reset Gyro", new ResetGyro(Robot.drive));
-        SmartDashboard.putData("Steal Two", new StealTwoEnemyTrench(Robot.drive));
+        // SmartDashboard.putData("Steal Two", new StealTwoEnemyTrench(Robot.drive));
 
         // SmartDashboard.putNumber("Right Encoder",
         // Robot.drive.getRightMasterPosition());
