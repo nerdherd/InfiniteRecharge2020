@@ -7,9 +7,7 @@
 
 package frc.robot;
 
-import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
-import com.nerdherd.lib.drivetrain.teleop.TankDrive;
 import com.nerdherd.lib.logging.NerdyBadlog;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.commands.ResetSingleMotorEncoder;
@@ -25,14 +23,9 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.AutoLineTrenchThree;
 import frc.robot.commands.auto.BasicAuto;
-import frc.robot.commands.auto.StealTwoEnemyTrench;
-import frc.robot.commands.auto.StealTwoIntoTrench;
 // import frc.robot.commands.auto.TenBallAuto;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Climber;
@@ -77,7 +70,7 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
   public static ResetSingleMotorEncoder hoodReset;
-  public static SendableChooser<Command> autoChooser;
+  public static SendableChooser<String> autoChooser;
 
 
 
@@ -123,8 +116,8 @@ public class Robot extends TimedRobot {
 
     // m_autonomousCommand = new BasicAuto();
     autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
-    autoChooser.addOption("Shoot to Trench", new AutoLineIntoTrench(drive));
+    autoChooser.setDefaultOption("Basic Auto", "basic");
+    autoChooser.addOption("Shoot to Trench", "3ball");
     // autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
     // autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
     // autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
@@ -180,8 +173,13 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     drive.setBrakeMode();
-    m_autonomousCommand = new AutoLineTrenchThree(drive);
+    // m_autonomousCommand = new AutoLineTrenchThree(drive);
     // m_autonomousCommand = autoChooser.getSelected();
+    if (autoChooser.getSelected() == "basic") {
+      m_autonomousCommand = new BasicAuto();
+    } else if (autoChooser.getSelected() == "3ball") {
+      m_autonomousCommand = new AutoLineTrenchThree(drive);
+    }
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }

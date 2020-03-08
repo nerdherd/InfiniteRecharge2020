@@ -17,6 +17,7 @@ import frc.robot.Robot;
 import frc.robot.commands.shooting.AutolineShot;
 import frc.robot.commands.shooting.ShootBall;
 import frc.robot.commands.vision.TurnToAngleLime;
+import frc.robot.constants.VisionConstants;
 
 /**
  * Add your docs here.
@@ -27,7 +28,7 @@ public class BasicAutoNoMove extends SequentialCommandGroup {
         addCommands(
             new AutolineShot(), 
             new InstantCommand(() -> Robot.hood.setStoredAngle(), Robot.hood), 
-            new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(0.009)),
+            new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(VisionConstants.kRotP_lime)),
             new ParallelRaceGroup(new ShootBall(), new WaitCommand(5))
             // new ParallelRaceGroup(new OpenLoopDrive(Robot.drive, -0.2), new WaitCommand(1))
         );

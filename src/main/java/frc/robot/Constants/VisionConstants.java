@@ -30,7 +30,7 @@ public class VisionConstants {
     // LIMELIGHT CONSTANTS!
     public final static double kHorizontalFOV_lime = 60.22274663;
     public final static double kVerticalFOV_lime = 55.19214793;
-//    public final static double kRotP_lime = 0.1;
+    public final static double kRotP_lime = .007;
 
     // Physical camera constants
     public final static double kCameraHorizontalMountAngle = -25.2; 
@@ -41,6 +41,8 @@ public class VisionConstants {
     public final static double kTargetHeight = 74.25; // inches 74.25 for field 
     public final static double kTargetWidth = 39.25;
     
+    // Drive constants
+
     public final static double kDriveRotationDeadband = 0.5;
     public final static double kDetectDistance = 25;
 
