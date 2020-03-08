@@ -31,8 +31,12 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.commands.intake.IntakeBalls;
 import frc.robot.commands.intake.Stow;
+import frc.robot.commands.shooting.ShootBall;
 import frc.robot.commands.shooting.TrenchShot;
+import frc.robot.commands.vision.TurnToAngle;
+import frc.robot.commands.vision.TurnToAngleLime;
 import frc.robot.constants.DriveConstants;
+import frc.robot.constants.VisionConstants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -98,9 +102,10 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       new InstantCommand(()-> Robot.hood.setAngleMotionMagic(-10)),
       new ParallelRaceGroup(new IntakeBalls(), driveToTrench),
       new ParallelRaceGroup(new Stow(), trenchShoot),
-      new WaitCommand(0.5),
-      // new TrenchShot(),
-      new DriveStraightContinuous(m_drive, 0, 0)
+      new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(VisionConstants.kRotP_lime)),
+      new TrenchShot(),
+      new ParallelRaceGroup(new ShootBall(), new WaitCommand(5))
+      // new DriveStraightContinuous(m_drive, 0, 0)
       
 
 

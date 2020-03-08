@@ -47,6 +47,7 @@ import frc.robot.commands.shooting.TrenchShot;
 import frc.robot.commands.shooting.WallShot;
 import frc.robot.commands.vision.DistanceToAngle;
 import frc.robot.commands.vision.TurnToAngleLime;
+import frc.robot.constants.VisionConstants;
 import frc.robot.subsystems.Indexer.IndexerState;
 
 /**
@@ -89,8 +90,8 @@ public class OI extends DefaultOI {
         ploughIntake_2.whenPressed(new SetMotorPower(Robot.intakeRoll, -0.75));
         shiftHigh_6L.whenPressed(new ShiftHigh(Robot.drive));
         shiftLow_6R.whenPressed(new ShiftLow(Robot.drive));
-        turnToAngle_1L.whileHeld(new TurnToAngleLime(.007)); // .009 before
-        turnToAngle_1R.whileHeld(new TurnToAngleLime(.007));
+        turnToAngle_1L.whileHeld(new TurnToAngleLime(VisionConstants.kRotP_lime)); // .009 before
+        turnToAngle_1R.whileHeld(new TurnToAngleLime(VisionConstants.kRotP_lime));
         intake_1.whenPressed(new IntakeBalls());
         startShooting_2.whileHeld(new ShootBall());
         startShootingOld_3.whileHeld(new ShootBallTemp());
