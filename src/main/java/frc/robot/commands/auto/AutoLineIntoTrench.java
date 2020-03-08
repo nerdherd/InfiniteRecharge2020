@@ -73,10 +73,10 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
     
 
     addCommands(
-      new BasicAuto(),
-      new InstantCommand( () -> m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)))),
-      new ParallelRaceGroup(new IntakeBalls(), stealTrench),
-      new DriveStraightContinuous(m_drive, 0, 0)
+      // new BasicAutoNoMove(),
+      // new InstantCommand( () -> m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)))),
+      // new ParallelRaceGroup(new IntakeBalls(), stealTrench),
+      // new DriveStraightContinuous(m_drive, 0, 0)
 
     );
   }

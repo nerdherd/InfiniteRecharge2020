@@ -23,9 +23,15 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.CentripetalAccelerationConstraint;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Robot;
 import frc.robot.commands.intake.IntakeBalls;
+import frc.robot.commands.intake.Stow;
+import frc.robot.commands.shooting.TrenchShot;
 import frc.robot.constants.DriveConstants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -58,7 +64,7 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
 
 
     RamseteCommand driveToTrench = new RamseteCommand(goalIntoTrench, 
-      m_drive::getPose2d, new RamseteController(1.25, 0.4), 
+      m_drive::getPose2d, new RamseteController(0.842, 0.118), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
@@ -72,13 +78,13 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       config2.setReversed(true);
       Trajectory shootFromTrench = TrajectoryGenerator.generateTrajectory(
         new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
-        List.of(), 
-        new Pose2d(DriveConstants.kTrenchMetersX, -0.6, new Rotation2d(0.31316)),
+        List.of(new Translation2d(DriveConstants.kTrenchMetersX, -0.6)), 
+        new Pose2d(5.430,-1.568, new Rotation2d(3.23)),
         config2);
   
   
       RamseteCommand trenchShoot = new RamseteCommand(shootFromTrench, 
-        m_drive::getPose2d, new RamseteController(2.0, 0.7), 
+        m_drive::getPose2d, new RamseteController(1.5, 0.7), 
         new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
         m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
         new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
@@ -87,11 +93,13 @@ public class AutoLineTrenchThree extends SequentialCommandGroup {
       
     
     addCommands(
-      new BasicAuto(),
-      new IntakeBalls(),
-      driveToTrench,
-      trenchShoot,
-      new BasicAuto(),
+      new BasicAutoNoMove(),
+      // new IntakeBalls(),
+      new InstantCommand(()-> Robot.hood.setAngleMotionMagic(-10)),
+      new ParallelRaceGroup(new IntakeBalls(), driveToTrench),
+      new ParallelRaceGroup(new Stow(), trenchShoot),
+      new WaitCommand(0.5),
+      // new TrenchShot(),
       new DriveStraightContinuous(m_drive, 0, 0)
       
 

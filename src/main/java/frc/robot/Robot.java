@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
   public static ResetSingleMotorEncoder hoodReset;
-  public static SendableChooser<CommandBase> autoChooser;
+  public static SendableChooser<Command> autoChooser;
 
 
 
@@ -125,9 +125,9 @@ public class Robot extends TimedRobot {
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
     autoChooser.addOption("Shoot to Trench", new AutoLineIntoTrench(drive));
-    autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
-    autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
-    autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
+    // autoChooser.addOption("Preload + 3 Trench", new AutoLineTrenchThree(drive));
+    // autoChooser.addOption("Steal Two Enemy", new StealTwoEnemyTrench(drive));
+    // autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
     // autoChooser.addOption("Basic Auto", new BasicAuto());
     SmartDashboard.putData(autoChooser);
     
@@ -180,7 +180,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     drive.setBrakeMode();
-    m_autonomousCommand = new BasicAuto();
+    m_autonomousCommand = new AutoLineTrenchThree(drive);
+    // m_autonomousCommand = autoChooser.getSelected();
     if (m_autonomousCommand != null) { 
       m_autonomousCommand.schedule();
     }

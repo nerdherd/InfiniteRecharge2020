@@ -57,7 +57,7 @@ public class OI extends DefaultOI {
     public JoystickButton intake_1, startShooting_2, startShootingOld_3, trenchShot_7, autolineShot_9, stow_10,
             wallShot_11, autoDistance_12, hoodAngle_5, turnToAngle_1L, turnToAngle_1R, resetEncoders_5R,
             resetEncoders_5L, outtake_6, shiftHigh_6L, shiftLow_6R, ploughIntake_2, togglePipeline_4, rendezvousShot_8,
-            climbReady_3L, climbLift_4L;
+            climbReady_3L, climbLift_4L, outtakeBrushes_8;
     // trench and auto manual shooting position for shooter
     // climberExtend_5, climberRetract_6
 
@@ -82,6 +82,7 @@ public class OI extends DefaultOI {
         outtake_6 = new JoystickButton(super.operatorJoy, 6);
         togglePipeline_4 = new JoystickButton(super.operatorJoy, 4);
         rendezvousShot_8 = new JoystickButton(super.operatorJoy, 8);
+        outtakeBrushes_8 = new JoystickButton(super.operatorJoy, 8);
         climbReady_3L = new JoystickButton(super.driveJoyLeft, 3);
         climbLift_4L = new JoystickButton(super.driveJoyLeft, 4);
 
@@ -96,6 +97,7 @@ public class OI extends DefaultOI {
         trenchShot_7.whenPressed(new TrenchShot());
         autolineShot_9.whenPressed(new AutolineShot());
         rendezvousShot_8.whenPressed(new RendezvousShot());
+        outtakeBrushes_8.whenHeld(new InstantCommand(()-> Robot.hopper.setTopHopperPower(-0.41)));
         stow_10.whenPressed(new Stow());
         wallShot_11.whenPressed(new WallShot());
         hoodAngle_5.whenPressed(new SetAngle());
