@@ -17,6 +17,7 @@ import com.nerdherd.lib.motor.motorcontrollers.NerdyTalon;
 import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.constants.ShooterConstants;
 
@@ -48,12 +49,14 @@ public class Shooter extends SingleMotorMechanism {
   public void setVelocity(double vel) {
     super.setVelocity(vel);
     m_desiredVel = vel;
+    Robot.limelight.setOn();
   }
 
   @Override
   public void setVelocity(double vel, double arbFF) {
     super.setVelocity(vel, arbFF);
     m_desiredVel = vel;
+    Robot.limelight.setOn();
   }
 
   public double getDesiredVel(){

@@ -28,8 +28,8 @@ public class BasicAutoNoMove extends SequentialCommandGroup {
         addCommands(
             new AutolineShot(), 
             new InstantCommand(() -> Robot.hood.setStoredAngle(), Robot.hood), 
-            new ParallelRaceGroup(new WaitCommand(2), new TurnToAngleLime(VisionConstants.kRotP_lime)),
-            new ParallelRaceGroup(new ShootBall(), new WaitCommand(5))
+            new ParallelRaceGroup(new WaitCommand(1), new TurnToAngleLime(VisionConstants.kRotP_lime)),
+            new ParallelRaceGroup(new ShootBall(), new WaitCommand(2.75))
             // new ParallelRaceGroup(new OpenLoopDrive(Robot.drive, -0.2), new WaitCommand(1))
         );
     }

@@ -29,6 +29,7 @@ public class TurnToAngleLime extends CommandBase {
     public void initialize() {
         // Robot.jevois.enableStream();
         SmartDashboard.putString("Current Command", "TurnToAngle");
+        Robot.limelight.setOn();
     }
 
     @Override

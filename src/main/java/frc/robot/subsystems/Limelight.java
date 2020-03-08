@@ -104,6 +104,10 @@ public class Limelight extends SubsystemBase {
     ledMode.setNumber(1);
   }
 
+  public void setOn() {
+    ledMode.setNumber(0);
+  }
+
   public void reportToSmartDashboard() {
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
