@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.nerdherd.lib.drivetrain.auto.DriveStraightContinuous;
 import com.nerdherd.lib.drivetrain.auto.ResetDriveEncoders;
 import com.nerdherd.lib.drivetrain.auto.ResetGyro;
 import com.nerdherd.lib.drivetrain.shifting.ShiftHigh;
@@ -130,15 +131,16 @@ public class OI extends DefaultOI {
         // panelExtend_8.whenPressed(new PanelExtend());
         // panelRotation_9.whenPressed(new PanelRotate());
         // wallShot_11.whenPressed(new WallShot());
+        SmartDashboard.putData("Run Forward", new DriveStraightContinuous(Robot.drive, 2000, 0.5));
 
-        SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(0.1));
+        // SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(0.1));
 
-        SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));
-        SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166));
-        SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));
+        // SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));
+        // SmartDashboard.putData("2VIndex", new SetMotorPower(Robot.index, 0.166));
+        // SmartDashboard.putData("3VIndex", new SetMotorPower(Robot.index, 0.25));
 
-        SmartDashboard.putData("TogglePipeline", new InstantCommand(() -> Robot.limelight.togglePipeline()));
-        SmartDashboard.putData("Auto into trench", new AutoLineIntoTrench(Robot.drive));
+        // SmartDashboard.putData("TogglePipeline", new InstantCommand(() -> Robot.limelight.togglePipeline()));
+        // SmartDashboard.putData("Auto into trench", new AutoLineIntoTrench(Robot.drive));
         // SmartDashboard.putData("Feeder45", new SetDualMotorPower(Robot.feeder, 0.45,
         // 0.45));
         // SmartDashboard.putData("Feeder25", new SetDualMotorPower(Robot.feeder, 0.25,

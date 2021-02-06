@@ -11,7 +11,7 @@ package frc.robot.constants;
  * Add your docs here.
  */
 public class DriveConstants {
-    public static final double kLeftP = 8.78;
+    public static final double kLeftP = 8.78; //replace these
 	public static final double kLeftI = 0;
 	public static final double kLeftD = 0;
 
@@ -38,7 +38,7 @@ public class DriveConstants {
     public static final double kLeftRamseteV = 2.05;
     public static final double kLeftRamseteA = 0.214;
 
-    public static final double kramseteS = 0.286;
+    public static final double kramseteS = 0.286; //replace these
     public static final double kramseteV = 2.08;
     public static final double kramseteA = 0.234;
 

@@ -61,9 +61,10 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
       new Pose2d(DriveConstants.kTrenchThirdBallX, DriveConstants.kEndTrenchMetersY, new Rotation2d(0)),
       config);
 
-
-    RamseteCommand stealTrench = new RamseteCommand(shootIntoTrench, 
-      m_drive::getPose2d, new RamseteController(1.0, 0.4), 
+//generateTrajectory( startPos(x,y,theta),  )
+    RamseteCommand stealTrench = new RamseteCommand(
+      shootIntoTrench, 
+      m_drive::getPose2d, new RamseteController(1.0, 0.7), 
       new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), 
       m_drive.m_kinematics, m_drive::getCurrentSpeeds, 
       new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), 
@@ -71,12 +72,12 @@ public class AutoLineIntoTrench extends SequentialCommandGroup {
       m_drive::setVoltage, m_drive);
     
     
-
     addCommands(
       // new BasicAutoNoMove(),
       // new InstantCommand( () -> m_drive.setPose(new Pose2d(DriveConstants.kAutoLineMeters, DriveConstants.kGoalMetersY, new Rotation2d(Math.PI)))),
       // new ParallelRaceGroup(new IntakeBalls(), stealTrench),
       // new DriveStraightContinuous(m_drive, 0, 0)
+      stealTrench
 
     );
   }
