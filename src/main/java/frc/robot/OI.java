@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.InGameResetHood;
 import frc.robot.commands.auto.AutoLineIntoTrench;
+import frc.robot.commands.auto.Slalom;
 // import frc.robot.commands.AutolineShot;
 // import frc.robot.commands.ShootBall;
 // import frc.robot.commands.ShootBallTemp;
@@ -131,8 +132,8 @@ public class OI extends DefaultOI {
         // panelExtend_8.whenPressed(new PanelExtend());
         // panelRotation_9.whenPressed(new PanelRotate());
         // wallShot_11.whenPressed(new WallShot());
-        SmartDashboard.putData("Run Forward", new DriveStraightContinuous(Robot.drive, 2000, 0.5));
-
+        // SmartDashboard.putData("Run Forward", new DriveStraightContinuous(Robot.drive, 2000, 0.5));
+        SmartDashboard.putData("Slalom Drive", new Slalom(Robot.drive));
         // SmartDashboard.putData("TurnToAngle", new TurnToAngleLime(0.1));
 
         // SmartDashboard.putData("1VIndex", new SetMotorPower(Robot.index, 0.0833));

@@ -38,13 +38,13 @@ public class DriveConstants {
     public static final double kLeftRamseteV = 2.05;
     public static final double kLeftRamseteA = 0.214;
 
-    public static final double kramseteS = 0.286; //replace these
+    public static final double kramseteS = 0.286; //replace these when analyzing middle? 
     public static final double kramseteV = 2.08;
     public static final double kramseteA = 0.234;
 
-    public static final double kramseteP = 9.52;
-    public static final double kramseteI = 0;
-    public static final double kramseteD = 0;
+    // public static final double kramseteP = 9.52;
+    // public static final double kramseteI = 0;
+    // public static final double kramseteD = 0;
 
     public static final double kRightRamseteS = 0.194;
     public static final double kRightRamseteV = 2.11;

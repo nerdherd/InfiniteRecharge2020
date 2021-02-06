@@ -43,7 +43,9 @@ public class Slalom extends SequentialCommandGroup {
       m_drive.m_kinematics, 
       DriveConstants.kRamseteMaxVolts);
 
-    TrajectoryConfig config = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel).setKinematics(m_drive.m_kinematics);
+    TrajectoryConfig config = new TrajectoryConfig(DriveConstants.kDriveMaxVel, DriveConstants.kDriveMaxAccel)
+    .setKinematics(m_drive.m_kinematics)
+    .addConstraint(autoVoltageConstraint);
 
     Trajectory startToFinish = TrajectoryGenerator.generateTrajectory(
     new Pose2d(0.762, 0.762, new Rotation2d(0)), 
@@ -66,7 +68,7 @@ public class Slalom extends SequentialCommandGroup {
 
     RamseteCommand driveStartToFinish = new RamseteCommand(startToFinish, 
     m_drive::getPose2d, 
-    new RamseteController(2.0, 0.7),
+    new RamseteController(2.0, 0.7), //tune here
     new SimpleMotorFeedforward(DriveConstants.kramseteS, DriveConstants.kramseteV, DriveConstants.kramseteA), //change after Characterizing
     m_drive.m_kinematics, m_drive::getCurrentSpeeds,
     new PIDController(DriveConstants.kLeftP, DriveConstants.kLeftI, DriveConstants.kLeftD), //change in constants after characterizing
