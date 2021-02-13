@@ -27,7 +27,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.auto.AutoLineIntoTrench;
 import frc.robot.commands.auto.AutoLineIntoTrenchFive;
 import frc.robot.commands.auto.AutoLineTrenchThree;
+import frc.robot.commands.auto.BarrelRacing;
 import frc.robot.commands.auto.BasicAuto;
+import frc.robot.commands.auto.Bounce;
+import frc.robot.commands.auto.BounceBackwards;
+import frc.robot.commands.auto.Lightspeed;
+import frc.robot.commands.auto.Slalom;
 // import frc.robot.commands.auto.StealTwoEnemyTrench;
 // import frc.robot.commands.auto.StealTwoIntoTrench;
 // import frc.robot.commands.auto.TenBallAuto;
@@ -112,12 +117,19 @@ public class Robot extends TimedRobot {
 
     drive.setDefaultCommand(new ArcadeDrive(Robot.drive, Robot.oi));
     drive.configKinematics(DriveConstants.kTrackWidth, new Rotation2d(0), new Pose2d(0, 0, new Rotation2d(0)));
-    NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
+    // NerdyBadlog.initAndLog("/home/lvuser/logs/", "4201_practice", 0.02, shooter, hood, index, hopper, drive);
 
     // m_autonomousCommand = new BasicAuto();
     autoChooser = new SendableChooser<Command>();
-    autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
+    // autoChooser.setDefaultOption("Basic Auto", new BasicAuto());
     autoChooser.addOption("6Ball", new AutoLineTrenchThree(drive));
+    autoChooser.addOption("Slalom", new Slalom(drive));
+    autoChooser.addOption("Bounce", new Bounce(drive));
+    autoChooser.addOption("BounceBackwards", new BounceBackwards(drive));
+    autoChooser.addOption("Barrel", new BarrelRacing(drive));
+    autoChooser.addOption("Light", new Lightspeed(drive));
+    
+    
     // autoChooser.addOption("8Ball", new AutoLineIntoTrenchFive(drive));
     // autoChooser.addOption("5 Steal", new StealTwoEnemyTrench(drive));
     // autoChooser.addOption("10 Ball", new StealTwoIntoTrench(drive));
