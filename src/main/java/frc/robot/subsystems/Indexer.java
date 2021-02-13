@@ -11,7 +11,7 @@ import com.nerdherd.lib.motor.single.SingleMotorMechanism;
 import com.nerdherd.lib.sensor.VexUltrasonic;
 import com.nerdherd.lib.sensor.analog.LinearAnalogSensor;
 import com.nerdherd.lib.sensor.digital.TalonTach;
-import com.playingwithfusion.TimeOfFlight;
+// import com.playingwithfusion.TimeOfFlight;
 
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +20,7 @@ import frc.robot.RobotMap;
 import frc.robot.constants.IndexerConstants;
 
 public class Indexer extends SingleMotorMechanism {
-  public TimeOfFlight timeOfFlight1, timeOfFlight2, timeOfFlight3;
+  // public TimeOfFlight timeOfFlight1, timeOfFlight2, timeOfFlight3;
   public VexUltrasonic ultrasonic;
   public IndexerState indexerState;
 
@@ -29,9 +29,9 @@ public class Indexer extends SingleMotorMechanism {
    */
   public Indexer() {
     super(RobotMap.kIndex, "Indexer", false, false);
-    timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID1);
-    timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID2);
-    timeOfFlight3 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID3);
+    // timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID1);
+    // timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID2);
+    // timeOfFlight3 = new TimeOfFlight(RobotMap.kTimeOfFlightSensorID3);
     ultrasonic = new VexUltrasonic("Ultrasonic", 6, 7);
     super.configPIDF(IndexerConstants.kP, IndexerConstants.kI, IndexerConstants.kD, IndexerConstants.kF);
     super.configDeadband(IndexerConstants.kDeadband);
@@ -74,15 +74,18 @@ public class Indexer extends SingleMotorMechanism {
   
   public boolean hopperBallDetected() {
     // return ultrasonic.getRangeInches() < IndexerConstants.kUltrasonicNoBall;
-    return timeOfFlight1.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    // return timeOfFlight1.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    return false;
   }
 
   public boolean indexerLowBallDetected(){
-    return timeOfFlight2.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    // return timeOfFlight2.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    return false;
   }
 
   public boolean indexerHighBallDetected(){
-    return timeOfFlight3.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    // return timeOfFlight3.getRange() < IndexerConstants.kTimeOfFlightNoBall;
+    return false;
   }
 
 }
