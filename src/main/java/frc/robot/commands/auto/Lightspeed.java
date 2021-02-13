@@ -85,9 +85,9 @@ public class Lightspeed extends SequentialCommandGroup {
       new Translation2d(4.191,1.270),
       new Translation2d(2.921,2.159),
       new Translation2d(2.413,2.235),
-      new Translation2d(1.905,1.905),
+      new Translation2d(1.905,1.905)),
     new Pose2d(1.524, 0.762, new Rotation2d(Math.PI)), 
-    config));
+    config);
 
     RamseteCommand driveStartToFinish = new RamseteCommand(startToFinish, 
     m_drive::getPose2d, 

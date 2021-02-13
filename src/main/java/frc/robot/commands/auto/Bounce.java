@@ -61,9 +61,9 @@ public class Bounce extends SequentialCommandGroup {
       new Translation2d(6.096,0.762),
       new Translation2d(6.731,2.540),
       new Translation2d(6.858,3.810),
-      new Translation2d(7.239,2.794),
+      new Translation2d(7.239,2.794)),
     new Pose2d(8.382, 2.286, new Rotation2d(Math.PI)), 
-    config));
+    config);
 
     RamseteCommand driveStartToFinish = new RamseteCommand(startToFinish, 
     m_drive::getPose2d, 

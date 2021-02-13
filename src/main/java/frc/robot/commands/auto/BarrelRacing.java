@@ -66,9 +66,9 @@ public class BarrelRacing extends SequentialCommandGroup {
       new Translation2d(8.255,1.651),
       new Translation2d(6.858,2.032),
       new Translation2d(5.842,2.159),
-      new Translation2d(4.064,2.540),
+      new Translation2d(4.064,2.540)),
     new Pose2d(1.143, 1.905, new Rotation2d(Math.PI)), 
-    config));
+    config);
 
     RamseteCommand driveStartToFinish = new RamseteCommand(startToFinish, 
     m_drive::getPose2d, 
